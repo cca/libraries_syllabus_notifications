@@ -1,8 +1,10 @@
 import smtplib
 from sys import stderr
 
-from_address = 'ephetteplace@cca.edu'
-from_name = 'Eric Phetteplace'
+from_address = 'thaakenson@cca.edu'
+from_name = 'Thomas Haakenson'
+reply_address = 'ephetteplace@cca.edu'
+reply_name = 'Eric Phetteplace'
 list_item = '\n\t- '
 
 
@@ -23,7 +25,7 @@ def notify(name, username, courses):
         ))
         return False
 
-    # create formatted email
+    # email template
     msg = """\
 From: %s <%s>
 Reply-To: %s <%s>
@@ -43,19 +45,30 @@ Note that, for team taught sections, only one person needs to contribute the syl
 \t4. Select your course section by clicking 'Select terms'
 \t5. Click on 'Save' and then 'Publish'
 
-Still struggling? Have questions? Feel free to get in touch with me.
+Still struggling? Have questions? Feel free to in touch with CCA's Systems Librarian, %s at %s or 510.594.3660 (ext. 3660 from campus).
 
-Sincerely,
-%s
-Systems Librarian
+----------
+
+Dr. Thomas O. Haakenson
+Associate Provost
 California College of the Arts
-510.594.3660 (ext. 3660 from campus)
+
+Mailing Address:
+5212 Broadway
+Oakland, California, U.S.A. 94618-1426
+
+Email: thaakenson@cca.edu
+Office Phone: 510.594.3655
+Cellphone: 651.894.2894
+
+Vice President, Fulbright Alumni Association, Northern California Chapter
+Series Editors, German Visual Culture, Peter Lang Oxford
+Co-Coordinator, Visual Culture Network, German Studies Association
 """ % (
     from_name,
     from_address,
-    # repeated twice for From: & Reply-To:
-    from_name,
-    from_address,
+    reply_name,
+    reply_address,
     name,
     username + '@cca.edu',
     name,
@@ -63,9 +76,10 @@ California College of the Arts
     # - blah blah
     # - yada yada
     list_item + list_item.join(courses),
-    from_name
+    reply_name,
+    reply_address,
 )
-    
+
     # send it
     server = smtplib.SMTP('localhost')
     # 2nd parameter must be a _list_ of recipients
