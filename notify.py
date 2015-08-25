@@ -8,7 +8,7 @@ reply_name = 'Eric Phetteplace'
 list_item = '\n\t- '
 
 
-def notify(name, username, courses):
+def notify(name, username, courses, server):
     """
     Send an email to name <username@cca.edu> notifying them
     that we expect a list of courses to have syllabi uploaded to VAULT
@@ -80,9 +80,13 @@ Co-Coordinator, Visual Culture Network, German Studies Association
     reply_address,
 )
 
-    # send it
-    server = smtplib.SMTP('localhost')
+    # send it, defaulting to localhost server if none passed in
+    if server is None:
+        server = smtplib.SMTP('localhost')
+        server_was_set = True
     # 2nd parameter must be a _list_ of recipients
+    # NOTE: is from_address supposed to be a variable here or string?
     server.sendmail('from_address', [username + '@cca.edu'], msg)
-    server.quit()
+    if server_was_set is True:
+        server.quit()
     return True
