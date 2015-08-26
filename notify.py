@@ -1,4 +1,4 @@
-import smtplib
+import smtplib  # https://docs.python.org/2/library/email-examples.html
 from sys import stderr
 
 from_address = 'thaakenson@cca.edu'
