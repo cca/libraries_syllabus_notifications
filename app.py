@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 from __future__ import print_function
-import csv
 import argparse
+import csv
+import smtplib
 import webbrowser
 from time import sleep
 # my functions/data
@@ -40,6 +41,9 @@ reader = csv.DictReader(report, columns)
 skipped_faculty = ('staff', 'standby')
 # see also: has_syllabus.py, which is used to filter certain courses out
 
+# SMTP server
+server = smtplib.SMTP('localhost')
+
 # output values
 data = {}
 
@@ -57,8 +61,8 @@ for row in reader:
             data[name]['courses'].append(row['section'] + ' ' + row['title'])
 
 for faculty in data:
-    # print('notifying %s at %s@cca.edu' % faculty, data[faculty]['username'])
-    # print('courses:', faculty['courses'])
-    notify(faculty, data[faculty]['username'], data[faculty]['courses'])
-    # not sure if necessary but I'd rather not spew our emails in real-time
+    notify(faculty, data[faculty]['username'], data[faculty]['courses'], server)
+    # not sure if necessary but I'd rather not spew out emails so fast
     sleep(1)
+
+server.quit()

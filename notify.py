@@ -84,9 +84,7 @@ Co-Coordinator, Visual Culture Network, German Studies Association
     if server is None:
         server = smtplib.SMTP('localhost')
         server_was_set = True
-    # 2nd parameter must be a _list_ of recipients
-    # NOTE: is from_address supposed to be a variable here or string?
-    server.sendmail('from_address', [username + '@cca.edu'], msg)
+    server.sendmail(reply_address, username + '@cca.edu', msg)
     if server_was_set is True:
         server.quit()
     return True
