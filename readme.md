@@ -6,7 +6,7 @@ Take a CSV of our Informer course information report and send emails to faculty 
 
 - run Informer report (`./app.py --open-report` to open it in a browser) with the following settings: no header row, UTF-8, comma-separated multi-value fields
 - (possibly unnecessary) update usernames.py with any new faculty usernames
-- run `./app.py`
+- run `./app.py data/report.csv` where report.csv is from Informer
 - faculty without usernames will be logged to stderr
 
 ## Report Format
