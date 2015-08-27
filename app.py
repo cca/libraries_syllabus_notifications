@@ -61,6 +61,7 @@ for row in reader:
             data[name]['courses'].append(row['section'] + ' ' + row['title'])
 
 for faculty in data:
+    print('notifying %s...' % faculty)
     notify(faculty, data[faculty]['username'], data[faculty]['courses'], server)
     # not sure if necessary but I'd rather not spew out emails so fast
     sleep(1)

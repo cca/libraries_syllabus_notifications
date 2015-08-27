@@ -34,7 +34,7 @@ Subject: Submitting Syllabi to VAULT
 
 Hello %s,
 
-Happy beginning of the academic year! We are expecting syllabi from the following courses to be uploaded to VAULT by **Friday, September 11th**:
+Happy beginning of the academic year! We are expecting syllabi from the following courses to be uploaded to VAULT by Friday, September 11th:
 %s
 
 Note that, for team taught sections, only one person needs to contribute the syllabus. Uncertain how to submit to VAULT? Follow these simple steps:
@@ -45,7 +45,7 @@ Note that, for team taught sections, only one person needs to contribute the syl
 \t4. Select your course section by clicking 'Select terms'
 \t5. Click on 'Save' and then 'Publish'
 
-_Still struggling? Have questions?_ Feel free to contact CCA's Systems Librarian, %s at %s or 510.594.3660 (ext. 3660 from campus).
+Still struggling? Have questions? Feel free to contact CCA's Systems Librarian, %s at %s or 510.594.3660 (ext. 3660 from campus).
 
 ----------
 
@@ -84,7 +84,12 @@ Co-Coordinator, Visual Culture Network, German Studies Association
     if server is None:
         server = smtplib.SMTP('localhost')
         server_was_set = True
+    else:
+        server_was_set = False
+
     server.sendmail(reply_address, username + '@cca.edu', msg)
+
     if server_was_set is True:
         server.quit()
+
     return True
