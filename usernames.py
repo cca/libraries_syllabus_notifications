@@ -355,7 +355,7 @@ usernames = {
  'Dylan Gold': 'dgold',
  'E.B. Min': 'emin2',
  'Ed Bell': 'dbell2',
- 'Edith Garcia Mosnnett': 'egarcia',
+ 'Edith Garcia Monnet': 'egarcia',
  'Eduardo Pineda': 'epineda',
  'Edward Gutierrez': 'egutierrez',
  'Edward Luce': 'eluce',
