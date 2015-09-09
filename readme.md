@@ -23,3 +23,7 @@ No header row, excess columns after "course" are fine and will be ignored.
 **Recognize a `DEBUG` environment variable?** Could print mails to stdout instead of actually sending as well as log additional information.
 
 **Multi-part HTML emails?** Would allow us to use hyperlinked text rather than plain text URLs, also some formatting to highlight important phrases. Not a high priority as Gmail does a decent job parsing and displaying plain text emails.
+
+## LICENSE
+
+[Apache Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
