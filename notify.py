@@ -103,7 +103,7 @@ Please contribute these to VAULT at your earliest convenience. If you're uncerta
 \t4. Next, select your course section by clicking 'Select terms' under 'Course Information'
 \t\tTo do this, browse down from the semester (e.g. Fall 2015)
 \t\t...all the way to your specific section (e.g. ARTED-101-01)
-\t\t...and click the 'Select' beside your section's code
+\t\t...and click word 'Select' beside your section's number
 \t5. Finally, click the green 'Save' button and then the green 'Publish' button
 
 If after the attempting the above steps you are still unable to upload your syllabus, you can contact CCA's Systems Librarian, %s at %s or 510.594.3660 (ext. 3660 from campus).
