@@ -16,6 +16,10 @@ parser.add_argument('file', nargs='?', help='CSV of the Informer Report')
 parser.add_argument('-o', '--open-report',
                     help='open the appropriate Informer report',
                     action='store_true')
+parser.add_argument('--template', type=str,
+                    choices=['initial', 'followup', 'final'],
+                    help='which email template to utilize',
+                    default='initial')
 args = parser.parse_args()
 
 if args.open_report:
@@ -30,10 +34,8 @@ columns = [
     'title',
     'faculty',
     'section',
-    'course',
-    'xlist',
-    'usernames'
-]  # we leave off last "student count" column because it's unused
+    'course'  # useful in has_syllabus()
+]  # we leave off last few columns because they're unused
 reader = csv.DictReader(report, columns)
 
 # filters for problematic rows
@@ -55,14 +57,14 @@ for row in reader:
         for name in names:
             # initialize if not in output dict already
             if name not in data:
-                data[name] = { 'courses': [],
-                              'username': usernames.get(name) }
+                data[name] = {'courses': [],
+                              'username': usernames.get(name)}
 
             data[name]['courses'].append(row['section'] + ' ' + row['title'])
 
 for faculty in data:
     print('notifying %s...' % faculty)
-    notify(faculty, data[faculty]['username'], data[faculty]['courses'], server)
+    notify(faculty, data[faculty]['username'], data[faculty]['courses'], server, args.template)
     # not sure if necessary but I'd rather not spew out emails so fast
     sleep(1)
 

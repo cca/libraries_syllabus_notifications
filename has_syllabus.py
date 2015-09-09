@@ -1,4 +1,4 @@
-def has_syllabus (row):
+def has_syllabus(row):
     """
     Some courses, mostly Independent Study & Graduate Studio Practice, don't
     have syllabi & we don't want to annoy faculty asking for one. This fn takes
