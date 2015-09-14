@@ -8,7 +8,7 @@ def has_syllabus(row):
     if row['title'] in ('Independent Study', 'Graduate Studio Practice', 'Mentored Study'):
         return False
 
-    coursenum = int(row['course'].split('-')[1])
+    coursenum = int(row['section'].split('-')[1])
 
     # (3|6)96 -> (Under)grad independent study
     # (3|6)98 -> (Under)grad internship
