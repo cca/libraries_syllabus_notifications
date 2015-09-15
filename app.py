@@ -33,8 +33,7 @@ columns = [
     'dept',
     'title',
     'faculty',
-    'section',
-    'course'  # useful in has_syllabus()
+    'section'
 ]  # we leave off last few columns because they're unused
 reader = csv.DictReader(report, columns)
 

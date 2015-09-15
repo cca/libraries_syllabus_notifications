@@ -1,11 +1,14 @@
+from __future__ import print_function
 import smtplib  # https://docs.python.org/2/library/email-examples.html
 from sys import stderr
+import os
 
 from_address = 'thaakenson@cca.edu'
 from_name = 'Thomas Haakenson'
 reply_address = 'ephetteplace@cca.edu'
 reply_name = 'Eric Phetteplace'
 list_item = '\n\t- '
+debug = bool(os.environ.get('DEBUG'))
 
 
 def notify(name, username, courses, server, msg_type='initial'):
@@ -132,7 +135,7 @@ Co-Coordinator, Visual Culture Network, German Studies Association
 """  # % email_values
 
     # send it, defaulting to localhost server if none passed in
-    if server is None:
+    if server is None and debug is False:
         server = smtplib.SMTP('localhost')
         server_was_set = True
     else:
@@ -146,7 +149,11 @@ Co-Coordinator, Visual Culture Network, German Studies Association
     else:
         msg = final
 
-    server.sendmail(reply_address, username + '@cca.edu', msg)
+    if debug is False:
+        server.sendmail(reply_address, username + '@cca.edu', msg)
+    else:
+        print('Email to be sent to %s@cca.edu:' % username)
+        print(msg)
 
     if server_was_set is True:
         server.quit()

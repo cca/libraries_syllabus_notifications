@@ -10,17 +10,21 @@ Take a CSV of our Informer course information report and send emails to faculty 
 - the `--template` flag lets you specify an email template out of the available choices of "initial", "followup", and "final", e.g. `./app.py data.csv --template followup`
 - faculty without usernames will be logged to stderr
 
+## Other Notes
+
+If you export a shell environmental variable `DEBUG` to any non-empty value, e.g. "true", the main app will print emails to stdout instead of sending them via SMTP.
+
+You can also use "has_syllabus.py" to count the number of rows in a CSV of courses which have syllabi, the syntax is `python has_syllabus courses.csv`.
+
 ## Report Format
 
 Report CSV should have the following columns in this order:
 
-> "semester","dept","title","faculty","section","course"
+> "semester","dept","title","faculty","section"
 
-No header row, excess columns after "course" are fine and will be ignored.
+No header row, excess columns after "section" are fine and will be ignored.
 
 ## To Do / Future Considerations
-
-**Recognize a `DEBUG` environment variable?** Could print mails to stdout instead of actually sending as well as log additional information.
 
 **Multi-part HTML emails?** Would allow us to use hyperlinked text rather than plain text URLs, also some formatting to highlight important phrases. Not a high priority as Gmail does a decent job parsing and displaying plain text emails.
 
