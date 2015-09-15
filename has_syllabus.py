@@ -1,3 +1,8 @@
+from __future__ import print_function
+import csv
+import sys
+
+
 def has_syllabus(row):
     """
     Some courses, mostly Independent Study & Graduate Studio Practice, don't
@@ -23,3 +28,19 @@ def has_syllabus(row):
 
     # fallthrough; nothing else fired so it must have a syllabus
     return True
+
+# if we run this on the cli & pass it a CSV
+# it'll total up the number of courses in the CSV that should have syllabi
+if __name__ == '__main__':
+    columns = ['semester', 'dept', 'title', 'faculty', 'section', 'course']
+    reader = csv.DictReader(open(sys.argv[1]), columns)
+    syllabus_count = 0
+    total_count = 0
+
+    for row in reader:
+        if has_syllabus(row):
+            syllabus_count += 1
+
+        total_count += 1
+
+print('%s courses have syllabi of %s total in the CSV' % (syllabus_count, total_count))
