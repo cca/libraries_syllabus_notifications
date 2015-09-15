@@ -14,6 +14,7 @@ def has_syllabus(row):
         return False
 
     coursenum = int(row['section'].split('-')[1])
+    course = '-'.join(row['section'].split('-')[0:2])
 
     # (3|6)96 -> (Under)grad independent study
     # (3|6)98 -> (Under)grad internship
@@ -23,7 +24,7 @@ def has_syllabus(row):
     # FINAR-660 is Graduate Studio Practice, no syllabus
     # WRITE-660 is Mentored Study which submits inidividual contracts
     # both of these should be caught above but just in case
-    if row['course'] in ('FINAR-660', 'WRITE-660'):
+    if course in ('FINAR-660', 'WRITE-660'):
         return False
 
     # fallthrough; nothing else fired so it must have a syllabus
@@ -43,4 +44,4 @@ if __name__ == '__main__':
 
         total_count += 1
 
-print('%s courses have syllabi of %s total in the CSV' % (syllabus_count, total_count))
+    print('%s courses have syllabi of %s total in the CSV' % (syllabus_count, total_count))
