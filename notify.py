@@ -29,6 +29,7 @@ def notify(name, username, courses, server, msg_type='initial'):
         return False
 
     # these are filled into the templates below
+    # ordering is important
     email_values = (
         from_name,
         from_address,
@@ -61,9 +62,9 @@ Note that, for team taught sections, only one person needs to contribute the syl
 
 \t1. Visit https://vault.cca.edu/s/upload-syllabus
 \t2. Sign in with your CCA user name
-\t3. Upload your PDF syllabus file by clicking 'Add a resource'
-\t4. Select your course section by clicking 'Select terms'
-\t5. Click on 'Save' and then 'Publish'
+\t3. Upload your PDF syllabus file by clicking "Add a resource"
+\t4. Select your course section by clicking "Select terms"
+\t5. Click on "Save" and then "Publish"
 
 Still struggling? Have questions? Feel free to contact CCA's Systems Librarian, %s at %s or 510.594.3660 (ext. 3660 from campus).
 
@@ -71,6 +72,7 @@ Still struggling? Have questions? Feel free to contact CCA's Systems Librarian, 
 
 Dr. Thomas O. Haakenson
 Associate Provost
+Faculty, Visual Studies
 California College of the Arts
 
 Mailing Address:
@@ -102,12 +104,12 @@ Please contribute these to VAULT at your earliest convenience. If you're uncerta
 
 \t1. Visit https://vault.cca.edu/s/upload-syllabus
 \t2. Sign in with your CCA user name
-\t3. Upload a PDF syllabus first by clicking 'Add a resource'
-\t4. Next, select your course section by clicking 'Select terms' under 'Course Information'
+\t3. Upload a PDF syllabus first by clicking "Add a resource"
+\t4. Next, select your course section by clicking "Select terms" under "Course Information"
 \t\tTo do this, browse down from the semester (e.g. Fall 2015)
 \t\t...all the way to your specific section (e.g. ARTED-101-01)
-\t\t...and click word 'Select' beside your section's number
-\t5. Finally, click the green 'Save' button and then the green 'Publish' button
+\t\t...and click the word "Select" beside your section's number
+\t5. Finally, click the green "Save" button and then the green "Publish" button
 
 If after the attempting the above steps you are still unable to upload your syllabus, you can contact CCA's Systems Librarian, %s at %s or 510.594.3660 (ext. 3660 from campus).
 
@@ -115,6 +117,7 @@ If after the attempting the above steps you are still unable to upload your syll
 
 Dr. Thomas O. Haakenson
 Associate Provost
+Faculty, Visual Studies
 California College of the Arts
 
 Mailing Address:
@@ -130,9 +133,58 @@ Series Editors, German Visual Culture, Peter Lang Oxford
 Co-Coordinator, Visual Culture Network, German Studies Association
 """ % email_values
 
-    # final (2nd) reminder to turn in syllabi, template TBD
+    # final (2nd) reminder to turn in syllabi
     final = """\
-"""  # % email_values
+From: %s <%s>
+Reply-To: %s <%s>
+To: %s <%s>
+Subject: Last Reminder: Submit Your Syllabi to VAULT
+
+Hello %s,
+
+VAULT is still missing syllabi from the following sections:
+%s
+
+This is the last reminder that one syllabus for each section you instruct is needed in VAULT. If you are struggling to upload your syllabus, please contact CCA's Systems Librarian, %s at %s or 510.594.3660 (ext. 3660 from campus). If you are team-teaching and someone else has uploaded the syllabus, or if another section's syllabus is supposed to act as your own, you still need to notify the library. Unfortunately, it's not possible to determine when one syllabus serves multiple sections, thus why you are receiving this reminder.
+
+Here are detailed instructions on uploading to VAULT:
+
+\t1. Visit https://vault.cca.edu/s/upload-syllabus
+\t2. Sign in with your CCA user name (without the "@cca.edu" on the end)
+\t3. Upload a PDF syllabus first by clicking the green "Add a resource" button
+\t\t...click "Browse" or the "Drag & Drop" box to find your syllabus on your computer
+\t\t...a green bar will indicate when the file upload completes
+\t\t...in the bottom right, click the gray "Next" button
+\t\t...and then the green "Save" button to return to the form
+\t4. Add your course section by clicking "Select terms" under "Course Information"
+\t\t...browse down from the semester (e.g. "Fall 2015")
+\t\t...all the way to your specific section (e.g. "ARTED-101-01")
+\t\t...and click the word "Select" beside your section's number
+\t\t...the green "OK" button in the bottom right returns you to the form
+\t5. Finally, click the green "Save" button and then the green "Publish" button
+\t\tIf successful, you are taken to an item summary page displaying your course's details
+
+This animation demonstrates the complete process from start to finish: https://vault.cca.edu/file/4eb14fb4-1b10-4527-914c-85610df0fb61/1/syllabus-upload.gif
+
+----------
+
+Dr. Thomas O. Haakenson
+Associate Provost
+Faculty, Visual Studies
+California College of the Arts
+
+Mailing Address:
+5212 Broadway
+Oakland, California, U.S.A. 94618-1426
+
+Email: thaakenson@cca.edu
+Office Phone: 510.594.3655
+Cellphone: 651.894.2894
+
+Vice President, Fulbright Alumni Association, Northern California Chapter
+Series Editors, German Visual Culture, Peter Lang Oxford
+Co-Coordinator, Visual Culture Network, German Studies Association
+""" % email_values
 
     # send it, defaulting to localhost server if none passed in
     if server is None and debug is False:
@@ -142,12 +194,12 @@ Co-Coordinator, Visual Culture Network, German Studies Association
         server_was_set = False
 
     # choose which template to use
-    if msg_type == 'initial':
-        msg = initial
+    if msg_type == 'final':
+        msg = final
     elif msg_type == 'followup':
         msg = followup
     else:
-        msg = final
+        msg = initial
 
     if debug is False:
         server.sendmail(reply_address, username + '@cca.edu', msg)
