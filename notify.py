@@ -8,6 +8,30 @@ from_name = 'Thomas Haakenson'
 reply_address = 'ephetteplace@cca.edu'
 reply_name = 'Eric Phetteplace'
 list_item = '\n\t- '
+signature = """\
+Dr. Thomas O. Haakenson
+Associate Provost
+Faculty, Visual Studies
+California College of the Arts
+
+Pronouns: He, him
+
+Academic Year 2015-2016 Location Schedule:
+ - Mondays and Fridays: Oakland Campus
+ - Tuesdays, Wednesdays, and Thursdays: SF Campus
+
+Mailing Address:
+5212 Broadway
+Oakland, California, U.S.A. 94618-1426
+
+Email: thaakenson@cca.edu
+Office Phone: 510.594.3655
+Cellphone: 651.894.2894
+
+Vice President, Fulbright Alumni Association, Northern California Chapter
+Series Editors, German Visual Culture, Peter Lang Oxford
+Co-Coordinator, Visual Culture Network, German Studies Association
+"""
 debug = bool(os.environ.get('DEBUG'))
 
 
@@ -44,9 +68,11 @@ def notify(name, username, courses, server, msg_type='initial'):
         list_item + list_item.join(courses),
         reply_name,
         reply_address,
+        signature,
     )
 
     # initial email template, sent towards beginning of semester
+    # @TODO update the due date here each semester
     initial = """\
 From: %s <%s>
 Reply-To: %s <%s>
@@ -55,7 +81,7 @@ Subject: Submitting Syllabi to VAULT
 
 Hello %s,
 
-Happy beginning of the academic year! We are expecting syllabi from the following courses to be uploaded to VAULT by Friday, September 11th:
+Happy beginning of the semester! We are expecting syllabi from the following courses to be uploaded to VAULT by Monday, February 1st:
 %s
 
 Note that, for team taught sections, only one person needs to contribute the syllabus. Uncertain how to submit to VAULT? Follow these simple steps:
@@ -66,26 +92,14 @@ Note that, for team taught sections, only one person needs to contribute the syl
 \t4. Select your course section by clicking "Select terms"
 \t5. Click on "Save" and then "Publish"
 
+This animation demonstrates the complete process from start to finish: https://vault.cca.edu/file/4eb14fb4-1b10-4527-914c-85610df0fb61/1/syllabus-upload.gif
+
 Still struggling? Have questions? Feel free to contact CCA's Systems Librarian, %s at %s or 510.594.3660 (ext. 3660 from campus).
 
 ----------
 
-Dr. Thomas O. Haakenson
-Associate Provost
-Faculty, Visual Studies
-California College of the Arts
+%s
 
-Mailing Address:
-5212 Broadway
-Oakland, California, U.S.A. 94618-1426
-
-Email: thaakenson@cca.edu
-Office Phone: 510.594.3655
-Cellphone: 651.894.2894
-
-Vice President, Fulbright Alumni Association, Northern California Chapter
-Series Editors, German Visual Culture, Peter Lang Oxford
-Co-Coordinator, Visual Culture Network, German Studies Association
 """ % email_values
 
     # 2nd reminder, sent a few days after deadline
@@ -106,31 +120,19 @@ Please contribute these to VAULT at your earliest convenience. If you're uncerta
 \t2. Sign in with your CCA user name
 \t3. Upload a PDF syllabus first by clicking "Add a resource"
 \t4. Next, select your course section by clicking "Select terms" under "Course Information"
-\t\tTo do this, browse down from the semester (e.g. Fall 2015)
+\t\tTo do this, browse down from the semester (e.g. Spring 2016)
 \t\t...all the way to your specific section (e.g. ARTED-101-01)
 \t\t...and click the word "Select" beside your section's number
 \t5. Finally, click the green "Save" button and then the green "Publish" button
+
+This animation demonstrates the complete process from start to finish: https://vault.cca.edu/file/4eb14fb4-1b10-4527-914c-85610df0fb61/1/syllabus-upload.gif
 
 If after the attempting the above steps you are still unable to upload your syllabus, you can contact CCA's Systems Librarian, %s at %s or 510.594.3660 (ext. 3660 from campus).
 
 ----------
 
-Dr. Thomas O. Haakenson
-Associate Provost
-Faculty, Visual Studies
-California College of the Arts
+%s
 
-Mailing Address:
-5212 Broadway
-Oakland, California, U.S.A. 94618-1426
-
-Email: thaakenson@cca.edu
-Office Phone: 510.594.3655
-Cellphone: 651.894.2894
-
-Vice President, Fulbright Alumni Association, Northern California Chapter
-Series Editors, German Visual Culture, Peter Lang Oxford
-Co-Coordinator, Visual Culture Network, German Studies Association
 """ % email_values
 
     # final (2nd) reminder to turn in syllabi
@@ -168,22 +170,8 @@ This animation demonstrates the complete process from start to finish: https://v
 
 ----------
 
-Dr. Thomas O. Haakenson
-Associate Provost
-Faculty, Visual Studies
-California College of the Arts
+%s
 
-Mailing Address:
-5212 Broadway
-Oakland, California, U.S.A. 94618-1426
-
-Email: thaakenson@cca.edu
-Office Phone: 510.594.3655
-Cellphone: 651.894.2894
-
-Vice President, Fulbright Alumni Association, Northern California Chapter
-Series Editors, German Visual Culture, Peter Lang Oxford
-Co-Coordinator, Visual Culture Network, German Studies Association
 """ % email_values
 
     # send it, defaulting to localhost server if none passed in
