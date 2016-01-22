@@ -23,7 +23,7 @@ parser.add_argument('--template', type=str,
 args = parser.parse_args()
 
 if args.open_report:
-    webbrowser.open('https://vm-informer-01.cca.edu/informer/?locale=en_US#action=ReportRun&reportId=25428063&launch=false')
+    webbrowser.open('https://vault.cca.edu/access/reports.do')
     exit()
 
 report = open(args.file, 'rb')
