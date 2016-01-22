@@ -192,7 +192,8 @@ This animation demonstrates the complete process from start to finish: https://v
     if debug is False:
         server.sendmail(reply_address, username + '@cca.edu', msg)
     else:
-        print('Email to be sent to %s@cca.edu:' % username)
+        print('DEBUGGING MODE: email not sent')
+        print('Email that would have been sent to %s@cca.edu:\n' % username)
         print(msg)
 
     if server_was_set is True:

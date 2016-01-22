@@ -2,6 +2,7 @@
 from __future__ import print_function
 import argparse
 import csv
+import os
 import smtplib
 import webbrowser
 from time import sleep
@@ -9,6 +10,8 @@ from time import sleep
 from usernames import usernames
 from has_syllabus import has_syllabus
 from notify import notify
+
+debug = bool(os.environ.get('DEBUG'))
 
 # CLI arguments
 parser = argparse.ArgumentParser()
@@ -43,7 +46,10 @@ skipped_faculty = ('staff', 'standby')
 # see also: has_syllabus.py, which is used to filter certain courses out
 
 # SMTP server
-server = smtplib.SMTP('localhost')
+if debug is True:
+    server = None
+else:
+    server = smtplib.SMTP('localhost')
 
 # output values
 data = {}
