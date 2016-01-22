@@ -1,14 +1,19 @@
 # Faculty Syllabus Notifications
 
-Take a CSV of our Informer course information report and send emails to faculty about which syllabi we're expecting from them. We skip notifying faculty for courses which do not require syllabi (e.g. Graduate Studio Practice) and work around problematic faculty values like "Staff" and "Standby".
+Take a CSV of our missing syllabi VAULT report and send emails to faculty about which syllabi we expect from them. We skip notifying faculty for courses which do not require syllabi (e.g. Graduate Studio Practice) and work around problematic faculty values like "Staff" and "Standby".
 
 ## Steps
 
-- run Informer report (`./app.py --open-report` to open it in a browser) with the following settings: no header row, UTF-8, comma-separated multi-value fields
-- (possibly unnecessary) update usernames.py with any new faculty usernames
-- run `./app.py data/report.csv > log.txt` where report.csv is from Informer & log.txt is a log file
-- the `--template` flag lets you specify an email template out of the available choices of "initial", "followup", and "final", e.g. `./app.py data.csv --template followup`
-- faculty without usernames will be logged to stderr
+- update the due date & other pieces of the email template in notify.py
+- pull all faculty usernames with [the Informer report](https://vm-informer-01.cca.edu/informer/?locale=en_US#action=ReportRun&reportId=103645186&launch=false)
+- create a python dict of new usernames merged with known ones using `python process-un-csv.py data/faculty-usernames.csv > data/usernames-dict.txt`
+- manually edit "usernames-dict.txt" such that it exports a `usernames` dict & is named "usernames.py"
+- in VAULT, run the Missing Syllabi by Semester report (`./app.py --open-report` opens it)
+- copy the text body of the report into a plain text file, e.g. "report.txt"
+- convert the text to CSV with `./missing-syllabi-report-to-csv.sh data/report.txt > data/report.csv`
+- finally, run `./app.py data/report.csv >> data/log.txt` to send out emails, where log.txt is a log file
+    + the `--template` flag lets you specify an email template out of the available choices of "initial", "followup", and "final", e.g. `./app.py data.csv --template followup`
+    + faculty without usernames will be logged to stderr & can be manually added to usernames.py; if you filter report.csv to just their courses, you can simply rerun app.py
 
 ## Other Notes
 
