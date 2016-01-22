@@ -4,8 +4,8 @@ import argparse
 import csv
 import os
 import smtplib
+import time
 import webbrowser
-from time import sleep
 # my functions/data
 from usernames import usernames
 from has_syllabus import has_syllabus
@@ -68,9 +68,9 @@ for row in reader:
             data[name]['courses'].append(row['section'] + ' ' + row['title'])
 
 for faculty in data:
-    print('notifying %s...' % faculty)
+    print(time.strftime("%m/%d/%Y %H:%M:%S"), 'notifying %s...' % faculty)
     notify(faculty, data[faculty]['username'], data[faculty]['courses'], server, args.template)
     # not sure if necessary but I'd rather not spew out emails so fast
-    sleep(1)
+    time.sleep(1)
 
 server.quit()

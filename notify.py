@@ -1,7 +1,8 @@
 from __future__ import print_function
+import os
 import smtplib  # https://docs.python.org/2/library/email-examples.html
 from sys import stderr
-import os
+import time
 
 from_address = 'thaakenson@cca.edu'
 from_name = 'Thomas Haakenson'
