@@ -10,6 +10,11 @@ def has_syllabus(row):
     a course, checks it against several possible attributes of courses that do
     not have syllabi, & returns False if it looks like a non-syllabus course.
     """
+    # All COMIC courses, even "Mentored Study" etc., are an exception
+    # & _do_ have syllabi, per Maya Lawrence on 2016-01-28
+    if row['dept'] == 'COMIC':
+        return True
+
     if row['title'] in ('Independent Study', 'Graduate Studio Practice', 'Mentored Study'):
         return False
 
