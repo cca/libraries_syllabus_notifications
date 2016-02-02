@@ -118,7 +118,7 @@ Please contribute these to VAULT at your earliest convenience. If you're uncerta
 
 \t1. Visit https://vault.cca.edu/s/upload-syllabus
 \t2. Sign in with your CCA user name
-\t3. Upload a PDF syllabus first by clicking "Add a resource"
+\t3. Add a PDF syllabus first by clicking "Add a resource", using the "Browse" button to find the file, and then the "Next" and "Save" buttons in the bottom right to upload it
 \t4. Next, select your course section by clicking "Select terms" under "Course Information"
 \t\tTo do this, browse down from the semester (e.g. Spring 2016)
 \t\t...all the way to your specific section (e.g. ARTED-101-01)
