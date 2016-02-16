@@ -147,19 +147,19 @@ Hello %s,
 VAULT is still missing syllabi from the following sections:
 %s
 
-This is the last reminder that one syllabus for each section you instruct is needed in VAULT. If you are struggling to upload your syllabus, please contact CCA's Systems Librarian, %s at %s or 510.594.3660 (ext. 3660 from campus). If you are team-teaching and someone else has uploaded the syllabus, or if another section's syllabus is supposed to act as your own, you still need to notify the library. Unfortunately, it's not possible to determine when one syllabus serves multiple sections, thus why you are receiving this reminder.
+This is the last reminder that one syllabus for each section you instruct is needed in VAULT. If you are struggling to upload your syllabus, please contact CCA's Systems Librarian, %s at %s or 510.594.3660 (ext. 3660 from campus). If another section's syllabus is supposed to act as your own, you still need to notify the library. Unfortunately, it's not possible to determine when one syllabus serves multiple sections, thus why you are receiving this reminder.
 
 Here are detailed instructions on uploading to VAULT:
 
 \t1. Visit https://vault.cca.edu/s/upload-syllabus
-\t2. Sign in with your CCA user name (without the "@cca.edu" on the end)
+\t2. Sign in with your CCA user name
 \t3. Upload a PDF syllabus first by clicking the green "Add a resource" button
 \t\t...click "Browse" or the "Drag & Drop" box to find your syllabus on your computer
 \t\t...a green bar will indicate when the file upload completes
 \t\t...in the bottom right, click the gray "Next" button
 \t\t...and then the green "Save" button to return to the form
 \t4. Add your course section by clicking "Select terms" under "Course Information"
-\t\t...browse down from the semester (e.g. "Fall 2015")
+\t\t...browse down from the semester (e.g. "Spring 2016")
 \t\t...all the way to your specific section (e.g. "ARTED-101-01")
 \t\t...and click the word "Select" beside your section's number
 \t\t...the green "OK" button in the bottom right returns you to the form
