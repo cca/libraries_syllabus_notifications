@@ -25,6 +25,10 @@ class TestHasSyllabus(unittest.TestCase):
         r = {'section': 'WRITE-660-09', 'title': 'Mentored Study', 'dept': 'WRITE', 'semester': '2015FA', 'faculty': 'Anon Ymouse'}
         self.assertEqual(has_syllabus(r), False)
 
+    def test_comics(self):
+        r = {'section': 'COMIC-615-01', 'title': 'Mentored Study', 'dept': 'COMIC', 'semester': '2016SP', 'faculty': 'Anon Ymouse'}
+        self.assertEqual(has_syllabus(r), True)
+
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestHasSyllabus)
