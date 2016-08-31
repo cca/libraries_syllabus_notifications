@@ -30,14 +30,14 @@ if args.open_report:
     exit()
 
 report = open(args.file, 'rb')
-# the columns in the department-specific Informer CSV, in order
+# the columns in the Informer CSV, in order
 columns = [
     'semester',
     'dept',
     'title',
     'faculty',
     'section'
-]  # we leave off last few columns because they're unused
+]
 reader = csv.DictReader(report, columns)
 
 # filters for problematic rows

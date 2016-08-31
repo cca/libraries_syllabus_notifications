@@ -14,11 +14,15 @@ Associate Provost
 Faculty, Visual Studies
 California College of the Arts
 
-Pronouns: He, him
+"Birth astride of a grave, the light gleams an instant, then it's night once more." (Samuel Beckett)
+
+See Also: Provost / Associate Provost / Director of Academic Administration Division of Responsibilities
+
+Pronouns: he, him
 
 Academic Year 2015-2016 Location Schedule:
- - Mondays and Fridays: Oakland Campus
- - Tuesdays, Wednesdays, and Thursdays: SF Campus
+- Mondays and Fridays: Oakland Campus
+- Tuesdays, Wednesdays, and Thursdays: SF Campus
 
 Mailing Address:
 5212 Broadway
@@ -30,7 +34,6 @@ Cellphone: 651.894.2894
 
 Vice President, Fulbright Alumni Association, Northern California Chapter
 Series Editors, German Visual Culture, Peter Lang Oxford
-Co-Coordinator, Visual Culture Network, German Studies Association
 """
 debug = bool(os.environ.get('DEBUG'))
 
@@ -81,7 +84,7 @@ Subject: Submitting Syllabi to VAULT
 
 Hello %s,
 
-Happy beginning of the semester! We are expecting syllabi from the following courses to be uploaded to VAULT by Monday, February 1st:
+Happy beginning of the semester! We are expecting syllabi from the following courses to be uploaded to VAULT by Friday, September 16th:
 %s
 
 Note that, for team taught sections, only one person needs to contribute the syllabus. Uncertain how to submit to VAULT? Follow these simple steps:

@@ -9,7 +9,7 @@ Take a CSV of our missing syllabi VAULT report and send emails to faculty about 
 - create a python dict of new usernames merged with known ones using `python process-un-csv.py data/faculty-usernames.csv > data/usernames-dict.txt`
 - manually edit "usernames-dict.txt" such that it exports a `usernames` dict & is named "usernames.py"
 - in VAULT, run the Missing Syllabi by Semester report (`./app.py --open-report` opens it)
-- Export the report to Excel, then in Excel save it as a CSV
+- Export the report to Excel, then in Excel save it as a CSV after trimming off header rows & date at the bottom
 - finally, run `./app.py data/report.csv >> data/log.txt` to send out emails, where log.txt is a log file
     + the `--template` flag lets you specify an email template out of the available choices of "initial", "followup", and "final", e.g. `./app.py data.csv --template followup`
     + faculty without usernames will be logged to stderr & can be manually added to usernames.py; if you filter report.csv to just their courses, you can simply rerun app.py
