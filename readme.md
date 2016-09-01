@@ -34,8 +34,4 @@ No header row, excess columns after "section" are fine and will be ignored.
 
 ## LICENSE
 
-[Apache Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
-
-# LICENSE
-
 [ECL Version 2.0](https://opensource.org/licenses/ECL-2.0)
