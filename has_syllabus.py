@@ -28,8 +28,10 @@ def has_syllabus(row):
 
     # FINAR-660 is Graduate Studio Practice, no syllabus
     # WRITE-660 is Mentored Study which submits inidividual contracts
-    # both of these should be caught above but just in case
-    if course in ('FINAR-660', 'WRITE-660'):
+    # WRITE-608 is a thesis course & the faculty member submits a narrative
+    # to VAULT in lieu of syllabi, per email from Gloria Fry 2016-09-06
+    # Some of these should be caught above but just in case
+    if course in ('FINAR-660', 'WRITE-660', 'WRITE-608'):
         return False
 
     # fallthrough; nothing else fired so it must have a syllabus
