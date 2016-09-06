@@ -5,14 +5,15 @@ Take a CSV of our missing syllabi VAULT report and send emails to faculty about 
 ## Steps
 
 - update the due date & other pieces of the email template in notify.py
-- pull all faculty usernames with [the Informer report](https://vm-informer-01.cca.edu/informer/?locale=en_US#action=ReportRun&reportId=103645186&launch=false)
+- pull faculty usernames with [the Informer report](https://vm-informer-01.cca.edu/informer/?locale=en_US#action=ReportRun&reportId=103645186)
 - create a python dict of new usernames merged with known ones using `python process-un-csv.py data/faculty-usernames.csv > data/usernames-dict.txt`
-- manually edit "usernames-dict.txt" such that it exports a `usernames` dict & is named "usernames.py"
+- manually edit "usernames-dict.txt" such that it exports a `usernames` dict & save it, overwriting "usernames.py"
 - in VAULT, run the Missing Syllabi by Semester report (`./app.py --open-report` opens it)
-- Export the report to Excel, then in Excel save it as a CSV after trimming off header rows & date at the bottom
+- Export the report to Excel, then save it as a CSV after trimming off header rows & date at the bottom
 - finally, run `./app.py data/report.csv >> data/log.txt` to send out emails, where log.txt is a log file
     + the `--template` flag lets you specify an email template out of the available choices of "initial", "followup", and "final", e.g. `./app.py data.csv --template followup`
-    + faculty without usernames will be logged to stderr & can be manually added to usernames.py; if you filter report.csv to just their courses, you can simply rerun app.py
+
+The app logs faculty without usernames to stderr & they can then be manually added to usernames.py; if you filter report.csv to just their courses, you can simply rerun app.py. If you do this, remember to delete out the co-instructors who already received an email—e.g. if we don't have an email for J R & the faculty column for a course is "J R, Herb Somebody" then delete "Herb Somebody" before rerunning the app.
 
 ## Other Notes
 
