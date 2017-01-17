@@ -6,8 +6,7 @@ Take a CSV of our missing syllabi VAULT report and send emails to faculty about 
 
 - update the due date & other pieces of the email template in notify.py
 - pull faculty usernames with [the Informer report](https://vm-informer-01.cca.edu/informer/?locale=en_US#action=ReportRun&reportId=103645186)
-- create a python dict of new usernames merged with known ones using `python process-un-csv.py data/faculty-usernames.csv > data/usernames-dict.txt`
-- manually edit "usernames-dict.txt" such that it exports a `usernames` dict & save it, overwriting "usernames.py"
+- create a python dict of new usernames merged with known ones using `python process-un-csv.py usernames.csv > usernames.py`
 - in VAULT, run the Missing Syllabi by Semester report (`./app.py --open-report` opens it)
 - Export the report to Excel, then save it as a CSV after trimming off header rows & date at the bottom
 - finally, run `./app.py data/report.csv >> data/log.txt` to send out emails, where log.txt is a log file

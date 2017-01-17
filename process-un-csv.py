@@ -23,4 +23,5 @@ for row in reader:
 
 # merge the report's usernames dict with the previous usernames
 usernames.update(report_usernames)
-print(usernames)
+# output in a format suitable for saving to a python file
+print('usernames = ' + str(usernames))
