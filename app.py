@@ -73,4 +73,5 @@ for faculty in data:
     # not sure if necessary but I'd rather not spew out emails so fast
     time.sleep(1)
 
-server.quit()
+if server is not None:
+    server.quit()
