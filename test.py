@@ -6,27 +6,27 @@ from has_syllabus import has_syllabus
 class TestHasSyllabus(unittest.TestCase):
 
     def test_grad_studio(self):
-        r = {'section': 'ANIMA-270-09', 'title': 'Graduate Studio Practice', 'dept': 'ANIMA', 'semester': '2015FA', 'faculty': 'Anon Ymouse'}
+        r = {'Section': 'ANIMA-270-09', 'Course Title': 'Graduate Studio Practice', 'Department Code': 'ANIMA', 'Semester': '2015FA', 'Instructor(s)': 'Anon Ymouse'}
         self.assertEqual(has_syllabus(r), False)
 
     def test_independent_study(self):
-        r = {'section': 'ANIMA-270-09', 'title': 'Independent Study', 'dept': 'ANIMA', 'semester': '2015FA', 'faculty': 'Anon Ymouse'}
+        r = {'Section': 'ANIMA-270-09', 'Course Title': 'Independent Study', 'Department Code': 'ANIMA', 'Semester': '2015FA', 'Instructor(s)': 'Anon Ymouse'}
         self.assertEqual(has_syllabus(r), False)
 
     def test_696(self):
-        r = {'section': 'ANIMA-696-09', 'title': 'Animation Course', 'dept': 'ANIMA', 'semester': '2015FA', 'faculty': 'Anon Ymouse'}
+        r = {'Section': 'ANIMA-696-09', 'Course Title': 'Animation Course', 'Department Code': 'ANIMA', 'Semester': '2015FA', 'Instructor(s)': 'Anon Ymouse'}
         self.assertEqual(has_syllabus(r), False)
 
     def test_regular_course(self):
-        r = {'section': 'ANIMA-270-09', 'title': 'Animation Course', 'dept': 'ANIMA', 'semester': '2015FA', 'faculty': 'Anon Ymouse'}
+        r = {'Section': 'ANIMA-270-09', 'Course Title': 'Animation Course', 'Department Code': 'ANIMA', 'Semester': '2015FA', 'Instructor(s)': 'Anon Ymouse'}
         self.assertEqual(has_syllabus(r), True)
 
     def test_mentored_study(self):
-        r = {'section': 'WRITE-660-09', 'title': 'Mentored Study', 'dept': 'WRITE', 'semester': '2015FA', 'faculty': 'Anon Ymouse'}
+        r = {'Section': 'WRITE-660-09', 'Course Title': 'Mentored Study', 'Department Code': 'WRITE', 'Semester': '2015FA', 'Instructor(s)': 'Anon Ymouse'}
         self.assertEqual(has_syllabus(r), False)
 
     def test_comics(self):
-        r = {'section': 'COMIC-615-01', 'title': 'Mentored Study', 'dept': 'COMIC', 'semester': '2016SP', 'faculty': 'Anon Ymouse'}
+        r = {'Section': 'COMIC-615-01', 'Course Title': 'Mentored Study', 'Department Code': 'COMIC', 'Semester': '2016SP', 'Instructor(s)': 'Anon Ymouse'}
         self.assertEqual(has_syllabus(r), True)
 
 

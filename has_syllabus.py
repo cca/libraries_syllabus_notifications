@@ -12,14 +12,14 @@ def has_syllabus(row):
     """
     # All COMIC courses, even "Mentored Study" etc., are an exception
     # & _do_ have syllabi, per Maya Lawrence on 2016-01-28
-    if row['dept'] == 'COMIC':
+    if row['Department Code'] == 'COMIC':
         return True
 
-    if row['title'] in ('Independent Study', 'Graduate Studio Practice', 'Mentored Study'):
+    if row['Course Title'] in ('Independent Study', 'Graduate Studio Practice', 'Mentored Study'):
         return False
 
-    coursenum = int(row['section'].split('-')[1])
-    course = '-'.join(row['section'].split('-')[0:2])
+    coursenum = int(row['Section'].split('-')[1])
+    course = '-'.join(row['Section'].split('-')[0:2])
 
     # (3|6)96 -> (Under)grad independent study
     # (3|6)98 -> (Under)grad internship
@@ -40,8 +40,7 @@ def has_syllabus(row):
 # if we run this on the cli & pass it a CSV
 # it'll total up the number of courses in the CSV that should have syllabi
 if __name__ == '__main__':
-    columns = ['semester', 'dept', 'title', 'faculty', 'section', 'course']
-    reader = csv.DictReader(open(sys.argv[1]), columns)
+    reader = csv.DictReader(open(sys.argv[1]))
     syllabus_count = 0
     total_count = 0
 
