@@ -3,37 +3,24 @@ import os
 import smtplib  # https://docs.python.org/2/library/email-examples.html
 from sys import stderr
 
-from_address = 'thaakenson@cca.edu'
-from_name = 'Thomas Haakenson'
+from_address = 'dtracy@cca.edu'
+from_name = 'Dominick Tracy'
 reply_address = 'ephetteplace@cca.edu'
 reply_name = 'Eric Phetteplace'
 list_item = '\n\t- '
 signature = """\
-Dr. Thomas O. Haakenson
-Associate Provost
-Faculty, Visual Studies
-California College of the Arts
 
-"Birth astride of a grave, the light gleams an instant, then it's night once more." (Samuel Beckett)
+DOMINICK TRACY
+Director of Learning Assessment & Accreditation
+Deputy Title IX Coordinator for Faculty
+Academic Affairs
 
-See Also: Provost / Associate Provost / Director of Academic Administration Division of Responsibilities
+dtracy@cca.edu | o 510.594.3794
 
-Pronouns: he, him
 
-Academic Year 2015-2016 Location Schedule:
-- Mondays and Fridays: Oakland Campus
-- Tuesdays, Wednesdays, and Thursdays: SF Campus
 
-Mailing Address:
-5212 Broadway
-Oakland, California, U.S.A. 94618-1426
 
-Email: thaakenson@cca.edu
-Office Phone: 510.594.3655
-Cellphone: 651.894.2894
-
-Vice President, Fulbright Alumni Association, Northern California Chapter
-Series Editors, German Visual Culture, Peter Lang Oxford
+5212 Broadway | Oakland | CA | 94618
 """
 debug = bool(os.environ.get('DEBUG'))
 
@@ -84,7 +71,7 @@ Subject: Submitting Syllabi to VAULT
 
 Hello %s,
 
-Happy beginning of the semester! We are expecting syllabi from the following courses to be uploaded to VAULT by Friday, January 27th:
+Happy beginning of the semester! We are expecting syllabi from the following courses to be uploaded to VAULT by Friday, September 15th:
 %s
 
 Note that, for team taught sections, only one person needs to contribute the syllabus. Uncertain how to submit to VAULT? Follow these simple steps:
