@@ -29,16 +29,8 @@ if args.open_report:
     webbrowser.open('https://vault.cca.edu/access/reports.do')
     exit()
 
-report = open(args.file, 'rb')
-# the columns in the Informer CSV, in order
-columns = [
-    'semester',
-    'dept',
-    'title',
-    'faculty',
-    'section'
-]
-reader = csv.DictReader(report, columns)
+report = open(args.file, 'rbU')
+reader = csv.DictReader(report)
 
 # filters for problematic rows
 # we will trim & lowercase strings before comparison with these values
@@ -58,14 +50,14 @@ for row in reader:
     # skip bad values for courses e.g. studio courses w/o syllabi
     if has_syllabus(row):
         # skip bad faculty values like "Standby" etc.
-        names = filter(lambda f: f.strip().lower() not in skipped_faculty, row['faculty'].split(', '))
+        names = filter(lambda f: f.strip().lower() not in skipped_faculty, row['Instructor(s)'].split(', '))
         for name in names:
             # initialize if not in output dict already
             if name not in data:
                 data[name] = {'courses': [],
                               'username': usernames.get(name)}
 
-            data[name]['courses'].append(row['section'] + ' ' + row['title'])
+            data[name]['courses'].append(row['Section'] + ' ' + row['Course Title'])
 
 for faculty in data:
     print(time.strftime("%m/%d/%Y %H:%M:%S"), 'notifying %s...' % faculty)
