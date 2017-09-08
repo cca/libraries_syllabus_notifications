@@ -92,7 +92,7 @@ Still struggling? Have questions? Feel free to contact CCA's Systems Librarian, 
 
 """ % email_values
 
-    # 2nd reminder, sent a few days after deadline
+    # 2nd reminder, note we've sent this _after_ the deadline in the past
     followup = """\
 From: %s <%s>
 Reply-To: %s <%s>
@@ -101,10 +101,10 @@ Subject: Reminder: Submit Your Syllabi to VAULT
 
 Hello %s,
 
-The deadline for submitting your syllabi to VAULT has passed and we show the following sections as missing:
+The deadline for submitting your syllabi to VAULT is September 15th. We show the following sections as missing:
 %s
 
-Please contribute these to VAULT at your earliest convenience. If you're uncertain how to submit to VAULT, follow these steps for each of your sections:
+Please contribute these to VAULT at your earliest convenience. If you're uncertain how to submit to VAULT, follow these steps for *each* of your sections:
 
 \t1. Visit https://vault.cca.edu/s/upload-syllabus
 \t2. Sign in with your CCA user name
