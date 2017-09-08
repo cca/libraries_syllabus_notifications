@@ -40,7 +40,7 @@ def has_syllabus(row):
 # if we run this on the cli & pass it a CSV
 # it'll total up the number of courses in the CSV that should have syllabi
 if __name__ == '__main__':
-    reader = csv.DictReader(open(sys.argv[1]))
+    reader = csv.DictReader(open(sys.argv[1], 'rbU'))
     syllabus_count = 0
     total_count = 0
 
