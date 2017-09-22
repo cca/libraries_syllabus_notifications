@@ -11,6 +11,7 @@ Take a CSV of our missing syllabi VAULT report and send emails to faculty about 
 - Export the report to Excel, then save it as a CSV after trimming off header rows & date at the bottom
 - finally, run `./app.py data/report.csv >> data/log.txt` to send out emails, where log.txt is a log file
     + the `--template` flag lets you specify an email template out of the available choices of "initial", "followup", and "final", e.g. `./app.py data.csv --template followup`
+    + you can monitor the emails as they go out using `mail-log.sh` which just continually inspects your system's mail.log file
 
 The app logs faculty without usernames to stderr & they can then be manually added to usernames.py; if you filter report.csv to just their courses, you can simply rerun app.py. If you do this, remember to delete out the co-instructors who already received an email—e.g. if we don't have an email for J R & the faculty column for a course is "J R, Herb Somebody" then delete "Herb Somebody" before rerunning the app.
 
