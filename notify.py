@@ -71,7 +71,7 @@ Subject: Submitting Syllabi to VAULT
 
 Hello %s,
 
-Happy beginning of the semester! We are expecting syllabi from the following courses to be uploaded to VAULT by Friday, September 15th:
+Happy beginning of the semester! We are expecting syllabi from the following courses to be uploaded to VAULT by Friday, February 2nd:
 %s
 
 Note that, for team taught sections, only one person needs to contribute the syllabus. Uncertain how to submit to VAULT? Follow these simple steps:
@@ -101,7 +101,7 @@ Subject: Reminder: Submit Your Syllabi to VAULT
 
 Hello %s,
 
-The deadline for submitting your syllabi to VAULT is September 15th. We show the following sections as missing:
+The deadline for submitting your syllabi to VAULT is February 2nd. We show the following sections as missing:
 %s
 
 Please contribute these to VAULT at your earliest convenience. If you're uncertain how to submit to VAULT, follow these steps for *each* of your sections:
