@@ -77,12 +77,12 @@ Happy beginning of the semester! We are expecting syllabi from the following cou
 Note that, for team taught sections, only one person needs to contribute the syllabus. Uncertain how to submit to VAULT? Follow these simple steps:
 
 \t1. Visit https://vault.cca.edu/s/upload-syllabus
-\t2. Sign in with your CCA user name
-\t3. Upload your PDF syllabus file by clicking "Add a resource"
+\t2. Sign in with your CCA username
+\t3. Upload your PDF syllabus into the dotted box
 \t4. Select your course section by clicking "Select terms"
 \t5. Click on "Save" and then "Publish"
 
-This animation demonstrates the complete process from start to finish: https://vault.cca.edu/file/4eb14fb4-1b10-4527-914c-85610df0fb61/1/syllabus-upload.gif
+This animation demonstrates the complete process from start to finish: https://vault.cca.edu/file/4eb14fb4-1b10-4527-914c-85610df0fb61/1/syllabus-upload(2).gif
 
 Still struggling? Have questions? Feel free to contact CCA's Systems Librarian, %s at %s or 510.594.3660 (ext. 3660 from campus).
 
@@ -107,15 +107,15 @@ The deadline for submitting your syllabi to VAULT is February 2nd. We show the f
 Please contribute these to VAULT at your earliest convenience. If you're uncertain how to submit to VAULT, follow these steps for *each* of your sections:
 
 \t1. Visit https://vault.cca.edu/s/upload-syllabus
-\t2. Sign in with your CCA user name
-\t3. Add a PDF syllabus first by clicking "Add a resource", using the "Browse" button to find the file, and then the "Next" and "Save" buttons in the bottom right to upload it
+\t2. Sign in with your CCA username
+\t3. Add a PDF syllabus first by clicking in the dotted box and finding the file, or dropping it directly onto the box
 \t4. Next, select your course section by clicking "Select terms" under "Course Information"
 \t\tTo do this, browse down from the semester (e.g. "Fall 2017")
 \t\t...all the way to your specific section (e.g. ARTED-101-01)
 \t\t...and click the word "Select" beside your section's number
 \t5. Finally, click the green "Save" button and then the green "Publish" button
 
-This animation demonstrates the complete process from start to finish: https://vault.cca.edu/file/4eb14fb4-1b10-4527-914c-85610df0fb61/1/syllabus-upload.gif
+This animation demonstrates the complete process from start to finish: https://vault.cca.edu/file/4eb14fb4-1b10-4527-914c-85610df0fb61/1/syllabus-upload(2).gif
 
 If after the attempting the above steps you are still unable to upload your syllabus, you can contact CCA's Systems Librarian, %s at %s or 510.594.3660 (ext. 3660 from campus).
 
@@ -137,26 +137,21 @@ Hello %s,
 VAULT is still missing syllabi from the following sections:
 %s
 
-This is the last reminder that one syllabus for each section you instruct is needed in VAULT. If you are struggling to upload your syllabus, please contact CCA's Systems Librarian, %s at %s or 510.594.3660 (ext. 3660 from campus). If another section's syllabus is supposed to act as your own, you still need to notify the library. Unfortunately, it's not possible to determine when one syllabus serves multiple sections, thus why you are receiving this reminder.
+This is the last reminder that one syllabus for each section you instruct is needed in VAULT. If you are struggling to upload your syllabus, please contact CCA's Systems Librarian, %s at %s or 510.594.3660 (ext. 3660 from campus). If another section's syllabus is supposed to act as your own, you still need to notify the library. Unfortunately, it's not possible to determine when one syllabus serves multiple sections.
 
 Here are detailed instructions on uploading to VAULT:
 
 \t1. Visit https://vault.cca.edu/s/upload-syllabus
-\t2. Sign in with your CCA user name
-\t3. Upload a PDF syllabus first by clicking the green "Add a resource" button
-\t\t...click "Browse" or the "Drag & Drop" box to find your syllabus on your computer
-\t\t...a green bar will indicate when the file upload completes
-\t\t...in the bottom right, click the gray "Next" button
-\t\t...and then the green "Save" button to return to the form
+\t2. Sign in with your CCA username
+\t3. Upload a PDF syllabus by clicking where it says "Click to select files or drag and drop files here"
 \t4. Add your course section by clicking "Select terms" under "Course Information"
 \t\t...browse down from the semester (e.g. "Fall 2017")
 \t\t...all the way to your specific section (e.g. "ARTED-101-01")
 \t\t...and click the word "Select" beside your section's number
 \t\t...the green "OK" button in the bottom right returns you to the form
 \t5. Finally, click the green "Save" button and then the green "Publish" button
-\t\tIf successful, you are taken to an item summary page displaying your course's details
 
-This animation demonstrates the complete process from start to finish: https://vault.cca.edu/file/4eb14fb4-1b10-4527-914c-85610df0fb61/1/syllabus-upload.gif
+If successful, you will see a summary page displaying your course's details. This animation demonstrates the complete process from start to finish: https://vault.cca.edu/file/4eb14fb4-1b10-4527-914c-85610df0fb61/1/syllabus-upload(2).gif
 
 ----------
 
