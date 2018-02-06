@@ -101,7 +101,7 @@ Subject: Reminder: Submit Your Syllabi to VAULT
 
 Hello %s,
 
-The deadline for submitting your syllabi to VAULT is February 2nd. We show the following sections as missing:
+The deadline for submitting your syllabi to VAULT was February 2nd. We show the following sections as missing:
 %s
 
 Please contribute these to VAULT at your earliest convenience. If you're uncertain how to submit to VAULT, follow these steps for *each* of your sections:
@@ -110,7 +110,7 @@ Please contribute these to VAULT at your earliest convenience. If you're uncerta
 \t2. Sign in with your CCA username
 \t3. Add a PDF syllabus first by clicking in the dotted box and finding the file, or dropping it directly onto the box
 \t4. Next, select your course section by clicking "Select terms" under "Course Information"
-\t\tTo do this, browse down from the semester (e.g. "Fall 2017")
+\t\tTo do this, browse down from the semester (e.g. "Spring 2018")
 \t\t...all the way to your specific section (e.g. ARTED-101-01)
 \t\t...and click the word "Select" beside your section's number
 \t5. Finally, click the green "Save" button and then the green "Publish" button
@@ -145,7 +145,7 @@ Here are detailed instructions on uploading to VAULT:
 \t2. Sign in with your CCA username
 \t3. Upload a PDF syllabus by clicking where it says "Click to select files or drag and drop files here"
 \t4. Add your course section by clicking "Select terms" under "Course Information"
-\t\t...browse down from the semester (e.g. "Fall 2017")
+\t\t...browse down from the semester (e.g. "Spring 2018")
 \t\t...all the way to your specific section (e.g. "ARTED-101-01")
 \t\t...and click the word "Select" beside your section's number
 \t\t...the green "OK" button in the bottom right returns you to the form
