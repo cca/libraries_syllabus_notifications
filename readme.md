@@ -5,13 +5,13 @@ Take a CSV of our missing syllabi VAULT report and send emails to faculty about 
 ## Steps
 
 - update the due date & other pieces of the email template in notify.py
-- pull faculty usernames with [the Informer report](https://vm-informer-01.cca.edu/informer/?locale=en_US#action=ReportRun&reportId=103645186) (you can leave the header row in)
+- pull faculty usernames with [the Informer report](https://vm-informer-01.cca.edu/informer/?locale=en_US#action=ReportRun&reportId=103645186) (leave the header row in, other options don't matter)
 - create a python dict of new usernames merged with known ones using `python process-un-csv.py usernames.csv > tmp; mv tmp usernames.py`
 - in VAULT, run the Missing Syllabi by Semester report (`./app.py --open-report` opens it)
 - Export the report to Excel, then save it as a CSV after trimming off the useless bit at the top (but not column headers) & date at the bottom
-- You may need to start a local SMTP server with `sudo postfix start` before the script will be able to send out emails (you'll get "socket.error: [Errno 61] Connection refused" if it's not running)
+- You may need to start a local SMTP server with `sudo postfix start` before the script will be able to send out emails (you'll get `socket.error: [Errno 61] Connection refused` if it's not running)
 - finally, run `./app.py report.csv >> log.txt` to send out emails, where log.txt is a log file
-    + the `--template` flag lets you specify an email template out of the available choices of "initial", "followup", and "final", e.g. `./app.py report.csv --template followup`
+    + the `--template` flag lets you specify an email template out of the available choices of "initial", "followup", "final", and "summer" e.g. `./app.py report.csv --template followup`
     + you can monitor the emails as they go out using `mail-log.sh` which just continually inspects your system's mail.log file
 
 The app logs faculty without usernames to stderr & they can then be manually added to usernames.py; if you filter report.csv to just their courses, you can simply rerun app.py. If you do this, remember to delete out the co-instructors who already received an email—e.g. if we don't have an email for J R & the faculty column for a course is "J R, Herb Somebody" then delete "Herb Somebody" before rerunning the app.
@@ -29,10 +29,6 @@ Report CSV should have the following columns in this order:
 > "semester","dept","title","faculty","section"
 
 No header row, excess columns after "section" are fine and will be ignored.
-
-## To Do / Future Considerations
-
-**Multi-part HTML emails?** Would allow us to use hyperlinked text rather than plain text URLs, also some formatting to highlight important phrases. Not a high priority as Gmail does a decent job parsing and displaying plain text emails.
 
 ## LICENSE
 

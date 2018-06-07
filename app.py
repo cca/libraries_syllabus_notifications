@@ -20,7 +20,7 @@ parser.add_argument('-o', '--open-report',
                     help='open the appropriate Informer report',
                     action='store_true')
 parser.add_argument('--template', type=str,
-                    choices=['initial', 'followup', 'final'],
+                    choices=['initial', 'followup', 'final', 'summer'],
                     help='which email template to utilize',
                     default='initial')
 args = parser.parse_args()

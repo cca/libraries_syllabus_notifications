@@ -159,6 +159,41 @@ If successful, you will see a summary page displaying your course's details. Thi
 
 """ % email_values
 
+    # summer courses have varied start dates so we don't reference a strict due date
+    summer = """\
+From: %s <%s>
+Reply-To: %s <%s>
+To: %s <%s>
+Subject: Reminder: Submit Your Syllabi to VAULT
+
+Hello %s,
+
+A friendly reminder that we anticipate syllabi for the following section(s) to be uploaded to VAULT:
+%s
+
+Please contribute these to VAULT at your earliest convenience. We realize summer courses have varied schedules and may not have started yet.
+
+If you're uncertain how to submit to VAULT, follow these steps for *each* of your sections:
+
+\t1. Visit https://vault.cca.edu/s/upload-syllabus
+\t2. Sign in with your CCA username
+\t3. Add a PDF syllabus first by clicking in the dotted box and finding the file, or dropping it directly onto the box
+\t4. Next, select your course section by clicking "Select terms" under "Course Information"
+\t\tTo do this, browse down from the semester (e.g. "Summer 2018")
+\t\t...all the way to your specific section (e.g. ARTED-101-01)
+\t\t...and click the word "Select" beside your section's number
+\t5. Finally, click the green "Save" button and then the green "Publish" button
+
+This animation demonstrates the process from start to finish: https://vault.cca.edu/file/4eb14fb4-1b10-4527-914c-85610df0fb61/1/syllabus-upload(2).gif
+
+If after the attempting the above steps you are still unable to upload your syllabus, you can contact CCA's Systems Librarian, %s at %s or 510.594.3660 (ext. 3660 from campus).
+
+----------
+
+%s
+
+""" % email_values
+
     # send it, defaulting to localhost server if none passed in
     if server is None and debug is False:
         server = smtplib.SMTP('localhost')
@@ -166,13 +201,8 @@ If successful, you will see a summary page displaying your course's details. Thi
     else:
         server_was_set = False
 
-    # choose which template to use
-    if msg_type == 'final':
-        msg = final
-    elif msg_type == 'followup':
-        msg = followup
-    else:
-        msg = initial
+    # select the template to use
+    msg = locals()[msg_type]
 
     if debug is False:
         server.sendmail(reply_address, username + '@cca.edu', msg)
