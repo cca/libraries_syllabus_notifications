@@ -11,15 +11,13 @@ from usernames import usernames
 
 # file name is passed on command line
 csvfile = open(sys.argv[1])
-reader = csv.DictReader(csvfile)
+columns = ('username', 'name')
+reader = csv.DictReader(csvfile, fieldnames=columns)
 report_usernames = {}
 
 for row in reader:
-    if row['Username'] != '':
-        if row['Preferred Name'] != '':
-            report_usernames[row['Preferred Name']] = row['Username']
-        else:
-            report_usernames[row['Givenname'] + ' ' + row['Surname']] = row['Username']
+    if row['username'] != '':
+        report_usernames[row['name']] = row['username']
 
 # merge the report's usernames dict with the previous usernames
 usernames.update(report_usernames)
