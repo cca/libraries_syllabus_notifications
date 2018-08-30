@@ -1,6 +1,2 @@
 #!/usr/bin/env bash
-if [ $(command -v grc) ]; then
-    grc tail -f /var/log/mail.log -n200
-else
-    tail -f /var/log/mail.log -n200
-fi
+log stream --predicate  '(process == "smtpd") || (process == "smtp")' --info | ack 'to=<.*@cca\.edu>'
