@@ -1,10 +1,15 @@
 #!/usr/bin/env python
 import unittest
 from has_syllabus import has_syllabus
+from subprocess import call
 
 
 class TestHasSyllabus(unittest.TestCase):
-
+    """
+    Test the has_syllabus() function which determines which course sections we
+    filter out as not needing syllabi (because they're mentored study or grad
+    studio practice, for instance).
+    """
     def test_grad_studio(self):
         r = {'Section': 'ANIMA-270-09', 'Course Title': 'Graduate Studio Practice', 'Department Code': 'ANIMA', 'Semester': '2015FA', 'Instructor(s)': 'Anon Ymouse'}
         self.assertEqual(has_syllabus(r), False)
@@ -30,6 +35,21 @@ class TestHasSyllabus(unittest.TestCase):
         self.assertEqual(has_syllabus(r), True)
 
 
-if __name__ == '__main__':
+class TestEmails(unittest.TestCase):
+    """
+    Test sending actual reminder emails by using a sample CSV, the vault@cca.edu
+    email, and my own email.
+    """
+    # @TODO should make a callable main() function in app.py rather than this
+    def test_email(self):
+        call(["python", "app.py", "test.csv"])
+
+# collect all the tests together
+def suite():
     suite = unittest.TestLoader().loadTestsFromTestCase(TestHasSyllabus)
-    unittest.TextTestRunner(verbosity=2).run(suite)
+    suite.addTest(TestEmails('test_email'))
+    return suite
+
+
+if __name__ == '__main__':
+    unittest.TextTestRunner(verbosity=2).run(suite())

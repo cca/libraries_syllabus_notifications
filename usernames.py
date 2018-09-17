@@ -1,4 +1,6 @@
 usernames = {
+  'Givenname Surname': 'vault@cca.edu',
+  'VAULTy McVAULTFace': 'vault@cca.edu',
   'Sylvie Rosenthal': 'srosenthal',
   'Julian Watts': 'julianwatts',
   'Tamara Porras': 'tporras',
