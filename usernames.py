@@ -1,6 +1,8 @@
 usernames = {
-  'Givenname Surname': 'vault@cca.edu',
-  'VAULTy McVAULTFace': 'vault@cca.edu',
+  'Givenname Surname': 'vault',
+  'Teri Downling': 'tdowling',
+  'Daniel Ransom': 'dransom',
+  'VAULTy McVAULTFace': 'vault',
   'Sylvie Rosenthal': 'srosenthal',
   'Julian Watts': 'julianwatts',
   'Tamara Porras': 'tporras',
