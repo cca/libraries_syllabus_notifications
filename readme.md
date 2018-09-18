@@ -4,12 +4,13 @@ Take a CSV of our missing syllabi VAULT report and send emails to faculty about 
 
 ## Steps
 
+Note that this app needs to be run from a server with mail capabilities on CCA's network, so as to avoid getting flagged by Google as a potential phishing attempt.
+
 - update the due date & other pieces of the email template in notify.py
 - pull faculty usernames by running the included "faculty.sql" in the Portal database, then saving the results as CSV
 - create a python dict of new usernames merged with known ones using `python process-un-csv.py usernames.csv > tmp; mv tmp usernames.py`
 - in VAULT, run the Missing Syllabi by Semester report (`./app.py --open-report` opens it)
 - Export the report to Excel, then save it as a CSV after trimming off the useless bit at the top (but not column headers) & date at the bottom
-- You may need to start a local SMTP server with `sudo postfix start` before the script will be able to send out emails (you'll get `socket.error: [Errno 61] Connection refused` if it's not running)
 - finally, run `./app.py report.csv >> log.txt` to send out emails, where log.txt is a log file
     + the `--template` flag lets you specify an email template out of the available choices of "initial", "followup", "final", and "summer" e.g. `./app.py report.csv --template followup`
     + you can monitor the emails as they go out using `mail-log.sh` which just continually inspects your system's mail.log file
