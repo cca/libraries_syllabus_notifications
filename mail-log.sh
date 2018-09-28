@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-log stream --predicate  '(process == "smtpd") || (process == "smtp")' --info | ack 'to=<.*@cca\.edu>'
+sudo tail -f /var/log/exim4/mainlog | ack '=> .*@cca\.edu'

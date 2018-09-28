@@ -1,2 +1,5 @@
 #!/usr/bin/env bash
-rsync -avz --del data dev:~/libraries_syllabus_notifications
+# pull from server
+rsync -avz dev:~/libraries_syllabus_notifications/data .
+# push to server
+rsync -avz data dev:~/libraries_syllabus_notifications
