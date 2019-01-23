@@ -4,6 +4,7 @@ import argparse
 import csv
 import os
 import smtplib
+from sys import stderr
 import time
 import webbrowser
 # my functions/data
@@ -52,12 +53,17 @@ for row in reader:
         # skip bad faculty values like "Standby" etc.
         names = filter(lambda f: f.strip().lower() not in skipped_faculty, row['Instructor(s)'].split(', '))
         for name in names:
-            # initialize if not in output dict already
-            if name not in data:
-                data[name] = {'courses': [],
-                              'username': usernames.get(name)}
-
-            data[name]['courses'].append(row['Section'] + ' ' + row['Course Title'])
+            # if we have a username for the instructor...
+            if usernames.get(name) is not None:
+                # initialize if not in output dict already
+                if name not in data:
+                    data[name] = {'courses': [], 'username': usernames.get(name)}
+                # either way, add the course to their list
+                data[name]['courses'].append(row['Section'] + ' ' + row['Course Title'])
+            else:
+                stderr.write(
+                    'No username for %s, course row for CSV:\n%s' % (name, row)
+                )
 
 for faculty in data:
     print(time.strftime("%m/%d/%Y %H:%M:%S"), 'notifying %s...' % faculty)

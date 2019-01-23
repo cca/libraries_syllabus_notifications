@@ -1,7 +1,6 @@
 from __future__ import print_function
 import os
 import smtplib  # https://docs.python.org/2/library/email-examples.html
-from sys import stderr
 
 from_address = 'dtracy@cca.edu'
 from_name = 'Dominick Tracy'
@@ -31,17 +30,6 @@ def notify(name, username, courses, server, msg_type='initial'):
     that we expect a list of courses to have syllabi uploaded to VAULT
     with handy contact and help information in the email template
     """
-
-    # in a few edge cases we'll not have a faculty username
-    # e.g. returning faculty with expired email, new faculty with unactivated email
-    # see email thread from Lydia on 8/21/15
-    if username is None:
-        stderr.write('No username for %s, courses:%s\n' % (
-            name,
-            list_item + list_item.join(courses)
-        ))
-        return False
-
     # these are filled into the templates below
     # ordering is important
     email_values = (
