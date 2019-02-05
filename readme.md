@@ -16,21 +16,23 @@ Note that this app needs to be run from a server with mail capabilities on CCA's
     + the `--template` flag lets you specify an email template out of the available choices of "initial", "followup", "final", and "summer" e.g. `./app.py report.csv --template followup`
     + you can monitor the emails as they go out using `mail-log.sh` which just continually inspects your system's mail.log file
 
-The app logs faculty without usernames to stderr & they can then be manually added to usernames.py; if you filter report.csv to just their courses, you can simply rerun app.py. If you do this, remember to delete out the co-instructors who already received an email—e.g. if we don't have an email for J R & the faculty column for a course is "J R, Herb Somebody" then delete "Herb Somebody" before rerunning the app.
+You can dry-run the app by setting a `DEBUG` environment variable to "true" and then running with the normal settings. Note that this can be a great way to detect missing usernames because those are output to stderr before the samples of emails that would be sent. This gives you a chance to manually add them to usernames.py.
 
 ## Other Notes
 
 If you export a shell environmental variable `DEBUG` to any non-empty value, e.g. "true", the main app will print emails to stdout instead of sending them via SMTP.
 
+If you don't update usernames.py with missing faculty emails before sending out the first batch, you can look at the errors, fill in missing names, and then rerun the app later by filtering report.csv to just the courses of these "missing" instructors. If you do this, remember to delete out the co-instructors who already received an email—e.g. if we don't have an email for J R & the faculty column for a course is "J R, Herb Somebody" then delete "Herb Somebody" before rerunning the app.
+
 You can also use "has_syllabus.py" to count the number of rows in a CSV of courses which have syllabi, the syntax is `python has_syllabus courses.csv`.
 
 ## Report Format
 
-Report CSV should have the following columns in this order:
+Report CSV should have the following columns with this exact header row
 
-> "semester","dept","title","faculty","section"
+> "Semester","Department Code","Course Title","Instructor(s)","Section"
 
-No header row, excess columns after "section" are fine and will be ignored.
+Some of the columns are not used but these are the ones typically contained in the VAULT report.
 
 ## LICENSE
 
