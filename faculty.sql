@@ -8,5 +8,5 @@ WHERE CONCAT(first_name, ' ', last_name) IN
 	WHERE sec_term_id =
 		(SELECT id
 		FROM courses_term
-		WHERE term_id = '2018FA')
+		WHERE term_id = '2019SP')
 	)

@@ -89,7 +89,7 @@ Subject: Reminder: Submit Your Syllabi to VAULT
 
 Hello %s,
 
-The deadline for submitting your syllabi to VAULT is February 8th. We show the following sections as missing:
+The deadline for submitting your syllabi to VAULT is Friday, February 8th. We show the following sections as missing:
 %s
 
 Please contribute these to VAULT at your earliest convenience. If you're uncertain how to submit to VAULT, follow these steps for *each* of your sections:
