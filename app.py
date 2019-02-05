@@ -62,7 +62,7 @@ for row in reader:
                 data[name]['courses'].append(row['Section'] + ' ' + row['Course Title'])
             else:
                 stderr.write(
-                    'No username for %s, course row for CSV:\n%s' % (name, row)
+                    'No username for %s, course row for CSV:\n%s\n' % (name, '    '.join(row.values()))
                 )
 
 for faculty in data:
