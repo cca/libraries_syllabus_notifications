@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 '''
 One-time script to process export from Faculty Usernames report
 https://vm-informer-01.cca.edu/informer/?locale=en_US#action=ReportDetails&reportId=103645186
