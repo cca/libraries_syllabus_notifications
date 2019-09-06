@@ -21,9 +21,9 @@ def has_syllabus(row):
     coursenum = int(row['Section'].split('-')[1])
     course = '-'.join(row['Section'].split('-')[0:2])
 
-    # (3|6)96 -> (Under)grad independent study
-    # (3|6)98 -> (Under)grad internship
-    if coursenum in (698, 398, 396, 696):
+    # (3|6)96(0) -> (Under)grad independent study
+    # (3|6)98(0) -> (Under)grad internship
+    if coursenum in (698, 398, 396, 696, 6980, 3980, 3960, 6960):
         return False
 
     # FINAR-660 is Graduate Studio Practice, no syllabus
@@ -31,7 +31,7 @@ def has_syllabus(row):
     # WRITE-608 is a thesis course & the faculty member submits a narrative
     # to VAULT in lieu of syllabi, per email from Gloria Fry 2016-09-06
     # Some of these should be caught above but just in case
-    if course in ('FINAR-660', 'WRITE-660', 'WRITE-608'):
+    if course in ('FINAR-660', 'WRITE-660', 'WRITE-608', 'FINAR-6600', 'WRITE-6600', 'WRITE-6080'):
         return False
 
     # fallthrough; nothing else fired so it must have a syllabus

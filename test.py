@@ -22,6 +22,10 @@ class TestHasSyllabus(unittest.TestCase):
         r = {'Section': 'ANIMA-696-09', 'Course Title': 'Animation Course', 'Department Code': 'ANIMA', 'Semester': '2015FA', 'Instructor(s)': 'Anon Ymouse'}
         self.assertEqual(has_syllabus(r), False)
 
+    def test_6960(self):
+        r = {'Section': 'ANIMA-6960-9', 'Course Title': 'Animation Course', 'Department Code': 'ANIMA', 'Semester': '2019FA', 'Instructor(s)': 'Anon Ymouse'}
+        self.assertEqual(has_syllabus(r), False)
+
     def test_regular_course(self):
         r = {'Section': 'ANIMA-270-09', 'Course Title': 'Animation Course', 'Department Code': 'ANIMA', 'Semester': '2015FA', 'Instructor(s)': 'Anon Ymouse'}
         self.assertEqual(has_syllabus(r), True)
@@ -29,6 +33,8 @@ class TestHasSyllabus(unittest.TestCase):
     def test_mentored_study(self):
         r = {'Section': 'WRITE-660-09', 'Course Title': 'Mentored Study', 'Department Code': 'WRITE', 'Semester': '2015FA', 'Instructor(s)': 'Anon Ymouse'}
         self.assertEqual(has_syllabus(r), False)
+        s = {'Section': 'WRITE-6600-9', 'Course Title': 'Mentored Study', 'Department Code': 'WRITE', 'Semester': '2019FA', 'Instructor(s)': 'Anon Ymouse'}
+        self.assertEqual(has_syllabus(s), False)
 
     def test_comics(self):
         r = {'Section': 'COMIC-615-01', 'Course Title': 'Mentored Study', 'Department Code': 'COMIC', 'Semester': '2016SP', 'Instructor(s)': 'Anon Ymouse'}
