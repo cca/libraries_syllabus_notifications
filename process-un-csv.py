@@ -1,26 +1,27 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 '''
-One-time script to process export from Faculty Usernames report
-https://vm-informer-01.cca.edu/informer/?locale=en_US#action=ReportDetails&reportId=103645186
-into a Python dict which can then be pasted into usernames.py
+Process faculty information from Workday student JSON into a Python dict of
+name:username mappings. The missing syllabi report only has faculty names and not
+their usernames; we use the usernames.py dict to find out how to email them.
+
 Usage:
-> python process-un-csv.py data/faculty-usernames.csv > usernames.py
+> python process-un-csv.py data/courses.json
 '''
-import csv
+import json
 import sys
 from usernames import usernames
 
 # file name is passed on command line
-csvfile = open(sys.argv[1])
-columns = ('username', 'name')
-reader = csv.DictReader(csvfile, fieldnames=columns)
-report_usernames = {}
+with open(sys.argv[1], 'r') as file:
+    courses = json.load(file)
 
-for row in reader:
-    if row['username'] != '':
-        report_usernames[row['name']] = row['username']
+new_usernames = {}
+for course in courses:
+    for i in course["instructors"]:
+        if i['username']:
+            new_usernames[i['first_name'] + ' ' + i['last_name']] = i['username']
 
-# merge the report's usernames dict with the previous usernames
-usernames.update(report_usernames)
-# output in a format suitable for saving to a python file
-print('usernames = ' + str(usernames))
+# merge the report's usernames dict with the previous usernames, write to file
+usernames.update(new_usernames)
+with open('usernames.py', 'w') as file:
+    file.write('usernames = ' + str(usernames))
