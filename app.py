@@ -7,7 +7,7 @@ import smtplib
 from sys import stderr
 import time
 import webbrowser
-# my functions/data
+
 from usernames import usernames
 from has_syllabus import has_syllabus
 from notify import notify
@@ -18,7 +18,7 @@ debug = bool(os.environ.get('DEBUG'))
 parser = argparse.ArgumentParser()
 parser.add_argument('file', nargs='?', help='CSV of the Informer Report')
 parser.add_argument('-o', '--open-report',
-                    help='open the appropriate Informer report',
+                    help='open the Missing Syllabi report',
                     action='store_true')
 parser.add_argument('--template', type=str,
                     choices=['initial', 'followup', 'final', 'summer'],
