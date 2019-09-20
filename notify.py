@@ -95,7 +95,7 @@ If after the attempting the above steps you are still unable to upload your syll
 
 ----------
 
-%s
+{signature}
 
 """.format(**email_values)
 
@@ -129,7 +129,7 @@ If successful, you will see a summary page displaying your course's details. Thi
 
 ----------
 
-%s
+{signature}
 
 """.format(**email_values)
 
