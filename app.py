@@ -62,11 +62,14 @@ for row in reader:
                 data[name]['courses'].append(row['Section'] + ' ' + row['Course Title'])
             else:
                 stderr.write(
-                    'No username for %s, course row for CSV:\n%s\n' % (name, '    '.join(row.values()))
+                    'No username for {name}, course row for CSV:\n{row}\n'.format(
+                        name=name,
+                        row='    '.join(row.values())
+                    )
                 )
 
 for faculty in data:
-    print(time.strftime("%m/%d/%Y %H:%M:%S"), 'notifying %s...' % faculty)
+    print(time.strftime("%m/%d/%Y %H:%M:%S"), 'notifying {faculty}...'.format(faculty=faculty))
     notify(faculty, data[faculty]['username'], data[faculty]['courses'], server, args.template)
     # not sure if necessary but I'd rather not spew out emails so fast
     time.sleep(1)
