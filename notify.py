@@ -182,7 +182,7 @@ If after the attempting the above steps you are still unable to upload your syll
         server.sendmail(email_values["reply_address"], username + '@cca.edu', msg)
     else:
         print('DEBUGGING MODE: email not sent')
-        print('Email that would have been sent to %s@cca.edu:\n' % username)
+        print('Email that would have been sent to {user}@cca.edu:\n'.format(user=username))
         print(msg)
 
     if server_was_set is True:
