@@ -5,7 +5,7 @@ name:username mappings. The missing syllabi report only has faculty names and no
 their usernames; we use the usernames.py dict to find out how to email them.
 
 Usage:
-> python process-un-csv.py data/courses.json
+> python update-usernames.py data/courses.json
 '''
 import json
 import sys
