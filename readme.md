@@ -7,12 +7,12 @@ Take a CSV of our missing syllabi VAULT report and send emails to faculty about 
 Note that this app needs to be run from a server with mail capabilities on CCA's network, so as to avoid getting flagged by Google as a potential phishing attempt.
 
 - update the due date of the email template in notify.py
-- download the JSON Workday course data
-- update the dict of faculty usernames using `./process-un-csv.py data/courses.json`
+- download the JSON Workday course data (can use `gsutil` CLI)
+- update the dict of faculty usernames using `./update-usernames.py courses.json`
 - in VAULT, run the "Missing Syllabi by Semester" report (`./app.py -o` opens it)
-- Export the report to Excel, then save it as a UTF-8 CSV after trimming the useless bit at the top (but not the column headers) & date at the bottom
+- Export the report to Excel, then save it as a CSV after trimming the useless bit at the top (but not the column headers) & date at the bottom
 - sync the local data to the mail server (our dev website server) with sync.sh, then SSH into that server to send the mail
-- finally, run `./app.py report.csv >> log.txt` to send out emails, where log.txt is a log file
+- finally, run `./app.py report.csv` to send out emails
     + the `--template` flag lets you specify an email template out of the available choices of "initial", "followup", "final", and "summer" e.g. `./app.py report.csv --template followup`
     + you can monitor the emails as they go out using `mail-log.sh` which continually inspects the system's mail.log file
 

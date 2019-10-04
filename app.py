@@ -1,18 +1,17 @@
 #!/usr/bin/env python
-from __future__ import print_function
 import argparse
 import csv
+import logging
 import os
 import smtplib
 from sys import stderr
 import time
 import webbrowser
 
+from config import logger
 from usernames import usernames
 from has_syllabus import has_syllabus
 from notify import notify
-
-debug = bool(os.environ.get('DEBUG'))
 
 # CLI arguments
 parser = argparse.ArgumentParser()
@@ -30,6 +29,7 @@ if args.open_report:
     webbrowser.open('https://vault.cca.edu/access/reports.do')
     exit()
 
+debug = bool(os.environ.get('DEBUG'))
 report = open(args.file, 'rbU')
 reader = csv.DictReader(report)
 
@@ -61,15 +61,15 @@ for row in reader:
                 # either way, add the course to their list
                 data[name]['courses'].append(row['Section'] + ' ' + row['Course Title'])
             else:
-                stderr.write(
-                    'No username for {name}, course row for CSV:\n{row}\n'.format(
+                logger.warning(
+                    'No username for {name}, course row for CSV: {row}'.format(
                         name=name,
                         row='    '.join(row.values())
                     )
                 )
 
 for faculty in data:
-    print(time.strftime("%m/%d/%Y %H:%M:%S"), 'notifying {faculty}...'.format(faculty=faculty))
+    logger.info('notifying {faculty}...'.format(faculty=faculty))
     notify(faculty, data[faculty]['username'], data[faculty]['courses'], server, args.template)
     # not sure if necessary but I'd rather not spew out emails so fast
     time.sleep(1)

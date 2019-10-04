@@ -9,19 +9,29 @@ Usage:
 '''
 import json
 import sys
+
+from config import logger
 from usernames import usernames
 
-# file name is passed on command line
-with open(sys.argv[1], 'r') as file:
-    courses = json.load(file)
 
-new_usernames = {}
-for course in courses:
-    for i in course["instructors"]:
-        if i['username']:
-            new_usernames[i['first_name'] + ' ' + i['last_name']] = i['username']
+def update_usernames(filename):
+    # file name is passed on command line
+    with open(filename, 'r') as file:
+        courses = json.load(file)
 
-# merge the report's usernames dict with the previous usernames, write to file
-usernames.update(new_usernames)
-with open('usernames.py', 'w') as file:
-    file.write('usernames = ' + str(usernames))
+    user_count = len(usernames)
+    new_usernames = {}
+    for course in courses:
+        for i in course["instructors"]:
+            if i['username']:
+                new_usernames[i['first_name'] + ' ' + i['last_name']] = i['username']
+
+    # merge the report's usernames dict with the previous usernames, write to file
+    usernames.update(new_usernames)
+    new_users = len(usernames) - user_count
+    with open('usernames.py', 'w') as file:
+        file.write('usernames = ' + str(usernames))
+        logger.info('Added {x} new usernames to username.py list.'.format(x=str(new_users)))
+
+if __name__ == '__main__':
+    update_usernames(sys.argv[1])

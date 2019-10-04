@@ -1,6 +1,7 @@
-from __future__ import print_function
 import os
 import smtplib
+
+from config import logger
 
 debug = bool(os.environ.get('DEBUG'))
 
@@ -178,12 +179,10 @@ If after the attempting the above steps you are still unable to upload your syll
     # select the template to use
     msg = locals()[msg_type]
 
-    if debug is False:
-        server.sendmail(email_values["reply_address"], username + '@cca.edu', msg)
+    if debug:
+        logger.debug('Email that would have been sent to {user}@cca.edu:\n{msg}'.format(user=username, msg=msg))
     else:
-        print('DEBUGGING MODE: email not sent')
-        print('Email that would have been sent to {user}@cca.edu:\n'.format(user=username))
-        print(msg)
+        server.sendmail(email_values["reply_address"], username + '@cca.edu', msg)
 
     if server_was_set is True:
         server.quit()
