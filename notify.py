@@ -16,11 +16,12 @@ def notify(name, username, courses, server, msg_type='initial'):
     # these are filled into the templates below
     email_values = {
         # @TODO update the due date here each semester
-        'due_date': 'Friday, September 27th',
+        'due_date': 'Friday, February 14th',
         'from_name': 'Dominick Tracy',
         'from_address': 'dtracy@cca.edu',
         'reply_name': 'Eric Phetteplace',
         'reply_address': 'ephetteplace@cca.edu',
+        'reply_phone': '510.594.3660 (ext. 3660 from campus)',
         'name': name,
         'email': username + '@cca.edu',
         'courses': list_item + list_item.join(courses),
@@ -42,24 +43,23 @@ def notify(name, username, courses, server, msg_type='initial'):
 From: {from_name} <{from_address}>
 Reply-To: {reply_name} <{reply_address}>
 To: {name} <{email}>
-Subject: Submitting Syllabi to VAULT
+Subject: Submitting Syllabi to Portal
 
 Hello {name},
 
-Happy beginning of the semester! We are expecting syllabi from the following courses to be uploaded to VAULT by {due_date}:
+Happy beginning of the semester! We expect syllabi from the following courses to be added to the Portal by {due_date}:
 {courses}
 
-Note that, for team taught sections, only one person needs to contribute the syllabus. Uncertain how to submit to VAULT? Follow these simple steps:
+Note that, for team taught sections, only one person needs to submit the syllabus. Uncertain how to submit? Follow these simple steps:
 
-\t1. Visit https://vault.cca.edu/s/upload-syllabus
-\t2. Sign in with your CCA username
-\t3. Upload your PDF syllabus into the dotted box
-\t4. Select your course section by clicking "Select terms"
-\t5. Click on "Save" and then "Publish"
+\t1. Visit https://portal.cca.edu and log in
+\t2. Find your sections under the "My Classes" list on the home page
+\t3. Select a section, then **Edit** and **Upload Syllabus**
+\t4. Use **Choose File** to find your syllabus PDF, then **Upload Syllabus** finishes the process
 
-This animation demonstrates the complete process from start to finish: https://vault.cca.edu/file/4eb14fb4-1b10-4527-914c-85610df0fb61/1/syllabus-upload(2).gif
+Here is the full documentation on the new Portal Course Section Pages: https://portal.cca.edu/teaching/academic-affairs/faculty-resources/course-section-pages-portal-faculty/
 
-Still struggling? Have questions? Feel free to contact CCA's Systems Librarian, {reply_name} at {reply_address} or 510.594.3660 (ext. 3660 from campus).
+Still struggling? Have questions? Feel free to contact CCA's Systems Librarian, {reply_name} at {reply_address} or {reply_phone}.
 
 ----------
 
@@ -72,27 +72,24 @@ Still struggling? Have questions? Feel free to contact CCA's Systems Librarian, 
 From: {from_name} <{from_address}>
 Reply-To: {reply_name} <{reply_address}>
 To: {name} <{email}>
-Subject: Submitting Syllabi to VAULT
+Subject: Reminder: Submit Your Syllabi to Portal
 
 Hello {name},
 
-The deadline for submitting your syllabi to VAULT is {due_date}. We show the following sections as missing:
+The deadline for submitting your syllabi is {due_date}. We show the following sections as needing syllabi:
 {courses}
 
-Please contribute these to VAULT at your earliest convenience. If you're uncertain how to submit to VAULT, follow these steps for *each* of your sections:
+Please contribute these to the Portal at your earliest convenience. If you're uncertain how to, follow these steps for **each** of your classes:
 
-\t1. Visit https://vault.cca.edu/s/upload-syllabus
-\t2. Sign in with your CCA username
-\t3. Add a PDF syllabus first by clicking in the dotted box and finding the file, or dropping it directly onto the box
-\t4. Next, select your course section by clicking "Select terms" under "Course Information"
-\t\tTo do this, browse down from the semester (e.g. "Spring 2018")
-\t\t...all the way to your specific section (e.g. ARTED-101-01)
-\t\t...and click the word "Select" beside your section's number
-\t5. Finally, click the green "Save" button and then the green "Publish" button
+\t1. Visit https://portal.cca.edu and log in
+\t2. Find your class under the "My Classes" list on the home page
+\t3. Select the class, on its page press **Edit** and then **Upload Syllabus**
+\t4. Use **Choose File** to browse to your syllabus PDF
+\t5. Press **Upload Syllabus** to complete the process
 
-This animation demonstrates the complete process from start to finish: https://vault.cca.edu/file/4eb14fb4-1b10-4527-914c-85610df0fb61/1/syllabus-upload(2).gif
+Here is the full documentation on the new Portal Course Section Pages: https://portal.cca.edu/teaching/academic-affairs/faculty-resources/course-section-pages-portal-faculty/
 
-If after the attempting the above steps you are still unable to upload your syllabus, you can contact CCA's Systems Librarian, {reply_name} at {reply_address} or 510.594.3660 (ext. 3660 from campus).
+If after the attempting the above steps you are still unable to upload your syllabus, you can contact CCA's Systems Librarian, {reply_name} at {reply_address} or {reply_phone}.
 
 ----------
 
@@ -105,28 +102,28 @@ If after the attempting the above steps you are still unable to upload your syll
 From: {from_name} <{from_address}>
 Reply-To: {reply_name} <{reply_address}>
 To: {name} <{email}>
-Subject: Submitting Syllabi to VAULT
+Subject: Reminder: Submit Your Syllabi to Portal
 
 Hello {name},
 
-VAULT is still missing syllabi from the following sections:
+The Portal is still missing syllabi from the following sections:
 {courses}
 
-This is the last reminder that one syllabus for each section you instruct is needed in VAULT. If you are struggling to upload your syllabus, please contact CCA's Systems Librarian, {reply_name} at {reply_address} or 510.594.3660 (ext. 3660 from campus). If another section's syllabus is supposed to act as your own, you still need to notify the library. Unfortunately, it's not possible to determine when one syllabus serves multiple sections.
+This is the last reminder that one syllabus for each section you instruct is needed. If you are struggling to upload your syllabus, please contact CCA's Systems Librarian, {reply_name} at {reply_address} or {reply_phone}. If another section's syllabus is supposed to act as your own, you still need to submit it on the Portal. Unfortunately, it's not possible to determine when one syllabus serves multiple sections.
 
 Here are detailed instructions on uploading to VAULT:
 
-\t1. Visit https://vault.cca.edu/s/upload-syllabus
-\t2. Sign in with your CCA username
-\t3. Upload a PDF syllabus by clicking where it says "Click to select files or drag and drop files here"
-\t4. Add your course section by clicking "Select terms" under "Course Information"
-\t\t...browse down from the semester (e.g. "Fall 2019")
-\t\t...all the way to your specific section (e.g. "ARTED-101-01")
-\t\t...and click the word "Select" beside your section's number
-\t\t...the green "OK" button in the bottom right returns you to the form
-\t5. Finally, click the green "Save" button and then the green "Publish" button
+\t1. Visit https://portal.cca.edu and log in
+\t2. Select one of your classes under the "My Classes" list on the home page
+\t3. Press the **Edit** button below the course description
+\t4. Select the **Upload Syllabus** button
+\t5. Use the **Choose File** button to locate your syllabus PDF on your hard drive
+\t\ta. If you do not have a PDF copy of your syllabus, you will need to create one.
+\t\tb. If you don't know how to create a PDF copy, contact the Help Desk at helpdesk@cca.edu
+\t6. Press **Upload Syllabus** to complete the process
+\t7. Repeat this process for all classes with missing syllabi
 
-If successful, you will see a summary page displaying your course's details. This animation demonstrates the complete process from start to finish: https://vault.cca.edu/file/4eb14fb4-1b10-4527-914c-85610df0fb61/1/syllabus-upload(2).gif
+Here is the full documentation on the new Portal Course Section Pages: https://portal.cca.edu/teaching/academic-affairs/faculty-resources/course-section-pages-portal-faculty/
 
 ----------
 
@@ -139,29 +136,24 @@ If successful, you will see a summary page displaying your course's details. Thi
 From: {from_name} <{from_address}>
 Reply-To: {reply_name} <{reply_address}>
 To: {name} <{email}>
-Subject: Reminder: Submit Your Syllabi to VAULT
+Subject: Reminder: Submit Your Syllabi to Portal
 
 Hello {name},
 
-A friendly reminder that we anticipate syllabi for the following section(s) to be uploaded to VAULT:
+A friendly reminder that we anticipate syllabi for the following section(s) to be uploaded to Portal:
 {courses}
 
-Please contribute these to VAULT at your earliest convenience. We realize summer courses have varied schedules and may not have started yet.
+Please upload these at your earliest convenience. We realize summer courses have varied schedules and may not have started yet. If you're uncertain how to submit, follow these steps for *each* of your sections:
 
-If you're uncertain how to submit to VAULT, follow these steps for *each* of your sections:
+\t1. Visit https://portal.cca.edu and log in
+\t2. Find your classes under the "My Classes" list on the home page
+\t3. Select a class, on its page press **Edit** and then **Upload Syllabus**
+\t4. Use **Choose File** to browse to your syllabus file
+\t5. Press **Upload Syllabus** to complete the process
 
-\t1. Visit https://vault.cca.edu/s/upload-syllabus
-\t2. Sign in with your CCA username
-\t3. Add a PDF syllabus first by clicking in the dotted box and finding the file, or dropping it directly onto the box
-\t4. Next, select your course section by clicking "Select terms" under "Course Information"
-\t\tTo do this, browse down from the semester (e.g. "Summer 2018")
-\t\t...all the way to your specific section (e.g. ARTED-101-01)
-\t\t...and click the word "Select" beside your section's number
-\t5. Finally, click the green "Save" button and then the green "Publish" button
+Here is the full documentation on the new Portal Course Section Pages: https://portal.cca.edu/teaching/academic-affairs/faculty-resources/course-section-pages-portal-faculty/
 
-This animation demonstrates the process from start to finish: https://vault.cca.edu/file/4eb14fb4-1b10-4527-914c-85610df0fb61/1/syllabus-upload(2).gif
-
-If after the attempting the above steps you are still unable to upload your syllabus, you can contact CCA's Systems Librarian, {reply_name} at {reply_address} or 510.594.3660 (ext. 3660 from campus).
+If after the attempting the above steps you are still unable to upload your syllabus, you can contact CCA's Systems Librarian, {reply_name} at {reply_address} or {reply_phone}.
 
 ----------
 
