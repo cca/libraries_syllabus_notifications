@@ -10,7 +10,7 @@ Note that this app needs to be run from a server with mail capabilities on CCA's
 - download the JSON Workday course data (can use `gsutil` CLI)
 - update the dict of faculty usernames using `./update-usernames.py courses.json`
 - in VAULT, run the "Missing Syllabi by Semester" report (`./app.py -o` opens it)
-- Export the report to Excel, then save it as a CSV after trimming the useless bit at the top (but not the column headers) & date at the bottom
+- convert the report to CSV. Copy the HTML table and paste it into Google Sheets, then download as CSV. Alternatively, export to Excel then save as CSV after trimming the useless bit at the top (but not the column headers) & date at the bottom.
 - sync the local data to the mail server (our dev website server) with sync.sh, then SSH into that server to send the mail
 - finally, run `./app.py report.csv` to send out emails
     + the `--template` flag lets you specify an email template out of the available choices of "initial", "followup", "final", and "summer" e.g. `./app.py report.csv --template followup`
