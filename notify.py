@@ -52,7 +52,7 @@ Happy beginning of the semester! We expect syllabi from the following courses to
 
 Note that, for team taught sections, only one person needs to submit the syllabus. Uncertain how to submit? Follow these simple steps:
 
-\t1. Visit https://portal.cca.edu and log in
+\t1. Visit https://portal.cca.edu/login and log in
 \t2. Find your sections under the "My Classes" list on the home page
 \t3. Select a section, then **Edit** and **Upload Syllabus**
 \t4. Use **Choose File** to find your syllabus PDF, then **Upload Syllabus** finishes the process
@@ -81,7 +81,7 @@ The deadline for submitting your syllabi is {due_date}. We show the following se
 
 Please contribute these to the Portal at your earliest convenience. If you're uncertain how to, follow these steps for **each** of your classes:
 
-\t1. Visit https://portal.cca.edu and log in
+\t1. Visit https://portal.cca.edu/login and log in
 \t2. Find your class under the "My Classes" list on the home page
 \t3. Select the class, on its page press **Edit** and then **Upload Syllabus**
 \t4. Use **Choose File** to browse to your syllabus PDF
@@ -113,7 +113,7 @@ This is the last reminder that one syllabus for each section you instruct is nee
 
 Here are detailed instructions on uploading to VAULT:
 
-\t1. Visit https://portal.cca.edu and log in
+\t1. Visit https://portal.cca.edu/login and log in
 \t2. Select one of your classes under the "My Classes" list on the home page
 \t3. Press the **Edit** button below the course description
 \t4. Select the **Upload Syllabus** button
@@ -145,7 +145,7 @@ A friendly reminder that we anticipate syllabi for the following section(s) to b
 
 Please upload these at your earliest convenience. We realize summer courses have varied schedules and may not have started yet. If you're uncertain how to submit, follow these steps for *each* of your sections:
 
-\t1. Visit https://portal.cca.edu and log in
+\t1. Visit https://portal.cca.edu/login and log in
 \t2. Find your classes under the "My Classes" list on the home page
 \t3. Select a class, on its page press **Edit** and then **Upload Syllabus**
 \t4. Use **Choose File** to browse to your syllabus file
