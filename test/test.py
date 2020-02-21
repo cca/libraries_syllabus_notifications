@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import unittest
-from syllabus_notifications import has_syllabus
+from app import has_syllabus
 from subprocess import call
 
 
