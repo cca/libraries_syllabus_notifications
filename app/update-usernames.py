@@ -29,7 +29,7 @@ def update_usernames(filename):
     # merge the report's usernames dict with the previous usernames, write to file
     usernames.update(new_usernames)
     new_users = len(usernames) - user_count
-    with open('usernames.py', 'w') as file:
+    with open('app/usernames.py', 'w') as file:
         # wow names aren't all in ASCII deal with it Python 2 sheesh
         file.write('# -*- coding: utf-8\n')
         file.write('usernames = ' + str(usernames))
