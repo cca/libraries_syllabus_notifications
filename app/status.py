@@ -16,8 +16,8 @@ if len(sys.argv) == 3:
     courses_json = sys.argv[1]
     report_csv = sys.argv[2]
 else:
-    courses_json = 'data/2020-02-19-courses.json'
-    report_csv = 'data/2020-02-19-report.csv'
+    courses_json = 'data/courses.json'
+    report_csv = 'data/report.csv'
 
 total_courses = 0
 courses_with_syllabi = 0

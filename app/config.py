@@ -3,7 +3,7 @@ import time
 
 # there's probably a more elegant way to do this but hey this works and took me hours
 # log to both (dated) file & console
-format = '%(asctime)s %(name)s %(levelname)s %(message)s'
+format = '%(asctime)s %(levelname)s %(message)s'
 logging.basicConfig(
     level=logging.DEBUG,
     datefmt='%Y-%m-%d %H:%M:%S',

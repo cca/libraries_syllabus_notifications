@@ -8,14 +8,14 @@ Note that this app needs to be run from a server with mail capabilities on CCA's
 
 - update the due date of the email template in notify.py
 - download the JSON Workday course data (can use `gsutil` CLI)
-- update the dict of faculty usernames using `./update-usernames.py courses.json`
-- in VAULT, run the "Missing Syllabi by Semester" report (`./app.py -o` opens it)
+- update the dict of faculty usernames using `app/update-usernames.py courses.json`
+- in VAULT, run the "Missing Syllabi by Semester" report (`app/app.py -o` opens it)
 - convert the report to CSV. Copy the HTML table and paste it into Google Sheets, then download as CSV. Alternatively, export to Excel then save as CSV after trimming the useless bit at the top (but not the column headers) & date at the bottom.
-- (optional, but recommended) run summary stats on our collection progress with `./status.py courses.json report.csv`
-- sync the local data to the mail server (our dev website server) with sync.sh, then SSH into that server to send the mail
-- finally, run `./app.py report.csv` to send out emails
-    + the `--template` flag lets you specify an email template out of the available choices of "initial", "followup", "final", and "summer" e.g. `./app.py report.csv --template followup`
-    + you can monitor the emails as they go out using `mail-log.sh` which continually inspects the system's mail.log file
+- (optional, but recommended) run summary stats on our collection progress with `app/status.py courses.json report.csv`
+- sync the local data to the mail server (our dev website server) with `./sync.sh`, then SSH into that server to send the mail
+- finally, run `app/app.py report.csv` to send out emails
+    + the `--template` flag lets you specify an email template out of the available choices of "initial", "followup", "final", and "summer" e.g. `app/app.py report.csv --template followup`
+    + you can use "mail-log.sh" to monitor outgoing emails by continually inspecting the system's mail.log file
 
 ## Other Notes
 
@@ -28,7 +28,7 @@ If you don't update usernames.py with missing faculty emails before sending out 
 You can use "has_syllabus.py" to count the number of rows in a CSV of courses which have syllabi:
 
 ```
-> python has_syllabus.py data/report.csv
+> python app/has_syllabus.py data/report.csv
 760 courses have syllabi of 806 total in the CSV
 ```
 
