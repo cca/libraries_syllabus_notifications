@@ -32,9 +32,11 @@ debug = bool(os.environ.get('DEBUG'))
 report = open(args.file, 'rbU')
 reader = csv.DictReader(report)
 
-# filters for problematic rows
-# we will trim & lowercase strings before comparison with these values
-skipped_faculty = ('staff', 'standby')
+# Filter out rows without a real faculty value. We trim & lowercase strings before
+# comparison with these values. Note that this last value comes from
+# github.com/cca/libraries_course_lists2
+# it is the fallback value of Course::instructor_names() when they're empty
+skipped_faculty = ('staff', 'standby', '[instructors to be determined]')
 # see also: has_syllabus.py, which is used to filter certain courses out
 
 # SMTP server

@@ -157,7 +157,7 @@ If after the attempting the above steps you are still unable to upload your syll
 
 ----------
 
-%s
+%{signature}
 
 """.format(**email_values)
 
