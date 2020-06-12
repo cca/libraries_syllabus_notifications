@@ -27,14 +27,16 @@ def notify(name, username, courses, server, msg_type='initial'):
         'courses': list_item + list_item.join(courses),
         'signature': """\
 
-        DOMINICK TRACY
-        Director of Learning Assessment & Accreditation
+        DOMINICK TRACY, Associate Provost for Educational Effectiveness
+        Chair, Upper-Division Interdisciplinary Studio Curriculum
         Deputy Title IX Coordinator for Faculty
-        Academic Affairs
-
         dtracy@cca.edu | o 510.594.3794
 
-        5212 Broadway | Oakland | CA | 94618
+        5212 Broadway | Oakland, CA | 94618
+
+        Pronouns: He/Him
+
+        CCA Coronavirus Information: https://portal.cca.edu/thriving/health-wellness/novel-coronavirus-covid19/
         """,
     }
 
