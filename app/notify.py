@@ -36,7 +36,7 @@ def notify(name, username, courses, server, msg_type='initial'):
 
         Pronouns: He/Him
 
-        CCA Coronavirus Information: https://portal.cca.edu/thriving/health-wellness/novel-coronavirus-covid19/
+        CCA’s Community-Sourced Racial Justice + Equity Resources: https://portal.cca.edu/essentials/office-president/diversity-inclusion/community-sourced-racial-justice-equity-resources/
         """,
     }
 
@@ -159,7 +159,7 @@ If after the attempting the above steps you are still unable to upload your syll
 
 ----------
 
-%{signature}
+{signature}
 
 """.format(**email_values)
 

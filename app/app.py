@@ -6,6 +6,7 @@ import smtplib
 from sys import stderr
 import time
 import webbrowser
+from xml.sax.saxutils import unescape
 
 from config import logger
 from usernames import usernames
@@ -31,6 +32,7 @@ if args.open_report:
 debug = bool(os.environ.get('DEBUG'))
 report = open(args.file, 'rbU')
 reader = csv.DictReader(report)
+
 
 # Filter out rows without a real faculty value. We trim & lowercase strings before
 # comparison with these values. Note that this last value comes from
@@ -59,8 +61,8 @@ for row in reader:
                 # initialize if not in output dict already
                 if name not in data:
                     data[name] = {'courses': [], 'username': usernames.get(name)}
-                # either way, add the course to their list
-                data[name]['courses'].append(row['Section'] + ' ' + row['Course Title'])
+                # either way, add the course to their list, unescape course title as a precaution
+                data[name]['courses'].append(row['Section'] + ' ' + unescape(row['Course Title']))
             else:
                 logger.warning(
                     'No username for {name}, course row for CSV: {row}'.format(
