@@ -16,7 +16,7 @@ def notify(name, username, courses, server, msg_type='initial'):
     # these are filled into the templates below
     email_values = {
         # @TODO update the due date here each semester
-        'due_date': 'Friday, February 14th',
+        'due_date': 'Friday, September 25th',
         'from_name': 'Dominick Tracy',
         'from_address': 'dtracy@cca.edu',
         'reply_name': 'Eric Phetteplace',
@@ -36,7 +36,7 @@ def notify(name, username, courses, server, msg_type='initial'):
 
         Pronouns: He/Him
 
-        CCA’s Community-Sourced Racial Justice + Equity Resources: https://portal.cca.edu/essentials/office-president/diversity-inclusion/community-sourced-racial-justice-equity-resources/
+        CCA campuses are located in Huichin and Yelamu, also known as Oakland and San Francisco, on the unceded territories of Chochenyo and Ramaytush Ohlone peoples.
         """,
     }
 
@@ -52,7 +52,9 @@ Hello {name},
 Happy beginning of the semester! We expect syllabi from the following courses to be added to the Portal by {due_date}:
 {courses}
 
-Note that, for team taught sections, only one person needs to submit the syllabus. Uncertain how to submit? Follow these simple steps:
+We know that there have been many last-minute course changes this semester. Please don't feel pressured to submit your syllabi right away, especially if you have reason to believe your course rosters will be shuffled around.
+
+Note that, for team taught sections, only one person submits the syllabus. Uncertain how to submit? Follow these simple steps:
 
 \t1. Visit https://portal.cca.edu/login and log in
 \t2. Find your sections under the "My Classes" list on the home page
