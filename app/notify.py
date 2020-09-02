@@ -16,7 +16,7 @@ def notify(name, username, courses, server, msg_type='initial'):
     # these are filled into the templates below
     email_values = {
         # @TODO update the due date here each semester
-        'due_date': 'Friday, September 25th',
+        'due_date': 'Friday, October 2nd',
         'from_name': 'Dominick Tracy',
         'from_address': 'dtracy@cca.edu',
         'reply_name': 'Eric Phetteplace',
