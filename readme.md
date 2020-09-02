@@ -19,7 +19,7 @@ Note that this app needs to be run from a server with mail capabilities on CCA's
 
 ## Other Notes
 
-You can dry-run the app by setting a `DEBUG` environment variable to `True`. Note that this is a great way to detect missing usernames because those are output to stderr before the samples of emails that would be sent. This gives you a chance to manually update usernames.py.
+You can dry-run the app by setting a `DEBUG` environment variable to `True`. In Bash, you can simply do `DEBUG=true python app/app.py report.csv` to test the script, for instance. Note that this is a great way to detect missing usernames because those are output to stderr before the samples of emails that would be sent. This gives you a chance to manually update usernames.py.
 
 This project is Python 2 right now because that's what we have on our web servers but the data processing scripts run locally can be python3. Updating to 3 in the future should be trivial.
 
