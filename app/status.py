@@ -43,4 +43,4 @@ with open(report_csv, 'r') as fh:
             missing_syllabi += 1
 
 percentage = round(100 * (courses_with_syllabi - missing_syllabi) / courses_with_syllabi, 2)
-logger.info('Syllabi Collection Progress:\n\nTotal Courses:\t\t{}\nCourses with Syllabi:\t{}\nMissing Syllabi:\t{}\nPercentage:\t\t{}%'.format(total_courses, courses_with_syllabi, int(missing_syllabi), percentage))
+logger.info('Syllabi Collection Progress:\n\nTotal Courses:\t\t{}\nSyllabi Courses:\t{}\nMissing Syllabi:\t{}\nPercentage:\t\t{}%\n'.format(total_courses, courses_with_syllabi, int(missing_syllabi), percentage))
