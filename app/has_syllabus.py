@@ -1,12 +1,13 @@
 from __future__ import print_function
 import argparse
 import csv
+from datetime import date
 
 # for CLI usage
 parser = argparse.ArgumentParser(description='given a Missing Syllabi Report CSV, determine how many courses actually require syllabi (e.g. are not Grad Studio Practice, Mentored Study, etc.)')
 parser.add_argument('file', help='CSV of the Informer Report')
 parser.add_argument('--csv', '-c',
-                    help='write filtered report to CSV',
+                    help='write filtered report to CSV named by the date',
                     action='store_true')
 
 
@@ -52,7 +53,7 @@ if __name__ == '__main__':
     if args.csv:
         # see readme, missing syllabi reports always contain these fields
         fields = ["Semester", "Department Code", "Course Title", "Instructor(s)", "Section"]
-        writer = csv.DictWriter(open('missing-syllabi.csv', 'w'), fieldnames=fields)
+        writer = csv.DictWriter(open('{}-missing-syllabi.csv'.format(date.today().isoformat()), 'w'), fieldnames=fields)
         writer.writeheader()
         for row in reader:
             if has_syllabus(row):
