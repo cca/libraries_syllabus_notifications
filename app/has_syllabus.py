@@ -1,6 +1,13 @@
 from __future__ import print_function
+import argparse
 import csv
-import sys
+
+# for CLI usage
+parser = argparse.ArgumentParser(description='given a Missing Syllabi Report CSV, determine how many courses actually require syllabi (e.g. are not Grad Studio Practice, Mentored Study, etc.)')
+parser.add_argument('file', help='CSV of the Informer Report')
+parser.add_argument('--csv', '-c',
+                    help='write filtered report to CSV',
+                    action='store_true')
 
 
 def has_syllabus(row):
@@ -40,14 +47,23 @@ def has_syllabus(row):
 # if we run this on the cli & pass it a CSV
 # it'll total up the number of courses in the CSV that should have syllabi
 if __name__ == '__main__':
-    reader = csv.DictReader(open(sys.argv[1], 'rbU'))
-    syllabus_count = 0
-    total_count = 0
+    args = parser.parse_args()
+    reader = csv.DictReader(open(args.file, 'r'))
+    if args.csv:
+        # see readme, missing syllabi reports always contain these fields
+        fields = ["Semester", "Department Code", "Course Title", "Instructor(s)", "Section"]
+        writer = csv.DictWriter(open('missing-syllabi.csv', 'w'), fieldnames=fields)
+        writer.writeheader()
+        for row in reader:
+            if has_syllabus(row):
+                writer.writerow(row)
+    else:
+        syllabus_count = 0
+        total_count = 0
 
-    for row in reader:
-        if has_syllabus(row):
-            syllabus_count += 1
+        for row in reader:
+            total_count += 1
+            if has_syllabus(row):
+                syllabus_count += 1
 
-        total_count += 1
-
-    print('%s courses have syllabi of %s total in the CSV' % (syllabus_count, total_count))
+        print('%s courses have syllabi of %s total in the CSV' % (syllabus_count, total_count))
