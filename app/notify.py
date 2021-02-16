@@ -93,7 +93,7 @@ Please contribute these to the Portal at your earliest convenience. If you're un
 
 Here is the full documentation on the new Portal Course Section Pages: https://portal.cca.edu/teaching/academic-affairs/faculty-resources/course-section-pages-portal-faculty/
 
-If after the attempting the above steps you are still unable to upload your syllabus, you can contact CCA's Systems Librarian, {reply_name} at {reply_address} or {reply_phone}.
+If after attempting the above steps you are still unable to upload your syllabus, you can contact CCA's Systems Librarian, {reply_name} at {reply_address} or {reply_phone}.
 
 ----------
 
