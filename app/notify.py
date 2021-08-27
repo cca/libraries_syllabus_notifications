@@ -15,8 +15,9 @@ def notify(name, username, courses, server, msg_type='initial'):
     list_item = '\n\t- '
     # these are filled into the templates below
     email_values = {
-        # @TODO update the due date here each semester
-        'due_date': 'Friday, February 19th',
+        # @TODO update the due date & email signature here each semester
+        # Fall 2021: no due date, ask for syllabi immediately
+        'due_date': None,
         'from_name': 'Dominick Tracy',
         'from_address': 'dtracy@cca.edu',
         'reply_name': 'Eric Phetteplace',
@@ -27,17 +28,25 @@ def notify(name, username, courses, server, msg_type='initial'):
         'courses': list_item + list_item.join(courses),
         'signature': """\
 
-        DOMINICK TRACY, Associate Provost for Educational Effectiveness
-        Chair, Upper-Division Interdisciplinary Studio Curriculum
-        Deputy Title IX Coordinator for Faculty
-        dtracy@cca.edu | o 510.594.3794
+DOMINICK TRACY, Associate Provost for Educational Effectiveness
+Chair, Upper-Division Interdisciplinary Studio Curriculum
+Deputy Title IX Coordinator for Faculty
+dtracy@cca.edu | o 510.594.3794
 
-        5212 Broadway | Oakland, CA | 94618
+5212 Broadway | Oakland, CA | 94618
 
-        Pronouns: He/Him
+Pronouns: He/Him
 
-        CCA campuses are located in Huichin and Yelamu, also known as Oakland and San Francisco, on the unceded territories of Chochenyo and Ramaytush Ohlone peoples.
-        """,
+CCA campuses are located in Huichin and Yelamu, also known as Oakland and San Francisco, on the unceded territories of Chochenyo and Ramaytush Ohlone peoples.
+
+FALL 2021 RESOURCES:  
+    · Online Learning: A Student's Guide:  https://portal.cca.edu/learning/online-learning/ 
+    · Online Services:  https://portal.cca.edu/learning/online-learning/remote-offices-and-services/ 
+    · Career Development Programming:  https://portal.cca.edu/learning/career-development/events-workshops/ 
+    · Counseling International Mental Health Resources:  https://portal.cca.edu/thriving/counseling/international-mental-health-support/ 
+    · Creative Accord:  https://portal.cca.edu/essentials/exhibitions/creative-citizens-action/creative-accord/
+    ·   SA Resource Guide - emailed to staff & faculty / FB / portal  https://portal.cca.edu/thriving/division-student-affairs/student-affairs-resource-guide/
+    · SA News - https://portal.cca.edu/thriving/division-student-affairs/student-affairs-news-and-announcements/""",
     }
 
     # initial email template, sent towards beginning of semester
@@ -49,19 +58,21 @@ Subject: Submitting Syllabi to Portal
 
 Hello {name},
 
-Happy beginning of the semester! We expect syllabi from the following courses to be added to the Portal by {due_date}:
+Happy beginning of the semester! We ask that you submit your syllabi to the Portal now. We expect syllabi from these courses:
 {courses}
 
-We know that there have been many last-minute course changes this semester. Please don't feel pressured to submit your syllabi right away, especially if you have reason to believe your course rosters will be shuffled around.
+While your syllabus may continue to develop in the coming weeks, we ask that you submit an initial copy now. You can replace it later by following the same steps as below.
 
-Note that, for team taught sections, only one person submits the syllabus. Uncertain how to submit? Follow these simple steps:
+Uncertain how to submit? Follow these simple steps:
 
 \t1. Visit https://portal.cca.edu/login and log in
 \t2. Find your sections under the "My Classes" list on the home page
 \t3. Select a section, then **Edit** and **Upload Syllabus**
 \t4. Use **Choose File** to find your syllabus PDF, then **Upload Syllabus** finishes the process
 
-Here is the full documentation on the new Portal Course Section Pages: https://portal.cca.edu/teaching/academic-affairs/faculty-resources/course-section-pages-portal-faculty/
+Here is the full documentation on Portal Course Section Pages: https://portal.cca.edu/teaching/academic-affairs/faculty-resources/course-section-pages-portal-faculty/
+
+Note that, for team taught sections, only one person needs to submit.
 
 Still struggling? Have questions? Feel free to contact CCA's Systems Librarian, {reply_name} at {reply_address} or {reply_phone}.
 
@@ -80,10 +91,10 @@ Subject: Reminder: Submit Your Syllabi to Portal
 
 Hello {name},
 
-The deadline for submitting your syllabi is {due_date}. We show the following sections as needing syllabi:
+We show the following sections as needing syllabi on Portal:
 {courses}
 
-Please contribute these to the Portal at your earliest convenience. If you're uncertain how to, follow these steps for **each** of your classes:
+Please upload these now. If you're uncertain how to, follow these steps for **each** of your classes:
 
 \t1. Visit https://portal.cca.edu/login and log in
 \t2. Find your class under the "My Classes" list on the home page
@@ -91,9 +102,9 @@ Please contribute these to the Portal at your earliest convenience. If you're un
 \t4. Use **Choose File** to browse to your syllabus PDF
 \t5. Press **Upload Syllabus** to complete the process
 
-Here is the full documentation on the new Portal Course Section Pages: https://portal.cca.edu/teaching/academic-affairs/faculty-resources/course-section-pages-portal-faculty/
+Note that, for team taught sections, only one person needs to submit.
 
-If after attempting the above steps you are still unable to upload your syllabus, you can contact CCA's Systems Librarian, {reply_name} at {reply_address} or {reply_phone}.
+If after attempting the above steps you are still unable to upload, you can contact CCA's Systems Librarian, {reply_name} at {reply_address} or {reply_phone}.
 
 ----------
 
@@ -165,7 +176,7 @@ If after the attempting the above steps you are still unable to upload your syll
 
 """.format(**email_values)
 
-    # send it, defaulting to localhost server if none passed in
+    # for sending a single message where app didn't define an SMTP server for us
     if server is None and debug is False:
         server = smtplib.SMTP('localhost')
         server_was_set = True
@@ -176,7 +187,8 @@ If after the attempting the above steps you are still unable to upload your syll
     msg = locals()[msg_type]
 
     if debug:
-        logger.debug('Email that would have been sent to {user}@cca.edu:\n{msg}'.format(user=username, msg=msg))
+        logger.debug('Email that would have been sent to {user}@cca.edu:\n{msg}'
+                     .format(user=username, msg=msg))
     else:
         server.sendmail(email_values["reply_address"], username + '@cca.edu', msg)
 
