@@ -46,9 +46,11 @@ class TestEmails(unittest.TestCase):
     Test sending actual reminder emails by using a sample CSV, the vault@cca.edu
     email, and my own email.
     """
-    # @TODO should make a callable main() function in app.py rather than this
+    # @TODO we want to import app.main & run it instead of this but that doesn't
+    # work right now, see the comment in app/__init__.py
     def test_email(self):
-        call(["python", "app.py", "test.csv"])
+        call(["python", "app/app.py", "test/test.csv"])
+
 
 # collect all the tests together
 def suite():
