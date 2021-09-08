@@ -74,7 +74,7 @@ Here is the full documentation on Portal Course Section Pages: https://portal.cc
 
 Note that, for team taught sections, only one person needs to submit.
 
-Still struggling? Have questions? Feel free to contact CCA's Systems Librarian, {reply_name} at {reply_address} or {reply_phone}.
+Still struggling? Have questions? Feel free to contact CCA's Systems Librarian, {reply_name} at {reply_address}.
 
 ----------
 
@@ -91,7 +91,7 @@ Subject: Reminder: Submit Your Syllabi to Portal
 
 Hello {name},
 
-We show the following sections as needing syllabi on Portal:
+The following sections need syllabi on Portal:
 {courses}
 
 Please upload these now. If you're uncertain how to, follow these steps for **each** of your classes:
@@ -104,7 +104,7 @@ Please upload these now. If you're uncertain how to, follow these steps for **ea
 
 Note that, for team taught sections, only one person needs to submit.
 
-If after attempting the above steps you are still unable to upload, you can contact CCA's Systems Librarian, {reply_name} at {reply_address} or {reply_phone}.
+If after attempting the above steps you are still unable to upload, you can contact CCA's Systems Librarian, {reply_name} at {reply_address}.
 
 ----------
 
