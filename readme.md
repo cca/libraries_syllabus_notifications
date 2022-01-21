@@ -1,6 +1,6 @@
 # Faculty Syllabus Notifications
 
-Take a CSV of our missing syllabi VAULT report and send emails to faculty about which syllabi we expect from them. We skip notifying faculty for courses which do not require syllabi (e.g. Graduate Studio Practice) and work around problematic faculty values like "Staff" and "Standby".
+Take a CSV of missing syllabi VAULT report and send emails to faculty about which syllabi we expect from them. We skip notifying faculty for courses which do not require syllabi (e.g. Graduate Studio Practice) and work around problematic faculty values like "Staff" and "Standby".
 
 ## Steps
 
@@ -19,15 +19,17 @@ Note that this app needs to be run from a server with mail capabilities on CCA's
 
 ## Other Notes
 
-You can dry-run the app by setting a `DEBUG` environment variable to `True`. In Bash, you can simply do `DEBUG=true python app/app.py report.csv` to test the script, for instance. Note that this is a great way to detect missing usernames because those are output to stderr before the samples of emails that would be sent. This gives you a chance to manually update usernames.py.
+The sync script relies on an SSH alias named "v1" to a server that can send internal CCA email.
 
-This project is Python 2 right now because that's what we have on our web servers but the data processing scripts run locally can be python3. Updating to 3 in the future should be trivial.
+You can dry-run the app by setting a `DEBUG` environment variable to `True`. You can run `DEBUG=true python app/app.py report.csv` to test the script, for instance. Note that this is a great way to detect missing usernames because those are output to stderr before the samples of emails that would be sent. This gives you a chance to manually update usernames.py.
+
+The project is Python 2 because that's what we have on our local web servers but the data processing scripts run locally can be python3. Updating to 3 in the future should be trivial.
 
 If you don't update usernames.py with missing faculty emails before sending out the first batch, you can look at the errors, fill in missing names, and then rerun the app later by filtering report.csv to just the courses of these "missing" instructors. If you do this, remember to delete out the co-instructors who already received an email—e.g. if we don't have an email for "J R" & the faculty column for a course is "J R, Herb Somebody" then delete "Herb Somebody" before rerunning the app.
 
 You can use "has_syllabus.py" to count the number of rows in a CSV of courses which have syllabi:
 
-```
+```sh
 > python app/has_syllabus.py data/report.csv
 760 courses have syllabi of 806 total in the CSV
 ```
