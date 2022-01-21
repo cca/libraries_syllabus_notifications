@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-sudo tail -f /var/log/exim4/mainlog | ack ' .*@cca\.edu'
+sudo tail -f -n 100 /var/log/mail.log | ack ' .*@cca\.edu'
