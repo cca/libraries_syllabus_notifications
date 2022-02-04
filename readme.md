@@ -14,8 +14,8 @@ Note that this app needs to be run from a server with mail capabilities on CCA's
 - (optional, but recommended) run summary stats on our collection progress with `app/status.py courses.json report.csv`
 - sync the local data to the mail server (our dev website server) with `./sync.sh`, then SSH into that server to send the mail
 - finally, run `app/app.py report.csv` to send out emails
-    + the `--template` flag lets you specify an email template out of the available choices of "initial", "followup", "final", and "summer" e.g. `app/app.py report.csv --template followup`
-    + you can use "mail-log.sh" to monitor outgoing emails by continually inspecting the system's mail.log file
+  - the `--template` flag lets you specify an email template out of the available choices of "initial", "followup", "final", and "summer" e.g. `app/app.py report.csv --template followup`
+  - you can use "mail-log.sh" to monitor outgoing emails by continually inspecting the system's mail.log file
 
 ## Other Notes
 
