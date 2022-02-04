@@ -39,7 +39,7 @@ Pronouns: He/Him
 
 CCA campuses are located in Huichin and Yelamu, also known as Oakland and San Francisco, on the unceded territories of Chochenyo and Ramaytush Ohlone peoples.
 
-FALL 2021 RESOURCES:
+Spring 2022 RESOURCES:
     * Online Learning: A Student's Guide: https://portal.cca.edu/learning/online-learning/
     * Online Services: https://portal.cca.edu/learning/online-learning/remote-offices-and-services/
     * Career Development Programming: https://portal.cca.edu/learning/career-development/events-workshops/
