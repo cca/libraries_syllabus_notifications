@@ -9,7 +9,7 @@ debug = bool(os.environ.get('DEBUG'))
 def notify(name, username, courses, server, msg_type='initial'):
     """
     Send an email to name <username@cca.edu> notifying them
-    that we expect a list of courses to have syllabi uploaded to VAULT
+    that we expect a list of courses to have syllabi uploaded to Portal
     with handy contact and help information in the email template
     """
     list_item = '\n\t- '
@@ -126,7 +126,7 @@ The Portal is still missing syllabi from the following sections:
 
 This is the last reminder that one syllabus for each section you instruct is needed. If you are struggling to upload your syllabus, please contact CCA's Systems Librarian, {reply_name} at {reply_address} or {reply_phone}. If another section's syllabus is supposed to act as your own, you still need to submit it on the Portal. Unfortunately, it's not possible to determine when one syllabus serves multiple sections.
 
-Here are detailed instructions on uploading to VAULT:
+Here are detailed instructions on uploading to Portal:
 
 \t1. Visit https://portal.cca.edu/login and log in
 \t2. Select one of your classes under the "My Classes" list on the home page
