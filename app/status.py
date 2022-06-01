@@ -10,7 +10,7 @@ import json
 import sys
 
 from config import logger
-from has_syllabus import has_syllabus
+from has_syllabus import has_syllabus, on_portal
 
 if len(sys.argv) == 3:
     courses_json = sys.argv[1]
@@ -33,8 +33,8 @@ def map_json(course):
 
 with open(courses_json, 'r') as fh:
     courses = json.load(fh)
-    total_courses = len(courses)
-    courses_with_syllabi = len([c for c in courses if has_syllabus(map_json(c))])
+    portal_courses = [c for c in courses if on_portal(c)]
+    courses_with_syllabi = len([c for c in portal_courses if has_syllabus(map_json(c))])
 
 with open(report_csv, 'r') as fh:
     reader = csv.DictReader(fh)
@@ -42,5 +42,6 @@ with open(report_csv, 'r') as fh:
         if has_syllabus(row):
             missing_syllabi += 1
 
-percentage = round(100 * (courses_with_syllabi - missing_syllabi) / courses_with_syllabi, 2)
-logger.info('Syllabi Collection Progress:\n\nTotal Courses:\t\t{}\nSyllabi Courses:\t{}\nMissing Syllabi:\t{}\nPercentage:\t\t{}%\n'.format(total_courses, courses_with_syllabi, int(missing_syllabi), percentage))
+percent = round(100 * (courses_with_syllabi - missing_syllabi) / courses_with_syllabi, 2)
+logger.info('Syllabi Collection Progress:\n\nTotal Courses:\t\t{}\nPortal Courses:\t\t{}\nSyllabi Courses:\t{}\nMissing Syllabi:\t{}\nPercentage:\t\t{}%\n'.format(
+    len(courses), len(portal_courses), courses_with_syllabi, int(missing_syllabi), percent))

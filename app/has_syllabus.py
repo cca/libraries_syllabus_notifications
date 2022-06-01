@@ -17,6 +17,12 @@ def has_syllabus(row):
     have syllabi & we don't want to annoy faculty asking for one. This fn takes
     a course, checks it against several possible attributes of courses that do
     not have syllabi, & returns False if it looks like a non-syllabus course.
+
+    Args:
+        row (dict): CSV row from Missing Syllabi Report representing a CCA course
+
+    Returns:
+        boolean: whether or not we expect the course to have a syllabus
     """
     # All COMIC courses, even "Mentored Study" etc., are an exception
     # & _do_ have syllabi, per Maya Lawrence on 2016-01-28
@@ -45,6 +51,27 @@ def has_syllabus(row):
     # fallthrough; nothing else fired so it must have a syllabus
     return True
 
+
+def on_portal(course):
+    """ Returns true if a course represents a course in the Portal catalog.
+    See similar function in course_lists2 project:
+    https://github.com/cca/libraries_course_lists2/blob/main/lib/course.py#L63-L68
+
+    Args:
+        course (dict): CCA course object from course JSON data in GSB
+        To see an example of how they're structured, download a semester's course load, e.g.:
+        `gsutil cp gs://int_files_source/course_section_data_AP_Summer_2022.json courses.json`
+
+    Returns:
+        boolean: True if course is on Portal, False otherwise
+    """
+    # "hidden" is essentially a boolean string, always "1" or "0"
+    if (course['hidden'] != "1" and
+        course['status'] in ('Closed', 'Open', 'Waitlist') and
+        course['academic_units'][0]['refid'] not in ('AU_CCA', 'AU_EXTED', 'AU_PRECO')):
+        return True
+    return False
+
 # if we run this on the cli & pass it a CSV
 # it'll total up the number of courses in the CSV that should have syllabi
 if __name__ == '__main__':
@@ -59,8 +86,7 @@ if __name__ == '__main__':
             if has_syllabus(row):
                 writer.writerow(row)
     else:
-        syllabus_count = 0
-        total_count = 0
+        syllabus_count = total_count = 0
 
         for row in reader:
             total_count += 1
