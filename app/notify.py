@@ -70,7 +70,7 @@ Uncertain how to submit? Follow these simple steps:
 \t3. Select a section, then **Edit** and **Upload Syllabus**
 \t4. Use **Choose File** to find your syllabus PDF, then **Upload Syllabus** finishes the process
 
-Here is the full documentation on Portal Course Section Pages: https://portal.cca.edu/teaching/academic-affairs/faculty-resources/course-section-pages-portal-faculty/
+Read about setting up your Course Section Pages here: https://portal.cca.edu/knowledge-base/portal/set-up-your-course-section-page/
 
 Note that, for team taught sections, only one person needs to submit.
 
@@ -138,7 +138,7 @@ Here are detailed instructions on uploading to Portal:
 \t6. Press **Upload Syllabus** to complete the process
 \t7. Repeat this process for all classes with missing syllabi
 
-Here is the full documentation on the new Portal Course Section Pages: https://portal.cca.edu/teaching/academic-affairs/faculty-resources/course-section-pages-portal-faculty/
+Read about setting up your Course Section Pages here: https://portal.cca.edu/knowledge-base/portal/set-up-your-course-section-page/
 
 ----------
 
@@ -166,7 +166,7 @@ Please upload these at your earliest convenience. We realize summer courses have
 \t4. Use **Choose File** to browse to your syllabus file
 \t5. Press **Upload Syllabus** to complete the process
 
-Here is the full documentation on the new Portal Course Section Pages: https://portal.cca.edu/teaching/academic-affairs/faculty-resources/course-section-pages-portal-faculty/
+Read about setting up your Course Section Pages here: https://portal.cca.edu/knowledge-base/portal/set-up-your-course-section-page/
 
 If after the attempting the above steps you are still unable to upload your syllabus, you can contact CCA's Systems Librarian, {reply_name} at {reply_address} or {reply_phone}.
 
