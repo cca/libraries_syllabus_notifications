@@ -16,7 +16,7 @@ def notify(name, username, courses, server, msg_type='initial'):
     # these are filled into the templates below
     email_values = {
         # @TODO update the due date & email signature here each semester
-        # Fall 2021: no due date, ask for syllabi immediately
+        # as of 2021FA we don't specify a due date
         'due_date': None,
         'from_name': 'Dominick Tracy',
         'from_address': 'dtracy@cca.edu',
@@ -30,23 +30,13 @@ def notify(name, username, courses, server, msg_type='initial'):
 
 DOMINICK TRACY, Associate Provost for Educational Effectiveness
 Chair, Upper-Division Interdisciplinary Studio Curriculum
+Accreditation Liaison Officer (WSCUC)
 Deputy Title IX Coordinator for Faculty
 dtracy@cca.edu | o 510.594.3794
 
-5212 Broadway | Oakland, CA | 94618
-
 Pronouns: He/Him
 
-CCA campuses are located in Huichin and Yelamu, also known as Oakland and San Francisco, on the unceded territories of Chochenyo and Ramaytush Ohlone peoples.
-
-Spring 2022 RESOURCES:
-    * Online Learning: A Student's Guide: https://portal.cca.edu/learning/online-learning/
-    * Online Services: https://portal.cca.edu/learning/online-learning/remote-offices-and-services/
-    * Career Development Programming: https://portal.cca.edu/learning/career-development/events-workshops/
-    * Counseling International Mental Health Resources: https://portal.cca.edu/thriving/counseling/international-mental-health-support/
-    * Creative Accord: https://portal.cca.edu/essentials/exhibitions/creative-citizens-action/creative-accord/
-    * SA Resource Guide - emailed to staff & faculty / FB / portal https://portal.cca.edu/thriving/division-student-affairs/student-affairs-resource-guide/
-    * SA News - https://portal.cca.edu/thriving/division-student-affairs/student-affairs-news-and-announcements/""",
+CCA campuses are located in Huichin and Yelamu, also known as Oakland and San Francisco, on the unceded territories of Chochenyo and Ramaytush Ohlone peoples.""",
     }
 
     # initial email template, sent towards beginning of semester
