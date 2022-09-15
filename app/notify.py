@@ -84,7 +84,7 @@ Hello {name},
 The following sections need syllabi on Portal:
 {courses}
 
-Please upload these now. If you're uncertain how to, follow these steps for **each** of your classes:
+Please upload soon. If you're uncertain how to, follow these steps for **each** of your classes:
 
 \t1. Visit https://portal.cca.edu/login and log in
 \t2. Find your class under the "My Classes" list on the home page
