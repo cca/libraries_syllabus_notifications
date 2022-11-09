@@ -9,5 +9,4 @@ verify_ssl = true
 gsutil = "*"
 
 [requires]
-# VM we use has python 2.7 & 3.4.3 & I'd rather use python 3 but 3.4 won't build on my laptop
-python_version = "3.5"
+python_version = "3.9.15"
