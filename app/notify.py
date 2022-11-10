@@ -21,8 +21,8 @@ def notify(name, username, courses, server, msg_type='initial'):
         'reply_name': 'Eric Phetteplace',
         'reply_address': 'ephetteplace@cca.edu',
         'reply_phone': '510.594.3660 (ext. 3660 from campus)',
-        'name': name,
-        'email': username + '@cca.edu',
+        'to_name': name,
+        'to_address': username + '@cca.edu',
         'courses': list_item + list_item.join(courses),
         'signature': """\
 
@@ -41,10 +41,10 @@ CCA campuses are located in Huichin and Yelamu, also known as Oakland and San Fr
     initial = """\
 From: {from_name} <{from_address}>
 Reply-To: {reply_name} <{reply_address}>
-To: {name} <{email}>
+To: {to_name} <{to_address}>
 Subject: Submitting Syllabi to Portal
 
-Hello {name},
+Hello {to_name},
 
 Happy beginning of the semester! We ask that you submit your syllabi to the Portal now. We expect syllabi from these courses:
 {courses}
@@ -74,10 +74,10 @@ Still struggling? Have questions? Feel free to contact CCA's Systems Librarian, 
     followup = """\
 From: {from_name} <{from_address}>
 Reply-To: {reply_name} <{reply_address}>
-To: {name} <{email}>
+To: {to_name} <{to_address}>
 Subject: Reminder: Submit Your Syllabi to Portal
 
-Hello {name},
+Hello {to_name},
 
 The following sections need syllabi on Portal:
 {courses}
@@ -104,10 +104,10 @@ If after attempting the above steps you are still unable to upload, you can cont
     final = """\
 From: {from_name} <{from_address}>
 Reply-To: {reply_name} <{reply_address}>
-To: {name} <{email}>
+To: {to_name} <{to_address}>
 Subject: Reminder: Submit Your Syllabi to Portal
 
-Hello {name},
+Hello {to_name},
 
 The Portal is still missing syllabi from the following sections:
 {courses}
@@ -138,10 +138,10 @@ Read about setting up your Course Section Pages here: https://portal.cca.edu/kno
     summer = """\
 From: {from_name} <{from_address}>
 Reply-To: {reply_name} <{reply_address}>
-To: {name} <{email}>
+To: {to_name} <{to_address}>
 Subject: Reminder: Submit Your Syllabi to Portal
 
-Hello {name},
+Hello {to_name},
 
 A friendly reminder that we anticipate syllabi for the following section(s) to be uploaded to Portal:
 {courses}
@@ -182,7 +182,7 @@ If after the attempting the above steps you are still unable to upload your syll
     if config['DEBUG']:
         logger.debug(f'Email that would have been sent to {username}@cca.edu:\n{msg}')
     else:
-        server.sendmail(email_values["reply_address"], username + '@cca.edu', msg)
+        server.sendmail(email_values['reply_address'], email_values['to_address'], msg)
 
     if server_was_set is True:
         server.quit()
