@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 import unittest
 from app import has_syllabus
 from subprocess import call

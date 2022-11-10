@@ -1,9 +1,7 @@
 import os
 import smtplib
 
-from config import logger
-
-debug = bool(os.environ.get('DEBUG'))
+from config import config, logger
 
 
 def notify(name, username, courses, server, msg_type='initial'):
@@ -167,18 +165,22 @@ If after the attempting the above steps you are still unable to upload your syll
 """.format(**email_values)
 
     # for sending a single message where app didn't define an SMTP server for us
-    if server is None and debug is False:
-        server = smtplib.SMTP('localhost')
+    server_was_set = False
+    if server is None and config['DEBUG'] is False:
+        server = smtplib.SMTP(config['SMTP_DOMAIN'], port=config['SMTP_PORT'])
+        server.login(config['SMTP_USER'], config['SMTP_PASSWORD'])
         server_was_set = True
-    else:
-        server_was_set = False
 
     # select the template to use
-    msg = locals()[msg_type]
+    try:
+        msg = locals()[msg_type]
+    except KeyError:
+        logger.error(f'Unrecognized message template "{msg_type}". \
+            Please use one of initial, followup, final, or summer.')
+        exit(1)
 
-    if debug:
-        logger.debug('Email that would have been sent to {user}@cca.edu:\n{msg}'
-                     .format(user=username, msg=msg))
+    if config['DEBUG']:
+        logger.debug(f'Email that would have been sent to {username}@cca.edu:\n{msg}')
     else:
         server.sendmail(email_values["reply_address"], username + '@cca.edu', msg)
 

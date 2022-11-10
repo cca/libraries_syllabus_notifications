@@ -2,32 +2,36 @@
 
 Take a CSV of missing syllabi VAULT report and send emails to faculty about which syllabi we expect from them. We skip notifying faculty for courses which do not require syllabi (e.g. Graduate Studio Practice) and work around problematic faculty values like "Staff" and "Standby".
 
+## Setup
+
+Usual Python projects steps and configure a .env file with values for SMTP domain, port, user, and password (see example.env). Consult Mailgun or the Moodle outgoing mail configuration for these values.
+
+```sh
+> pipenv install
+> cp app/example.env app/.env
+> vim app/.env # edit in real values
+> pipenv shell # run inside the virtual environment
+> python app/app.py -h # view usage information, see steps below
+```
+
 ## Steps
 
-Note that this app needs to be run from a server with mail capabilities on CCA's network, so as to avoid getting flagged by Google as a potential phishing attempt.
-
 - update the due date of the email template in notify.py
-- download the JSON Workday course data (can use `gsutil` CLI)
-- update the dict of faculty usernames using `python3 app/update-usernames.py courses.json`
-- in VAULT, run the "Missing Syllabi by Semester" report (`app/app.py -o` opens it)
+- download the JSON Workday course data (can use `gsutil` CLI, @TODO automate this)
+- update the dict of faculty usernames using `python app/update-usernames.py courses.json`
+- in VAULT, run the "Missing Syllabi by Semester" report (`python app/app.py -o` opens it)
 - convert the report to CSV. Copy the HTML table and paste it into Google Sheets, then download as CSV. Alternatively, export to Excel then save as CSV after trimming the useless bit at the top (but not the column headers) & date at the bottom.
-- (optional, but recommended) run summary stats on our collection progress with `app/status.py courses.json report.csv`
-- sync the local data to the mail server (the first VAULT app node) with `./sync.sh`, then SSH into that server
-- finally, run `app/app.py report.csv` to send out emails (does not need to be run as root)
+- (optional, but recommended) run summary stats on our collection progress with `python app/status.py courses.json report.csv`
+- finally, run `python app/app.py report.csv` to send emails
   - the `--template` flag lets you specify an email template out of the available choices of "initial" (default), "followup", "final", and "summer" e.g. `python app/app.py report.csv --template followup`
-  - use "mail-log.sh" to monitor outgoing emails by continually inspecting the system's mail.log file
 
 ## Other Notes
 
-The sync script relies on an SSH alias named "v1" to a server that can send internal CCA email.
+We can dry-run the app by setting a `DEBUG` environment variable (or .env value) to `True`. Run `DEBUG=true python app/app.py report.csv` to test the script, for instance. This is a great way to detect missing usernames because those are output to stderr before the samples of emails that would be sent. It gives us a chance to manually update usernames.py.
 
-You can dry-run the app by setting a `DEBUG` environment variable to `True`. You can run `DEBUG=true python app/app.py report.csv` to test the script, for instance. Note that this is a great way to detect missing usernames because those are output to stderr before the samples of emails that would be sent. This gives you a chance to manually update usernames.py.
+If we forget to update usernames.py with missing usernames before sending out the first batch, we can look at the errors, fill in missing names, and then rerun the app later by filtering report.csv to just the courses of these "missing" instructors. Remember to delete out the co-instructors who already received an email—e.g. if we don't have an email for "J R" & the faculty column for a course is "J R, Herb Somebody" then delete "Herb Somebody" before rerunning the app.
 
-The project is Python 2 because that's what we have on our local web servers but the data processing scripts run locally can be python3. Updating to 3 in the future should be trivial.
-
-If you don't update usernames.py with missing faculty emails before sending out the first batch, you can look at the errors, fill in missing names, and then rerun the app later by filtering report.csv to just the courses of these "missing" instructors. If you do this, remember to delete out the co-instructors who already received an email—e.g. if we don't have an email for "J R" & the faculty column for a course is "J R, Herb Somebody" then delete "Herb Somebody" before rerunning the app.
-
-You can use "has_syllabus.py" to count the number of rows in a CSV of courses which have syllabi:
+We can use "has_syllabus.py" to count the number of rows in a CSV of courses which have syllabi:
 
 ```sh
 > python app/has_syllabus.py data/report.csv

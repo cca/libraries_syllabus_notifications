@@ -7,7 +7,7 @@ import time
 import webbrowser
 from xml.sax.saxutils import unescape
 
-from config import logger
+from config import config, logger
 from usernames import usernames
 from has_syllabus import has_syllabus
 from notify import notify
@@ -19,7 +19,6 @@ def main(args):
         webbrowser.open('https://vault.cca.edu/access/reports.do')
         exit()
 
-    debug = bool(os.environ.get('DEBUG'))
     report = open(args['file'], 'r')
     reader = csv.DictReader(report)
 
@@ -31,10 +30,11 @@ def main(args):
     # see also: has_syllabus.py, which is used to filter certain courses out
 
     # SMTP server
-    if debug is True:
+    if config['DEBUG'] is True:
         server = None
     else:
-        server = smtplib.SMTP('localhost')
+        server = smtplib.SMTP(config['SMTP_DOMAIN'], port=config['SMTP_PORT'])
+        server.login(config['SMTP_USER'], config['SMTP_PASSWORD'])
 
     # output values
     data = {}
