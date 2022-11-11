@@ -1,5 +1,6 @@
 import unittest
-from app import has_syllabus
+from reminders.has_syllabus import has_syllabus
+from reminders.notify import notify
 from subprocess import call
 
 
@@ -48,7 +49,20 @@ class TestEmails(unittest.TestCase):
     # @TODO we want to import app.main & run it instead of this but that doesn't
     # work right now, see the comment in app/__init__.py
     def test_email(self):
-        call(["python", "app/app.py", "test/test.csv"])
+        call(["python", "cli.py", "test/test.csv"])
+
+
+class TestNotify(unittest.TestCase):
+    """
+    Test the notify function in app/notify.py that actually sends emails
+    """
+    def test_notify(self):
+        # test every template
+        self.assertTrue(notify('me', 'ephetteplace@cca.edu', ['ANIMA-1000-1 Animation 1'], None))
+        self.assertTrue(notify('me', 'ephetteplace@cca.edu', ['ANIMA-1000-1 Animation 1'], None, 'followup'))
+        self.assertTrue(notify('me', 'ephetteplace@cca.edu', ['ANIMA-1000-1 Animation 1'], None, 'final'))
+        self.assertTrue(notify('me', 'ephetteplace@cca.edu', ['ANIMA-1000-1 Animation 1'], None, 'summer'))
+        # self.assertRaises(KeyError, notify, 'name', 'username', ['course'], None, 'not a valid type')
 
 
 # collect all the tests together

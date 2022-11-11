@@ -1,7 +1,6 @@
-import os
 import smtplib
 
-from config import config, logger
+from reminders.config import config, logger
 
 
 def notify(name, username, courses, server, msg_type='initial'):

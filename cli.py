@@ -1,16 +1,14 @@
-#!/usr/bin/env python
 import argparse
 import csv
-import os
 import smtplib
 import time
 import webbrowser
 from xml.sax.saxutils import unescape
 
-from config import config, logger
-from usernames import usernames
-from has_syllabus import has_syllabus
-from notify import notify
+from reminders.config import config, logger
+from reminders.usernames import usernames
+from reminders.has_syllabus import has_syllabus
+from reminders.notify import notify
 
 
 # Meant to run on the CLI, args is an argparse object cast to a dict

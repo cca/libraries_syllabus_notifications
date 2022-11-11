@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Determine the collection percentage for syllabi for a given semester
 We need to know a) the courses for a semester & b) the missing syllabi report

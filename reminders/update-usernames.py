@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 '''
 Process faculty information from Workday student JSON into a Python dict of
 name:username mappings. The missing syllabi report only has faculty names and not
