@@ -17,7 +17,7 @@ Usual Python projects steps and configure a .env file with values for SMTP domai
 ## Steps
 
 - download the JSON Workday course data (can use `gsutil` CLI, @TODO automate this)
-- update the dict of faculty usernames using `python reminders/update-usernames.py courses.json`
+- update the dict of faculty usernames using `python reminders/update-usernames.py data/courses.json`
 - in VAULT, run the "Missing Syllabi by Semester" report (`python cli.py -o` opens it)
 - convert the report to CSV. Copy the HTML table and paste it into Google Sheets, then download as CSV. Alternatively, export to Excel then save as CSV after trimming the useless bit at the top (but not the column headers) & date at the bottom.
 - (optional, but recommended) run summary stats on our collection progress with `python reminders/status.py courses.json report.csv`
