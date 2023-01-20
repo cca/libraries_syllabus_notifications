@@ -16,7 +16,6 @@ Usual Python projects steps and configure a .env file with values for SMTP domai
 
 ## Steps
 
-- update the due date of the email template in notify.py
 - download the JSON Workday course data (can use `gsutil` CLI, @TODO automate this)
 - update the dict of faculty usernames using `python reminders/update-usernames.py courses.json`
 - in VAULT, run the "Missing Syllabi by Semester" report (`python cli.py -o` opens it)

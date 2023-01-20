@@ -12,9 +12,8 @@ def notify(name, username, courses, server, msg_type='initial'):
     list_item = '\n\t- '
     # these are filled into the templates below
     email_values = {
-        # @TODO update the due date & email signature here each semester
         # as of 2021FA we don't specify a due date
-        'due_date': None,
+        # 'due_date': None,
         'from_name': 'Dominick Tracy',
         'from_address': 'dtracy@cca.edu',
         'reply_name': 'Eric Phetteplace',
