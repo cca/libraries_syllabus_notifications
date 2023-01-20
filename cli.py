@@ -28,7 +28,7 @@ def main(args):
     # see also: has_syllabus.py, which is used to filter certain courses out
 
     # SMTP server
-    if config['DEBUG'] is True:
+    if config.get('DEBUG'):
         server = None
     else:
         server = smtplib.SMTP(config['SMTP_DOMAIN'], port=config['SMTP_PORT'])

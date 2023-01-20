@@ -177,7 +177,7 @@ If after the attempting the above steps you are still unable to upload your syll
             Please use one of initial, followup, final, or summer.')
         exit(1)
 
-    if config['DEBUG']:
+    if config.get('DEBUG'):
         logger.debug(f'Email that would have been sent to {username}@cca.edu:\n{msg}')
     else:
         server.sendmail(email_values['reply_address'], email_values['to_address'], msg)
