@@ -64,9 +64,9 @@ def on_portal(course):
     Returns:
         boolean: True if course is on Portal, False otherwise
     """
-    # "hidden" is essentially a boolean string, always "1" or "0"
-    if (course['hidden'] != "1" and
-        course['status'] in ('Closed', 'Open', 'Waitlist') and
+    # "hidden" is a boolean string, always "1" or "0"
+    if (str(course['hidden']) != "1" and
+        course['status'].lower() in ('closed', 'open', 'waitlist') and
         course['academic_units'][0]['refid'] not in ('AU_CCA', 'AU_EXTED', 'AU_PRECO')):
         return True
     return False
