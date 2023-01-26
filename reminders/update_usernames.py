@@ -2,31 +2,27 @@
 Process faculty information from Workday student JSON into a Python dict of
 name:username mappings. The missing syllabi report only has faculty names and not
 their usernames; we use the usernames.py dict to find out how to email them.
-
-Usage:
-> python update-usernames.py data/courses.json
 '''
 from datetime import datetime
 import json
-import sys
 
 from google.cloud import storage
 
-from config import config, logger
-from usernames import usernames
+from reminders.config import config, logger
+from reminders.usernames import usernames
 
 today = datetime.now().date()
 
 
-def what_term_is_it():
+def what_term_is_it(date=today):
     """ determine current term (e.g. "Fall 2023", "Spring 2023") from the date
     """
     season = None
-    year = today.year
+    year = date.year
 
-    if today.month >= 8:
+    if date.month >= 8:
         season = 'Fall'
-    elif today.month >= 5:
+    elif date.month >= 5:
         season = 'Summer'
     else:
         season = 'Spring'
@@ -72,6 +68,3 @@ def update_usernames():
             logger.info(f'Added {new_users} new usernames to username.py list.')
     else:
         logger.info(f'Debugging: would\'ve added {new_users} new usernames to username.py list.')
-
-if __name__ == '__main__':
-    update_usernames()

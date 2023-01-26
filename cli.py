@@ -6,6 +6,7 @@ import webbrowser
 from xml.sax.saxutils import unescape
 
 from reminders.config import config, logger
+from reminders.update_usernames import update_usernames
 from reminders.usernames import usernames
 from reminders.has_syllabus import has_syllabus
 from reminders.notify import notify
@@ -15,6 +16,10 @@ from reminders.notify import notify
 def main(args):
     if args['open_report']:
         webbrowser.open('https://vault.cca.edu/access/reports.do')
+        exit()
+
+    if args['update']:
+        update_usernames()
         exit()
 
     report = open(args['file'], 'r')
@@ -71,10 +76,13 @@ def main(args):
 if __name__ == '__main__':
     # CLI arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument('file', nargs='?', help='CSV of the Informer Report')
-    parser.add_argument('-o', '--open-report',
-                        help='open the Missing Syllabi report',
+    parser.add_argument('-u', '--update',
+                        help='update course data & faculty usernames',
                         action='store_true')
+    parser.add_argument('-o', '--open-report',
+                        help="open VAULT's Missing Syllabi report",
+                        action='store_true')
+    parser.add_argument('file', nargs='?', help='CSV of missing syllabi report')
     parser.add_argument('--template', type=str,
                         choices=['initial', 'followup', 'final', 'summer'],
                         help='which email template to utilize',

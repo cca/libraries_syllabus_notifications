@@ -14,21 +14,34 @@ Usual Python projects steps and configure a .env file with values for SMTP domai
 > python cli.py -h # view usage information, see steps below
 ```
 
+We also need access to the "integration files source" Google Storage Bucket. Once our CCA account has access permission, we use [Application Default Credentials](https://cloud.google.com/docs/authentication/provide-credentials-adc) to allow this project access. This should be a matter of [installing `gcloud`](https://cloud.google.com/sdk/docs/install) and running `gcloud auth application-default login` once.
+
 ## Steps
 
-- download the JSON Workday course data (can use `gsutil` CLI, @TODO automate this)
-- update the dict of faculty usernames using `python reminders/update-usernames.py data/courses.json`
-- in VAULT, run the "Missing Syllabi by Semester" report (`python cli.py -o` opens it)
-- convert the report to CSV. Copy the HTML table and paste it into Google Sheets, then download as CSV. Alternatively, export to Excel then save as CSV after trimming the useless bit at the top (but not the column headers) & date at the bottom.
-- (optional, but recommended) run summary stats on our collection progress with `python reminders/status.py courses.json report.csv`
-- finally, run `python cli.py report.csv` to send emails
-  - the `--template` flag lets you specify an email template out of the available choices of "initial" (default), "followup", "final", and "summer" e.g. `python cli.py report.csv --template followup`
+- enter the virtual environment, `pipenv shell`
+- update course data & faculty usernames, `python cli.py -u`
+- run VAULT's "Missing Syllabi by Semester" report (`python cli.py -o` opens it)
+- convert the report to CSV. Copy the HTML table and paste it into Google Sheets, then download as CSV. Alternatively, export to Excel then save as CSV after trimming the extraneous top rows (but not the column headers) & date at the bottom.
+- (optional, but recommended) run summary stats on our collection progress with `python reminders/status.py data/2023-01-26-Spring_2023.json data/report.csv`
+- finally, run `python cli.py data/report.csv` to send emails, use the `--template` flag to specify one of:
+  - initial (default)
+  - followup (sent ≈2 weeks later)
+  - final (sent another ≈2 weeks later)
+  - summer (exception because we only send one reminder, with no due date)
+
+## Testing
+
+There are pytest tests, but not much coverage. The testing utilities are written as pipenv scripts in the Pipfile.
+
+```sh
+pipenv run test # run tests
+pipenv run coverage # test coverage
+pipenv run report # coverage report
+```
 
 ## Other Notes
 
-We can dry-run the app by setting a `DEBUG` environment variable (or .env value) to `True`. Run `DEBUG=true python cli.py report.csv` to test the script, for instance. This is a great way to detect missing usernames because those are output to stderr before the samples of emails that would be sent. It gives us a chance to manually update usernames.py.
-
-If we forget to update usernames.py with missing usernames before sending out the first batch, we can look at the errors, fill in missing names, and then rerun the app later by filtering report.csv to just the courses of these "missing" instructors. Remember to delete out the co-instructors who already received an email—e.g. if we don't have an email for "J R" & the faculty column for a course is "J R, Herb Somebody" then delete "Herb Somebody" before rerunning the app.
+We can dry-run the app by setting a `DEBUG` environment variable (or .env value) to `True`. Run `DEBUG=true python cli.py report.csv` to test the script, for instance. The `DEBUG` env var can also be used to debug issues with Google Cloud authentication, e.g. `DEBUG=True python reminders/update_usernames.py`.
 
 We can use "has_syllabus.py" to count the number of rows in a CSV of courses which have syllabi:
 
