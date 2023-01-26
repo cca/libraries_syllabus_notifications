@@ -9,6 +9,7 @@ coverage = "*"
 [packages]
 gsutil = "*"
 python-dotenv = "0.21.0"
+google-cloud-storage = "*"
 
 [requires]
 python_version = "3.9.15"
