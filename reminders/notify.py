@@ -164,7 +164,7 @@ If after the attempting the above steps you are still unable to upload your syll
 
     # for sending a single message where app didn't define an SMTP server for us
     server_was_set = False
-    if server is None and config['DEBUG'] is False:
+    if server is None and not config.get('DEBUG'):
         server = smtplib.SMTP(config['SMTP_DOMAIN'], port=config['SMTP_PORT'])
         server.login(config['SMTP_USER'], config['SMTP_PASSWORD'])
         server_was_set = True
