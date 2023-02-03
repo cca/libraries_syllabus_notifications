@@ -3,12 +3,10 @@ import csv
 import smtplib
 import time
 import webbrowser
-from xml.sax.saxutils import unescape
 
 from reminders.config import config, logger
+from reminders.map import to_faculty_lists
 from reminders.update_usernames import update_usernames
-from reminders.usernames import usernames
-from reminders.has_syllabus import has_syllabus
 from reminders.notify import notify
 
 
@@ -22,46 +20,16 @@ def main(args):
         update_usernames()
         exit()
 
-    report = open(args['file'], 'r')
-    reader = csv.DictReader(report)
+    with open(args['file'], 'r') as fh:
+        reader = csv.DictReader(fh)
+        data = to_faculty_lists(reader)
 
-    # Filter out rows without a real faculty value. We trim & lowercase strings before
-    # comparison with these values. Note that this last value comes from
-    # github.com/cca/libraries_course_lists2
-    # it is the fallback value of Course::instructor_names() when they're empty
-    skipped_faculty = ('staff', 'standby', '[instructors to be determined]')
-    # see also: has_syllabus.py, which is used to filter certain courses out
-
-    # SMTP server
+    # initialize SMTP server
     if config.get('DEBUG'):
         server = None
     else:
         server = smtplib.SMTP(config['SMTP_DOMAIN'], port=config['SMTP_PORT'])
         server.login(config['SMTP_USER'], config['SMTP_PASSWORD'])
-
-    # output values
-    data = {}
-
-    for row in reader:
-        # skip bad values for courses e.g. studio courses w/o syllabi
-        if has_syllabus(row):
-            # skip bad faculty values like "Standby" etc.
-            names = filter(lambda f: f.strip().lower() not in skipped_faculty, row['Instructor(s)'].split(', '))
-            for name in names:
-                # if we have a username for the instructor...
-                if usernames.get(name) is not None:
-                    # initialize if not in output dict already
-                    if name not in data:
-                        data[name] = {'courses': [], 'username': usernames.get(name)}
-                    # either way, add the course to their list, unescape course title as a precaution
-                    data[name]['courses'].append(row['Section'] + ' ' + unescape(row['Course Title']))
-                else:
-                    logger.warning(
-                        'No username for {name}, course row for CSV: {row}'.format(
-                            name=name,
-                            row='    '.join(row.values())
-                        )
-                    )
 
     for faculty in data:
         logger.info('notifying {faculty}...'.format(faculty=faculty))
