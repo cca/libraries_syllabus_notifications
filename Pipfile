@@ -13,7 +13,7 @@ coverage = "~=7.1"
 pytest = "~=7.1"
 
 [requires]
-python_version = "3.9.15"
+python_version = "3.9"
 
 [scripts]
 coverage = "coverage run -m pytest"
