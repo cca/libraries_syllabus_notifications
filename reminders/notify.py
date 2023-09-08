@@ -97,7 +97,7 @@ If after attempting the above steps you are still unable to upload, you can cont
 
 """.format(**email_values)
 
-    # final (2nd) reminder to turn in syllabi
+    # final (3rd) reminder to turn in syllabi
     final = """\
 From: {from_name} <{from_address}>
 Reply-To: {reply_name} <{reply_address}>
