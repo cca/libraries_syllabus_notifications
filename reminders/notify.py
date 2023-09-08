@@ -18,7 +18,6 @@ def notify(name, username, courses, server, msg_type='initial'):
         'from_address': 'dtracy@cca.edu',
         'reply_name': 'Eric Phetteplace',
         'reply_address': 'ephetteplace@cca.edu',
-        'reply_phone': '510.594.3660 (ext. 3660 from campus)',
         'to_name': name,
         'to_address': username + '@cca.edu',
         'courses': list_item + list_item.join(courses),
@@ -110,7 +109,7 @@ Hello {to_name},
 The Portal is still missing syllabi from the following sections:
 {courses}
 
-This is the last reminder that one syllabus for each section you instruct is needed. If you are struggling to upload your syllabus, please contact CCA's Systems Librarian, {reply_name} at {reply_address} or {reply_phone}. If another section's syllabus is supposed to act as your own, you still need to submit it on the Portal. Unfortunately, it's not possible to determine when one syllabus serves multiple sections.
+This is the last reminder that one syllabus for each section you instruct is needed. If you are struggling to upload your syllabus, please contact CCA's Systems Librarian, {reply_name} at {reply_address}. If another section's syllabus is supposed to act as your own, you still need to submit it on the Portal. Unfortunately, it's not possible to determine when one syllabus serves multiple sections.
 
 Here are detailed instructions on uploading to Portal:
 
@@ -154,7 +153,7 @@ Please upload these at your earliest convenience. We realize summer courses have
 
 Read about setting up your Course Section Pages here: https://portal.cca.edu/knowledge-base/portal/set-up-your-course-section-page/
 
-If after the attempting the above steps you are still unable to upload your syllabus, you can contact CCA's Systems Librarian, {reply_name} at {reply_address} or {reply_phone}.
+If after the attempting the above steps you are still unable to upload your syllabus, you can contact CCA's Systems Librarian, {reply_name} at {reply_address}.
 
 ----------
 
