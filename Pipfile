@@ -8,9 +8,9 @@ coverage = "*"
 
 [packages]
 python-dotenv = "~=1.0"
-google-cloud-storage = "~=2.7"
-coverage = "~=7.1"
-pytest = "~=7.1"
+google-cloud-storage = "~=2.11"
+coverage = "~=7.3"
+pytest = "~=7.4"
 
 [requires]
 python_version = "3.9"
