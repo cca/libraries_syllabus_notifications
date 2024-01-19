@@ -3,35 +3,36 @@ import smtplib
 from reminders.config import config, logger
 
 
-def notify(name, username, courses, server, msg_type='initial'):
+def notify(name, username, courses, server, msg_type="initial"):
     """
     Send an email to name <username@cca.edu> notifying them
     that we expect a list of courses to have syllabi uploaded to Portal
     with handy contact and help information in the email template
     """
-    list_item = '\n\t- '
+    list_item = "\n\t- "
     # these are filled into the templates below
     email_values = {
         # as of 2021FA we don't specify a due date
         # 'due_date': None,
-        'from_name': 'Dominick Tracy',
-        'from_address': 'dtracy@cca.edu',
-        'reply_name': 'Eric Phetteplace',
-        'reply_address': 'ephetteplace@cca.edu',
-        'to_name': name,
-        'to_address': username + '@cca.edu',
-        'courses': list_item + list_item.join(courses),
-        'signature': """\
+        "from_name": "Dominick Tracy",
+        "from_address": "dtracy@cca.edu",
+        "reply_name": "Eric Phetteplace",
+        "reply_address": "ephetteplace@cca.edu",
+        "to_name": name,
+        "to_address": username + "@cca.edu",
+        "courses": list_item + list_item.join(courses),
+        "signature": """\
 
 DOMINICK TRACY, Associate Provost for Educational Effectiveness
-Chair, Upper-Division Interdisciplinary Studio Curriculum
 Accreditation Liaison Officer (WSCUC)
 Deputy Title IX Coordinator for Faculty
 dtracy@cca.edu | o 510.594.3794
-
 Pronouns: He/Him
 
-CCA campuses are located in Huichin and Yelamu, also known as Oakland and San Francisco, on the unceded territories of Chochenyo and Ramaytush Ohlone peoples.""",
+California College of the Arts
+1111 Eighth Street | San Francisco, CA | 94110
+
+CCA is located in Yelamu, also known as San Francisco, on the unceded territories of Ramaytush Ohlone peoples.""",
     }
 
     # initial email template, sent towards beginning of semester
@@ -57,7 +58,7 @@ Uncertain how to submit? Follow these simple steps:
 
 Read about setting up your Course Section Pages here: https://portal.cca.edu/knowledge-base/portal/set-up-your-course-section-page/
 
-Note that, for team taught sections, only one person needs to submit.
+Note that, for team taught _sections_, only one person needs to submit. This does not apply to multiple colocated sections of the same course; we need one syllabus per section.
 
 Still struggling? Have questions? Feel free to contact CCA's Systems Librarian, {reply_name} at {reply_address}.
 
@@ -65,7 +66,9 @@ Still struggling? Have questions? Feel free to contact CCA's Systems Librarian, 
 
 {signature}
 
-""".format(**email_values)
+""".format(
+        **email_values
+    )
 
     # 2nd reminder
     followup = """\
@@ -87,7 +90,7 @@ Please upload soon. If you're uncertain how to, follow these steps for **each** 
 \t4. Use **Choose File** to browse to your syllabus PDF
 \t5. Press **Upload Syllabus** to complete the process
 
-Note that, for team taught sections, only one person needs to submit.
+Note that, for team taught _sections_, only one person needs to submit. This does not apply to multiple colocated sections of the same course; we need one syllabus per section.
 
 If after attempting the above steps you are still unable to upload, you can contact CCA's Systems Librarian, {reply_name} at {reply_address}.
 
@@ -95,7 +98,9 @@ If after attempting the above steps you are still unable to upload, you can cont
 
 {signature}
 
-""".format(**email_values)
+""".format(
+        **email_values
+    )
 
     # final (3rd) reminder to turn in syllabi
     final = """\
@@ -129,7 +134,9 @@ Read about setting up your Course Section Pages here: https://portal.cca.edu/kno
 
 {signature}
 
-""".format(**email_values)
+""".format(
+        **email_values
+    )
 
     # summer courses have varied start dates so we don't reference a strict due date
     summer = """\
@@ -153,33 +160,37 @@ Please upload these at your earliest convenience. We realize summer courses have
 
 Read about setting up your Course Section Pages here: https://portal.cca.edu/knowledge-base/portal/set-up-your-course-section-page/
 
-If after the attempting the above steps you are still unable to upload your syllabus, you can contact CCA's Systems Librarian, {reply_name} at {reply_address}.
+If, after the attempting the steps above, you are unable to upload your syllabus, contact CCA's Systems Librarian, {reply_name} at {reply_address}.
 
 ----------
 
 {signature}
 
-""".format(**email_values)
+""".format(
+        **email_values
+    )
 
     # for sending a single message where app didn't define an SMTP server for us
     server_was_set = False
-    if server is None and not config.get('DEBUG'):
-        server = smtplib.SMTP(config['SMTP_DOMAIN'], port=config['SMTP_PORT'])
-        server.login(config['SMTP_USER'], config['SMTP_PASSWORD'])
+    if server is None and not config.get("DEBUG"):
+        server = smtplib.SMTP(config["SMTP_DOMAIN"], port=config["SMTP_PORT"])
+        server.login(config["SMTP_USER"], config["SMTP_PASSWORD"])
         server_was_set = True
 
     # select the template to use
     try:
         msg = locals()[msg_type]
     except KeyError:
-        logger.error(f'Unrecognized message template "{msg_type}". \
-            Please use one of initial, followup, final, or summer.')
+        logger.error(
+            f'Unrecognized message template "{msg_type}". \
+            Please use one of initial, followup, final, or summer.'
+        )
         exit(1)
 
-    if config.get('DEBUG'):
-        logger.debug(f'Email that would have been sent to {username}@cca.edu:\n{msg}')
+    if config.get("DEBUG"):
+        logger.debug(f"Email that would have been sent to {username}@cca.edu:\n{msg}")
     else:
-        server.sendmail(email_values['reply_address'], email_values['to_address'], msg)
+        server.sendmail(email_values["reply_address"], email_values["to_address"], msg)
 
     if server_was_set is True:
         server.quit()
