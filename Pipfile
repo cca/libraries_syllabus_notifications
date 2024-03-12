@@ -10,7 +10,8 @@ coverage = "*"
 python-dotenv = "~=1.0"
 google-cloud-storage = "~=2.14"
 coverage = "~=7.4"
-pytest = "~=7.4"
+pytest = "==8.1.1"
+openpyxl = "==3.1.2"
 
 [requires]
 python_version = "3.9"
