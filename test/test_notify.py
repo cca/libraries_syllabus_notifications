@@ -14,14 +14,34 @@ def test_email():
 
 
 # list of all templates
-@pytest.mark.parametrize('template', [
-    ('initial'),
-    ('followup'),
-    ('final'),
-    ('summer'),
-])
+@pytest.mark.parametrize(
+    "template",
+    [
+        ("initial"),
+        ("followup"),
+        ("final"),
+        ("summer"),
+    ],
+)
 def test_notify(template):
     """
     Test the notify function in app/notify.py that actually sends emails
     """
-    assert notify('me', 'ephetteplace', ['ANIMA-1000-1 Animation 1'], None, template) == True
+    assert (
+        notify("me", "ephetteplace", ["ANIMA-1000-1 Animation 1"], None, template)
+        == True
+    )
+
+
+def test_template_error():
+    """
+    Non-existent template logs an error and exits
+    """
+    with pytest.raises(SystemExit):
+        notify(
+            "me",
+            "ephetteplace",
+            ["ANIMA-1000-1 Animation 1"],
+            None,
+            "nonexistent template",
+        )
