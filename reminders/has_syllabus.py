@@ -3,11 +3,16 @@ import csv
 from datetime import date
 
 # for CLI usage
-parser = argparse.ArgumentParser(description='given a Missing Syllabi Report CSV, determine how many courses actually require syllabi (e.g. are not Grad Studio Practice, Mentored Study, etc.)')
-parser.add_argument('file', help='CSV of the Informer Report')
-parser.add_argument('--csv', '-c',
-                    help='write filtered report to CSV named by the date',
-                    action='store_true')
+parser = argparse.ArgumentParser(
+    description="given a Missing Syllabi Report CSV, determine how many courses actually require syllabi (e.g. are not Grad Studio Practice, Mentored Study, etc.)"
+)
+parser.add_argument("file", help="CSV of the Informer Report")
+parser.add_argument(
+    "--csv",
+    "-c",
+    help="write filtered report to CSV named by the date",
+    action="store_true",
+)
 
 
 def has_syllabus(row):
@@ -25,14 +30,18 @@ def has_syllabus(row):
     """
     # All COMIC courses, even "Mentored Study" etc., are an exception
     # & _do_ have syllabi, per Maya Lawrence on 2016-01-28
-    if row['Department Code'] == 'COMIC':
+    if row["Department Code"] == "COMIC":
         return True
 
-    if row['Course Title'] in ('Independent Study', 'Graduate Studio Practice', 'Mentored Study'):
+    if row["Course Title"] in (
+        "Independent Study",
+        "Graduate Studio Practice",
+        "Mentored Study",
+    ):
         return False
 
-    coursenum = int(row['Section'].split('-')[1])
-    course = '-'.join(row['Section'].split('-')[0:2])
+    coursenum = int(row["Section"].split("-")[1])
+    course = "-".join(row["Section"].split("-")[0:2])
 
     # (3|6)96(0) -> (Under)grad independent study
     # (3|6)98(0) -> (Under)grad internship
@@ -44,7 +53,14 @@ def has_syllabus(row):
     # WRITE-608 is a thesis course & the faculty member submits a narrative
     # to VAULT in lieu of syllabi, per email from Gloria Fry 2016-09-06
     # Some of these should be caught above but just in case
-    if course in ('FINAR-660', 'WRITE-660', 'WRITE-608', 'FINAR-6600', 'WRITE-6600', 'WRITE-6080'):
+    if course in (
+        "FINAR-660",
+        "WRITE-660",
+        "WRITE-608",
+        "FINAR-6600",
+        "WRITE-6600",
+        "WRITE-6080",
+    ):
         return False
 
     # fallthrough; nothing else fired so it must have a syllabus
@@ -52,7 +68,7 @@ def has_syllabus(row):
 
 
 def on_portal(course):
-    """ Returns true if a course represents a course in the Portal catalog.
+    """Returns true if a course represents a course in the Portal catalog.
     See similar function in course_lists2 project:
     https://github.com/cca/libraries_course_lists2/blob/main/lib/course.py#L63-L68
 
@@ -65,21 +81,33 @@ def on_portal(course):
         boolean: True if course is on Portal, False otherwise
     """
     # "hidden" is a boolean string, always "1" or "0"
-    if (str(course['hidden']) != "1" and
-        course['status'].lower() in ('closed', 'open', 'waitlist') and
-        course['academic_units'][0]['refid'] not in ('AU_CCA', 'AU_EXTED', 'AU_PRECO')):
+    if (
+        str(course["hidden"]) != "1"
+        and course["status"].lower() in ("closed", "open", "waitlist")
+        and course["academic_units"][0]["refid"]
+        not in ("AU_CCA", "AU_EXTED", "AU_PRECO")
+    ):
         return True
     return False
 
-# if we run this on the cli & pass it a CSV
-# it'll total up the number of courses in the CSV that should have syllabi
-if __name__ == '__main__':
-    args = parser.parse_args()
-    reader = csv.DictReader(open(args.file, 'r'))
+
+def main(args=None):
+    args = parser.parse_args(args) if args else parser.parse_args()
+
+    reader = csv.DictReader(open(args.file, "r"))
     if args.csv:
         # see readme, missing syllabi reports always contain these fields
-        fields = ["Semester", "Department Code", "Course Title", "Instructor(s)", "Section"]
-        writer = csv.DictWriter(open('{}-missing-syllabi.csv'.format(date.today().isoformat()), 'w'), fieldnames=fields)
+        fields = [
+            "Semester",
+            "Department Code",
+            "Course Title",
+            "Instructor(s)",
+            "Section",
+        ]
+        writer = csv.DictWriter(
+            open("{}-missing-syllabi.csv".format(date.today().isoformat()), "w"),
+            fieldnames=fields,
+        )
         writer.writeheader()
         for row in reader:
             if has_syllabus(row):
@@ -92,4 +120,13 @@ if __name__ == '__main__':
             if has_syllabus(row):
                 syllabus_count += 1
 
-        print('%s courses have syllabi of %s total in the CSV' % (syllabus_count, total_count))
+        print(
+            "%s courses have syllabi of %s total in the CSV"
+            % (syllabus_count, total_count)
+        )
+
+
+# if we run this on the cli & pass it a CSV
+# it'll total up the number of courses in the CSV that should have syllabi
+if __name__ == "__main__":
+    main()
