@@ -27,7 +27,7 @@ We also need access to the "integration files source" Google Storage Bucket. Onc
   - initial (default)
   - followup (sent ≈2 weeks later)
   - final (sent another ≈2 weeks later)
-  - summer (exception because we only send one reminder, with no due date)
+  - summer (exception because we only send one reminder)
 
 ## Testing
 
