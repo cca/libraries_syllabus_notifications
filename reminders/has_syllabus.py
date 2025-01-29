@@ -44,8 +44,10 @@ def has_syllabus(row):
     course = "-".join(row["Section"].split("-")[0:2])
 
     # (3|6)96(0) -> (Under)grad independent study
-    # (3|6)98(0) -> (Under)grad internship
-    if coursenum in (698, 398, 396, 696, 6980, 3980, 3960, 6960):
+    # (3|6)98(0) -> (Under)grad internship (except for INDUS Prof Prac)
+    if coursenum in (698, 396, 696, 6980, 3960, 6960):
+        return False
+    if coursenum in (398, 3980) and row["Department Code"] != "INDUS":
         return False
 
     # FINAR-660 is Graduate Studio Practice, no syllabus

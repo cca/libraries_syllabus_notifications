@@ -106,6 +106,17 @@ studio practice, for instance).
             },
             False,
         ),
+        # INDUS 3980 Prof Practice is exception to 3980 exception
+        (
+            {
+                "Section": "INDUS-3980-01",
+                "Course Title": "Professional Practice",
+                "Department Code": "INDUS",
+                "Semester": "2025SP",
+                "Instructor(s)": "Anon Ymouse",
+            },
+            True,
+        ),
     ],
 )
 def test_section(section, result):
