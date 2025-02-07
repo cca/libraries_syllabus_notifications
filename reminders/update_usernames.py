@@ -3,8 +3,11 @@ Process faculty information from Workday student JSON into a Python dict of
 name:username mappings. The missing syllabi report only has faculty names and not
 their usernames; we use the usernames.py dict to find out how to email them.
 """
-from datetime import datetime
+
+from datetime import date, datetime
 import json
+from pathlib import Path
+from typing import Any
 
 from google.cloud import storage
 
@@ -13,15 +16,15 @@ from reminders.config import config, logger
 try:
     from reminders.usernames import usernames
 except ModuleNotFoundError:
-    usernames = {}
+    usernames: dict[str, str] = {}
 
-today = datetime.now().date()
+today: date = datetime.now().date()
 
 
-def what_term_is_it(date=today):
+def what_term_is_it(date=today) -> str:
     """determine current term (e.g. "Fall 2023", "Spring 2023") from the date"""
-    season = None
-    year = date.year
+    season: str = ""
+    year: int = date.year
 
     if date.month >= 8:
         season = "Fall"
@@ -33,29 +36,27 @@ def what_term_is_it(date=today):
     return f"{season}_{year}"
 
 
-def download_courses_file(term):
+def download_courses_file(term) -> Path:
     client = storage.Client()
-    file_name = f"course_section_data_AP_{term}.json"
+    file_name: str = f"course_section_data_AP_{term}.json"
     logger.info(f"Downloading {file_name} course data from Google Storage.")
-    bucket = client.get_bucket(config["BUCKET_NAME"])
-    blob = bucket.blob(file_name)
-    local_file = f"data/{today.isoformat()}-{term}.json"
+    bucket: storage.Bucket = client.get_bucket(config["BUCKET_NAME"])
+    blob: storage.Blob = bucket.blob(file_name)
+    local_file: Path = Path("data") / f"{today.isoformat()}-{term}.json"
     blob.download_to_filename(local_file)
+    return local_file
 
 
-def update_usernames():
-    term = what_term_is_it()
+def update_usernames(un_py_path: Path = Path("reminders") / "usernames.py") -> None:
+    term: str = what_term_is_it()
 
-    download_courses_file(term)
+    file_path: Path = download_courses_file(term)
 
-    filename = f"data/{today.isoformat()}-{term}.json"
+    with open(file_path, "r") as file:
+        courses: list[dict[str, Any]] = json.load(file)
 
-    # file name is passed on command line
-    with open(filename, "r") as file:
-        courses = json.load(file)
-
-    user_count = len(usernames)
-    new_usernames = {}
+    user_count: int = len(usernames)
+    new_usernames: dict[str, str] = {}
     for course in courses:
         for i in course["instructors"]:
             if i["username"]:
@@ -63,11 +64,12 @@ def update_usernames():
 
     # merge the report's usernames dict with the previous usernames, write to file
     usernames.update(new_usernames)
-    new_users = len(usernames) - user_count
+    new_users: int = len(usernames) - user_count
 
     if not config.get("DEBUG"):
-        with open("reminders/usernames.py", "w") as file:
-            file.write("usernames = " + str(usernames))
+        un_py_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(un_py_path, "w") as file:
+            file.write("usernames: dict[str, str] = " + str(usernames))
             logger.info(f"Added {new_users} new usernames to username.py list.")
     else:
         logger.info(

@@ -30,12 +30,13 @@ We also need access to the "integration files source" Google Storage Bucket. Onc
 
 ## Testing
 
-There are pytest tests, but not much coverage.
+There are pytest tests and coverage data.
 
 ```sh
+source .venv/bin/activate.fish
 python -m pytest # run tests
 coverage run -m pytest # test coverage
-coverage report --omit test/*,reminders/usernames.py,reminders/__init__.py # coverage report
+coverage report --omit "test/*,reminders/usernames.py,reminders/__init__.py" # coverage report
 ```
 
 ## Other Notes
