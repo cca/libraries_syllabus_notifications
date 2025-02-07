@@ -7,18 +7,17 @@ Take a CSV of missing syllabi VAULT report and send emails to faculty about whic
 Usual Python projects steps and configure a .env file with values for SMTP domain, port, user, and password (see example.env). Consult Mailgun or the Moodle outgoing mail configuration for these values.
 
 ```sh
-> pipenv install
+> uv install
 > cp reminders/example.env reminders/.env
 > vim reminders/.env # edit in real values
-> pipenv shell # run inside the virtual environment
-> python cli.py -h # view usage information, see steps below
+> uv run python cli.py -h # run inside the virtual environment
 ```
 
 We also need access to the "integration files source" Google Storage Bucket. Once our CCA account has access permission, we use [Application Default Credentials](https://cloud.google.com/docs/authentication/provide-credentials-adc) to allow this project access. This should be a matter of [installing `gcloud`](https://cloud.google.com/sdk/docs/install) and running `gcloud auth application-default login` once.
 
 ## Steps
 
-- enter the virtual environment, `pipenv shell`
+- activate the virtual environment, `source .venv/bin/activate`
 - update course data & faculty usernames, `python cli.py -u`
 - run VAULT's "Missing Syllabi by Semester" report (`python cli.py -o` opens it)
 - convert the report to CSV. Copy the HTML table and paste it into Google Sheets, then download as CSV. Alternatively, export to Excel then save as CSV after trimming the extraneous top rows (but not the column headers) & date at the bottom.
@@ -31,12 +30,12 @@ We also need access to the "integration files source" Google Storage Bucket. Onc
 
 ## Testing
 
-There are pytest tests, but not much coverage. The testing utilities are written as pipenv scripts in the Pipfile.
+There are pytest tests, but not much coverage.
 
 ```sh
-pipenv run test # run tests
-pipenv run coverage # test coverage
-pipenv run report # coverage report
+python -m pytest # run tests
+coverage run -m pytest # test coverage
+coverage report --omit test/*,reminders/usernames.py,reminders/__init__.py # coverage report
 ```
 
 ## Other Notes
