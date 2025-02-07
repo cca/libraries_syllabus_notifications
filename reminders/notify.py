@@ -26,13 +26,9 @@ def notify(name, username, courses, server, msg_type="initial"):
 DOMINICK TRACY, Associate Provost for Educational Effectiveness
 Accreditation Liaison Officer (WSCUC)
 Deputy Title IX Coordinator for Faculty
-dtracy@cca.edu | o 510.594.3794
-Pronouns: He/Him
+dtracy@cca.edu
 
-California College of the Arts
-1111 Eighth Street | San Francisco, CA | 94110
-
-CCA is located in Yelamu, also known as San Francisco, on the unceded territories of Ramaytush Ohlone peoples.""",
+CCA is situated on the unceded territories of the Ohlone peoples.""",
     }
 
     # initial email template, sent towards beginning of semester
