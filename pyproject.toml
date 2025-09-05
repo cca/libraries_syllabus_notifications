@@ -5,7 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "google-cloud-storage==3.3",
+    "google-cloud-storage==3.3.1",
     "openpyxl==3.1.5",
     "python-dotenv==1.1.1",
 ]
@@ -13,5 +13,5 @@ dependencies = [
 [dependency-groups]
 dev = [
     "coverage==7.10.6",
-    "pytest==8.4.1",
+    "pytest==8.4.2",
 ]
