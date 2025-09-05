@@ -1,6 +1,7 @@
 import argparse
 import csv
 from datetime import date
+from typing import Any
 
 # for CLI usage
 parser = argparse.ArgumentParser(
@@ -15,7 +16,7 @@ parser.add_argument(
 )
 
 
-def has_syllabus(row):
+def has_syllabus(row: dict[str, Any]) -> bool:
     """
     Some courses, mostly Independent Study & Graduate Studio Practice, don't
     have syllabi & we don't want to annoy faculty asking for one. This fn takes
@@ -40,8 +41,8 @@ def has_syllabus(row):
     ):
         return False
 
-    coursenum = int(row["Section"].split("-")[1])
-    course = "-".join(row["Section"].split("-")[0:2])
+    coursenum: int = int(row["Section"].split("-")[1])
+    course: str = "-".join(row["Section"].split("-")[0:2])
 
     # (3|6)96(0) -> (Under)grad independent study
     # (3|6)98(0) -> (Under)grad internship (except for INDUS Prof Prac)
@@ -69,7 +70,7 @@ def has_syllabus(row):
     return True
 
 
-def on_portal(course):
+def on_portal(course: dict[str, Any]) -> bool:
     """Returns true if a course represents a course in the Portal catalog.
     See similar function in course_lists2 project:
     https://github.com/cca/libraries_course_lists2/blob/main/lib/course.py#L63-L68
@@ -93,13 +94,13 @@ def on_portal(course):
     return False
 
 
-def main(args=None):
+def main(args=None) -> None:
     args = parser.parse_args(args) if args else parser.parse_args()
 
     reader = csv.DictReader(open(args.file, "r"))
     if args.csv:
         # see readme, missing syllabi reports always contain these fields
-        fields = [
+        fields: list[str] = [
             "Semester",
             "Department Code",
             "Course Title",
@@ -115,7 +116,8 @@ def main(args=None):
             if has_syllabus(row):
                 writer.writerow(row)
     else:
-        syllabus_count = total_count = 0
+        syllabus_count: int = 0
+        total_count: int = 0
 
         for row in reader:
             total_count += 1

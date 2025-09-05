@@ -6,12 +6,12 @@ import webbrowser
 
 from reminders.config import config, logger
 from reminders.map import to_faculty_lists
-from reminders.update_usernames import update_usernames
 from reminders.notify import notify
+from reminders.update_usernames import update_usernames
 
 
 # Meant to run on the CLI, args is an argparse object cast to a dict
-def main(args):
+def main(args) -> None:
     if args["open_report"]:
         webbrowser.open("https://vault.cca.edu/access/reports.do")
         exit()

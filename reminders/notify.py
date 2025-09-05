@@ -3,15 +3,21 @@ import smtplib
 from reminders.config import config, logger
 
 
-def notify(name, username, courses, server, msg_type="initial"):
+def notify(
+    name: str,
+    username: str,
+    courses: list[str],
+    server: smtplib.SMTP | None,
+    msg_type: str = "initial",
+) -> bool:
     """
     Send an email to name <username@cca.edu> notifying them
     that we expect a list of courses to have syllabi uploaded to Portal
     with handy contact and help information in the email template
     """
-    list_item = "\n\t- "
+    list_item: str = "\n\t- "
     # these are filled into the templates below
-    email_values = {
+    email_values: dict[str, str] = {
         # as of 2021FA we don't specify a due date
         # 'due_date': None,
         "from_name": "Dominick Tracy",
@@ -23,7 +29,8 @@ def notify(name, username, courses, server, msg_type="initial"):
         "courses": list_item + list_item.join(courses),
         "signature": """\
 
-DOMINICK TRACY, Associate Provost for Educational Effectiveness
+DOMINICK TRACY, PhD
+Associate Provost, Academic Affairs (he, him, his)
 Accreditation Liaison Officer (WSCUC)
 Deputy Title IX Coordinator for Faculty
 dtracy@cca.edu
@@ -32,7 +39,7 @@ CCA is situated on the unceded territories of the Ohlone peoples.""",
     }
 
     # initial email template, sent towards beginning of semester
-    initial = """\
+    initial: str = """\
 From: {from_name} <{from_address}>
 Reply-To: {reply_name} <{reply_address}>
 To: {to_name} <{to_address}>
@@ -62,12 +69,10 @@ Still struggling? Have questions? Feel free to contact CCA's Systems Librarian, 
 
 {signature}
 
-""".format(
-        **email_values
-    )
+""".format(**email_values)
 
     # 2nd reminder
-    followup = """\
+    followup: str = """\
 From: {from_name} <{from_address}>
 Reply-To: {reply_name} <{reply_address}>
 To: {to_name} <{to_address}>
@@ -94,12 +99,10 @@ If after attempting the above steps you are still unable to upload, you can cont
 
 {signature}
 
-""".format(
-        **email_values
-    )
+""".format(**email_values)
 
     # final (3rd) reminder to turn in syllabi
-    final = """\
+    final: str = """\
 From: {from_name} <{from_address}>
 Reply-To: {reply_name} <{reply_address}>
 To: {to_name} <{to_address}>
@@ -130,9 +133,7 @@ Read about setting up your Course Section Pages here: https://portal.cca.edu/kno
 
 {signature}
 
-""".format(
-        **email_values
-    )
+""".format(**email_values)
 
     # summer courses have varied start dates so we don't reference a strict due date
     summer = """\
@@ -162,20 +163,11 @@ If, after the attempting the steps above, you are unable to upload your syllabus
 
 {signature}
 
-""".format(
-        **email_values
-    )
-
-    # for sending a single message where app didn't define an SMTP server for us
-    server_was_set = False
-    if server is None and not config.get("DEBUG"):
-        server = smtplib.SMTP(config["SMTP_DOMAIN"], port=config["SMTP_PORT"])
-        server.login(config["SMTP_USER"], config["SMTP_PASSWORD"])
-        server_was_set = True
+""".format(**email_values)
 
     # select the template to use
     try:
-        msg = locals()[msg_type]
+        msg: str = locals()[msg_type]
     except KeyError:
         logger.error(
             f'Unrecognized message template "{msg_type}". \
@@ -185,9 +177,16 @@ If, after the attempting the steps above, you are unable to upload your syllabus
 
     if config.get("DEBUG"):
         logger.debug(f"Email that would have been sent to {username}@cca.edu:\n{msg}")
-    else:
-        server.sendmail(email_values["reply_address"], email_values["to_address"], msg)
+        return True
 
+    # for sending a single message where app didn't define an SMTP server for us
+    server_was_set: bool = False
+    if server is None:
+        server = smtplib.SMTP(config["SMTP_DOMAIN"], port=config["SMTP_PORT"])
+        server.login(config["SMTP_USER"], config["SMTP_PASSWORD"])
+        server_was_set = True
+
+    server.sendmail(email_values["reply_address"], email_values["to_address"], msg)
     if server_was_set is True:
         server.quit()
 

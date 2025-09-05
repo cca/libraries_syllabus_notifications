@@ -27,10 +27,7 @@ def test_notify(template):
     """
     Test the notify function in app/notify.py that actually sends emails
     """
-    assert (
-        notify("me", "ephetteplace", ["ANIMA-1000-1 Animation 1"], None, template)
-        == True
-    )
+    assert notify("me", "ephetteplace", ["ANIMA-1000-1 Animation 1"], None, template)
 
 
 def test_template_error():

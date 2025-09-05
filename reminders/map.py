@@ -1,3 +1,4 @@
+from typing import Any
 from xml.sax.saxutils import unescape
 
 from reminders.config import logger
@@ -6,10 +7,10 @@ from reminders.has_syllabus import has_syllabus
 try:
     from reminders.usernames import usernames
 except ModuleNotFoundError:
-    usernames = {}
+    usernames: dict[str, str] = {}
 
 
-def to_faculty_lists(reader):
+def to_faculty_lists(reader) -> dict[str, dict[str, Any]]:
     """map CSV reader to a dict with keys that are faculty usernames and
     values that are another dict with two properties: a 'course' list of
     sections with missing list and a 'username' string
@@ -23,13 +24,17 @@ def to_faculty_lists(reader):
         { "faculty name": { "courses": [ course one, course two ],
         "username": "fname" }, ... }
     """
-    output = {}
+    output: dict[str, dict[str, Any]] = {}
 
     # Filter out rows without a real faculty value. We trim & lowercase strings before
     # comparison with these values. Note that this last value comes from
     # github.com/cca/libraries_course_lists2
     # it is the fallback value of Course::instructor_names() when they're empty
-    skipped_faculty = ("staff", "standby", "[instructors to be determined]")
+    skipped_faculty: tuple[str, ...] = (
+        "staff",
+        "standby",
+        "[instructors to be determined]",
+    )
     # see also: has_syllabus.py, which is used to filter certain courses out
 
     for row in reader:
