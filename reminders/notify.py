@@ -50,7 +50,9 @@ Hello {to_name},
 Happy beginning of the semester! We ask that you submit your syllabi to the Portal now. We expect syllabi from these courses:
 {courses}
 
-While your syllabus may continue to develop in the coming weeks, we ask that you submit an initial copy now. You can replace it later by following the same steps as below.
+Accurate syllabi are important for our students, ensuring that the credits they've earned are accepted by other institutions. Syllabi and student records will be preserved after CCA ceases operations for future credit evaluations.
+
+While your syllabus may continue to develop in the coming weeks, we ask that you submit an initial copy now. You can replace it later if needed.
 
 Uncertain how to submit? Follow these simple steps:
 
@@ -93,6 +95,8 @@ Please upload soon. If you're uncertain how to, follow these steps for **each** 
 
 Note that, for team taught _sections_, only one person needs to submit. This does not apply to multiple colocated sections of the same course; we need one syllabus per section.
 
+Accurate syllabi are important for our students, ensuring that the credits they've earned are accepted by other institutions. Syllabi and student records will be preserved after CCA ceases operations for future credit evaluations.
+
 If after attempting the above steps you are still unable to upload, you can contact CCA's Systems Librarian, {reply_name} at {reply_address}.
 
 ----------
@@ -127,7 +131,7 @@ Here are detailed instructions on uploading to Portal:
 \t6. Press **Upload Syllabus** to complete the process
 \t7. Repeat this process for all classes with missing syllabi
 
-Read about setting up your Course Section Pages here: https://portal.cca.edu/knowledge-base/portal/set-up-your-course-section-page/
+Accurate syllabi are important for our students, ensuring that the credits they've earned are accepted by other institutions. Syllabi and student records will be preserved after CCA ceases operations for future credit evaluations.
 
 ----------
 
