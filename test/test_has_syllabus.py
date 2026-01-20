@@ -1,6 +1,6 @@
-from datetime import date
 import os
 import shlex
+from datetime import date
 
 import pytest
 

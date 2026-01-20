@@ -34,9 +34,9 @@ There are pytest tests and coverage data.
 
 ```sh
 source .venv/bin/activate.fish
-python -m pytest # run tests
+pytest # run tests
 coverage run -m pytest # test coverage
-coverage report --omit "test/*,reminders/usernames.py,reminders/__init__.py" # coverage report
+coverage report --include 'reminders/*' # coverage report
 ```
 
 ## Other Notes
@@ -46,7 +46,7 @@ We can dry-run the app by setting a `DEBUG` environment variable (or .env value)
 We can use "has_syllabus.py" to count the number of rows in a CSV of courses which have syllabi:
 
 ```sh
-> python reminders/has_syllabus.py data/report.csv
+> uv run python reminders/has_syllabus.py data/report.csv
 760 courses have syllabi of 806 total in the CSV
 ```
 

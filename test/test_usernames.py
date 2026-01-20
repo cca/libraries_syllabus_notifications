@@ -1,9 +1,9 @@
-from datetime import date
 import json
 import logging
-from pathlib import Path
 import tempfile
-from unittest.mock import MagicMock, patch, mock_open
+from datetime import date
+from pathlib import Path
+from unittest.mock import MagicMock, patch
 
 import pytest
 
