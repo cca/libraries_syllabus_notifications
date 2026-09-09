@@ -86,9 +86,7 @@ Hello {to_name},
 The following sections need syllabi on Portal:
 {courses}
 
-We need one syllabus _for each section_, including all sections of colocated courses.
-
-Please upload soon. If you're uncertain how to, follow these steps for **each** of your sections:
+Please upload one syllabus _for each section listed above_, including all sections of colocated courses. If you're uncertain how to upload, follow these steps for **each** of your sections:
 
 \t1. Visit https://portal.cca.edu/login and log in
 \t2. Find your class under the "My Classes" list on the home page
