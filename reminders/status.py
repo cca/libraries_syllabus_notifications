@@ -49,11 +49,5 @@ percent: float = round(
     100 * (courses_with_syllabi - missing_syllabi) / courses_with_syllabi, 2
 )
 logger.info(
-    "Syllabi Collection Progress:\n\nTotal Courses:\t\t{}\nPortal Courses:\t\t{}\nSyllabi Courses:\t{}\nMissing Syllabi:\t{}\nPercentage:\t\t{}%\n".format(
-        len(courses),
-        len(portal_courses),
-        courses_with_syllabi,
-        int(missing_syllabi),
-        percent,
-    )
+    f"Syllabi Collection Progress:\n\nTotal Courses:\t\t{len(courses)}\nPortal Courses:\t\t{len(portal_courses)}\nSyllabi Courses:\t{courses_with_syllabi}\nMissing Syllabi:\t{int(missing_syllabi)}\nPercentage:\t\t{percent}%\n"
 )

@@ -1,4 +1,5 @@
 import smtplib
+import sys
 
 from reminders.config import config, logger
 
@@ -85,7 +86,9 @@ Hello {to_name},
 The following sections need syllabi on Portal:
 {courses}
 
-Please upload soon. If you're uncertain how to, follow these steps for **each** of your classes:
+We need one syllabus _for each section_, including all sections of colocated courses.
+
+Please upload soon. If you're uncertain how to, follow these steps for **each** of your sections:
 
 \t1. Visit https://portal.cca.edu/login and log in
 \t2. Find your class under the "My Classes" list on the home page
@@ -93,9 +96,7 @@ Please upload soon. If you're uncertain how to, follow these steps for **each** 
 \t4. Use **Choose File** to browse to your syllabus PDF
 \t5. Press **Upload Syllabus** to complete the process
 
-Note that, for team taught _sections_, only one person needs to submit. This does not apply to multiple colocated sections of the same course; we need one syllabus per section.
-
-Accurate syllabi are important for our students, ensuring that the credits they've earned are accepted by other institutions. Syllabi and student records will be preserved after CCA ceases operations for future credit evaluations.
+For team-taught _sections_, only one person needs to submit. Accurate syllabi are important for our students, ensuring that the credits they've earned are accepted by other institutions. Syllabi and student records will be preserved after CCA ceases operations for future credit evaluations.
 
 If after attempting the above steps you are still unable to upload, you can contact CCA's Systems Librarian, {reply_name} at {reply_address}.
 
@@ -177,7 +178,7 @@ If, after the attempting the steps above, you are unable to upload your syllabus
             f'Unrecognized message template "{msg_type}". \
             Please use one of initial, followup, final, or summer.'
         )
-        exit(1)
+        sys.exit(1)
 
     if config.get("DEBUG"):
         logger.debug(f"Email that would have been sent to {username}@cca.edu:\n{msg}")

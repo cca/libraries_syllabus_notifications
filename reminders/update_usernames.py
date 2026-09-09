@@ -4,10 +4,11 @@ name:username mappings. The missing syllabi report only has faculty names and no
 their usernames; we use the usernames.py dict to find out how to email them.
 """
 
-from datetime import date, datetime
 import json
+from datetime import date, datetime
 from pathlib import Path
 from typing import Any
+from zoneinfo import ZoneInfo
 
 from google.cloud import storage
 
@@ -18,7 +19,7 @@ try:
 except ModuleNotFoundError:
     usernames: dict[str, str] = {}
 
-today: date = datetime.now().date()
+today: date = datetime.now(tz=ZoneInfo("America/Los_Angeles")).date()
 
 
 def what_term_is_it(date=today) -> str:
