@@ -1,9 +1,10 @@
 import json
 import logging
 import tempfile
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 from unittest.mock import MagicMock, patch
+from zoneinfo import ZoneInfo
 
 import pytest
 
@@ -36,10 +37,13 @@ def mock_storage_client():
         yield mock_instance
 
 
-def test_download_courses_file(mock_storage_client, tmp_path):
+def test_download_courses_file(mock_storage_client):
     term: str = "Spring_2024"
     file_name: str = f"course_section_data_AP_{term}.json"
-    local_file: Path = Path("data") / f"{date.today().isoformat()}-{term}.json"
+    local_file: Path = (
+        Path("data")
+        / f"{datetime.now(tz=ZoneInfo('America/Los_Angeles')).date().isoformat()}-{term}.json"
+    )
 
     # Mock the bucket and blob
     mock_bucket = MagicMock()
@@ -81,13 +85,15 @@ def test_update_usernames(caplog) -> None:
             return_value=mock_file_path,
         ):
             # test first with DEBUG (won't add usernames)
-            with patch("reminders.update_usernames.config", {"DEBUG": True}):
-                with caplog.at_level(logging.INFO):
-                    update_usernames(tmp_un_path)
-                    assert (
-                        "Debugging: would've added 2 new usernames to username.py list."
-                        in caplog.text
-                    )
+            with (
+                patch("reminders.update_usernames.config", {"DEBUG": True}),
+                caplog.at_level(logging.INFO),
+            ):
+                update_usernames(tmp_un_path)
+                assert (
+                    "Debugging: would've added 2 new usernames to username.py list."
+                    in caplog.text
+                )
 
             update_usernames(tmp_un_path)
             with open(tmp_un_path, "r") as file:

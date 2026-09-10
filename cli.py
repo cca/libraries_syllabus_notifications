@@ -1,6 +1,7 @@
 import argparse
 import csv
 import smtplib
+import sys
 import time
 import webbrowser
 
@@ -14,11 +15,11 @@ from reminders.update_usernames import update_usernames
 def main(args) -> None:
     if args["open_report"]:
         webbrowser.open("https://vault.cca.edu/access/reports.do")
-        exit()
+        sys.exit()
 
     if args["update"]:
         update_usernames()
-        exit()
+        sys.exit()
 
     with open(args["file"], "r") as fh:
         reader = csv.DictReader(fh)
@@ -32,7 +33,7 @@ def main(args) -> None:
         server.login(config["SMTP_USER"], config["SMTP_PASSWORD"])
 
     for faculty in data:
-        logger.info("notifying {faculty}...".format(faculty=faculty))
+        logger.info(f"notifying {faculty}...")
         notify(
             faculty,
             data[faculty]["username"],

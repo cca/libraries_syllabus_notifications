@@ -105,7 +105,7 @@ def main(args=None) -> None:
                 "Section",
             ]
             with open(
-                f"{datetime.now(tz=ZoneInfo('America/Los_Angeles')).isoformat()}-missing-syllabi.csv",
+                f"{datetime.now(tz=ZoneInfo('America/Los_Angeles')).date().isoformat()}-missing-syllabi.csv",
                 "w",
             ) as outfile:
                 writer = csv.DictWriter(

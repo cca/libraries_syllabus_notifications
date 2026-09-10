@@ -1,6 +1,7 @@
 import os
 import shlex
-from datetime import date
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 import pytest
 
@@ -200,8 +201,9 @@ def test_cli(capsys):
     assert "3 courses have syllabi of 3 total in the CSV" in captured.out
     assert captured.err == ""
     main(shlex.split("test/test.csv --csv"))
-    csvfile = f"{date.today().isoformat()}-missing-syllabi.csv"
+    csvfile: str = f"{datetime.now(tz=ZoneInfo('America/Los_Angeles')).date().isoformat()}-missing-syllabi.csv"
     assert os.path.exists(csvfile)
-    # should be 1 header row + 3 data rows
-    assert len(open(csvfile).readlines()) == 4
+    with open(csvfile, "r") as f:
+        # should be 1 header row + 3 data rows
+        assert len(f.readlines()) == 4
     os.remove(csvfile)
