@@ -23,8 +23,6 @@ def notify(
         # 'due_date': None,
         "from_name": "Dominick Tracy",
         "from_address": "dtracy@cca.edu",
-        "reply_name": "Eric Phetteplace",
-        "reply_address": "ephetteplace@cca.edu",
         "to_name": name,
         "to_address": username + "@cca.edu",
         "courses": list_item + list_item.join(courses),
@@ -42,7 +40,6 @@ CCA is situated on the unceded territories of the Ohlone peoples.""",
     # initial email template, sent towards beginning of semester
     initial: str = """\
 From: {from_name} <{from_address}>
-Reply-To: {reply_name} <{reply_address}>
 To: {to_name} <{to_address}>
 Subject: Submitting Syllabi to Portal
 
@@ -66,8 +63,6 @@ Read about setting up your Course Section Pages here: https://portal.cca.edu/kno
 
 Note that, for team taught _sections_, only one person needs to submit. This does not apply to multiple colocated sections of the same course; we need one syllabus per section.
 
-Still struggling? Have questions? Feel free to contact CCA's Systems Librarian, {reply_name} at {reply_address}.
-
 ----------
 
 {signature}
@@ -77,7 +72,6 @@ Still struggling? Have questions? Feel free to contact CCA's Systems Librarian, 
     # 2nd reminder
     followup: str = """\
 From: {from_name} <{from_address}>
-Reply-To: {reply_name} <{reply_address}>
 To: {to_name} <{to_address}>
 Subject: Reminder: Submit Your Syllabi to Portal
 
@@ -96,8 +90,6 @@ Please upload one syllabus _for each section listed above_, including all sectio
 
 For team-taught _sections_, only one person needs to submit. Accurate syllabi are important for our students, ensuring that the credits they've earned are accepted by other institutions. Syllabi and student records will be preserved after CCA ceases operations for future credit evaluations.
 
-If after attempting the above steps you are still unable to upload, you can contact CCA's Systems Librarian, {reply_name} at {reply_address}.
-
 ----------
 
 {signature}
@@ -107,7 +99,6 @@ If after attempting the above steps you are still unable to upload, you can cont
     # final (3rd) reminder to turn in syllabi
     final: str = """\
 From: {from_name} <{from_address}>
-Reply-To: {reply_name} <{reply_address}>
 To: {to_name} <{to_address}>
 Subject: Reminder: Submit Your Syllabi to Portal
 
@@ -116,7 +107,7 @@ Hello {to_name},
 The Portal is still missing syllabi from the following sections:
 {courses}
 
-This is the last reminder that one syllabus for each section you instruct is needed. If you are struggling to upload your syllabus, please contact CCA's Systems Librarian, {reply_name} at {reply_address}. If another section's syllabus is supposed to act as your own, you still need to submit it on the Portal. Unfortunately, it's not possible to determine when one syllabus serves multiple sections.
+This is the last reminder that one syllabus for each section you instruct is needed. If another section's syllabus is supposed to act as your own, you still need to submit it on the Portal. Unfortunately, it's not possible to determine when one syllabus serves multiple sections.
 
 Here are detailed instructions on uploading to Portal:
 
@@ -141,7 +132,6 @@ Accurate syllabi are important for our students, ensuring that the credits they'
     # summer courses have varied start dates so we don't reference a strict due date
     summer = """\
 From: {from_name} <{from_address}>
-Reply-To: {reply_name} <{reply_address}>
 To: {to_name} <{to_address}>
 Subject: Reminder: Submit Your Syllabi to Portal
 
@@ -159,8 +149,6 @@ Please upload these at your earliest convenience. We realize summer courses have
 \t5. Press **Upload Syllabus** to complete the process
 
 Read about setting up your Course Section Pages here: https://portal.cca.edu/knowledge-base/portal/set-up-your-course-section-page/
-
-If, after the attempting the steps above, you are unable to upload your syllabus, contact CCA's Systems Librarian, {reply_name} at {reply_address}.
 
 ----------
 
@@ -189,7 +177,8 @@ If, after the attempting the steps above, you are unable to upload your syllabus
         server.login(config["SMTP_USER"], config["SMTP_PASSWORD"])
         server_was_set = True
 
-    server.sendmail(email_values["reply_address"], email_values["to_address"], msg)
+    # it seems to let me send from Dominick's address rather than my own (ephetteplace)
+    server.sendmail(email_values["from_address"], email_values["to_address"], msg)
     if server_was_set is True:
         server.quit()
 
