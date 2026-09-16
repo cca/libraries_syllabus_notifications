@@ -1,0 +1,6 @@
+[tools]
+python = "3.12"
+
+[env]
+# make uv prefer mise shim python over system so we get more recent version
+UV_PYTHON = "python"
